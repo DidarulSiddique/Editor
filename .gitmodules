@@ -1,3 +1,12 @@
 [submodule "hyperframes"]
 	path = hyperframes
 	url = https://github.com/heygen-com/hyperframes.git
+[submodule "remotion"]
+	path = remotion
+	url = https://github.com/remotion-dev/remotion.git
+[submodule "youtube-agent-skill"]
+	path = youtube-agent-skill
+	url = https://github.com/Jakeschincariol/youtube-agent-skill.git
+[submodule "youtube-automation-agent"]
+	path = youtube-automation-agent
+	url = https://github.com/darkzOGx/youtube-automation-agent.git
