@@ -22,3 +22,6 @@
 [submodule "superpowers"]
 	path = superpowers
 	url = https://github.com/obra/superpowers.git
+[submodule "video-analyzer"]
+	path = video-analyzer
+	url = https://github.com/byjlw/video-analyzer.git
