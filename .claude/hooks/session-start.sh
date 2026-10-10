@@ -41,3 +41,10 @@ fi
 
 # YouTube automation agent.
 (cd youtube-automation-agent && npm install --no-audit --no-fund)
+
+# gstack installs globally (~/.claude/skills/gstack), which a fresh container
+# doesn't keep, so link the submodule there and re-run its setup. Its Chromium
+# download (cdn.playwright.dev) may be blocked; setup still succeeds without it.
+mkdir -p "$HOME/.claude/skills"
+ln -sfn "$CLAUDE_PROJECT_DIR/gstack" "$HOME/.claude/skills/gstack"
+(cd "$HOME/.claude/skills/gstack" && ./setup --host claude --no-team --no-prefix </dev/null)
