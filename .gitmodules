@@ -10,3 +10,15 @@
 [submodule "youtube-automation-agent"]
 	path = youtube-automation-agent
 	url = https://github.com/darkzOGx/youtube-automation-agent.git
+[submodule "premiere-pro-mcp"]
+	path = premiere-pro-mcp
+	url = https://github.com/leancoderkavy/premiere-pro-mcp.git
+[submodule "impeccable"]
+	path = impeccable
+	url = https://github.com/pbakaus/impeccable.git
+[submodule "gstack"]
+	path = gstack
+	url = https://github.com/garrytan/gstack.git
+[submodule "superpowers"]
+	path = superpowers
+	url = https://github.com/obra/superpowers.git
