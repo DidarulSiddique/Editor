@@ -1,11 +1,11 @@
 {
   "music": "music-temp.m4a",
   "clips": [
-    { "src": "cr7-1.png", "focus": "50% 30%" },
-    { "src": "cr7-2.png", "focus": "35% 50%" },
-    { "src": "cr7-3.png", "focus": "50% 40%" },
-    { "src": "cr7-4.png", "focus": "50% 50%" },
-    { "src": "cr7-5.png", "focus": "50% 50%" },
-    { "src": "cr7-6.png", "focus": "23% 50%" }
+    { "src": "cr7-1.png", "cut": "cr7-1-cut.png", "focus": "50% 30%" },
+    { "src": "cr7-2.png", "cut": "cr7-2-cut.png", "focus": "35% 50%" },
+    { "src": "cr7-3.png", "cut": "cr7-3-cut.png", "focus": "50% 40%" },
+    { "src": "cr7-4.png", "cut": "cr7-4-cut.png", "focus": "50% 50%" },
+    { "src": "cr7-5.png", "cut": "cr7-5-cut.png", "focus": "50% 50%" },
+    { "src": "cr7-6.png", "cut": "cr7-6-cut.png", "focus": "23% 50%" }
   ]
 }

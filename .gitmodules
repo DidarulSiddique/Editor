@@ -25,3 +25,6 @@
 [submodule "video-analyzer"]
 	path = video-analyzer
 	url = https://github.com/byjlw/video-analyzer.git
+[submodule "background-removal-js"]
+	path = background-removal-js
+	url = https://github.com/imgly/background-removal-js.git
