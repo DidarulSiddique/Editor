@@ -19,7 +19,7 @@ import "@fontsource/cinzel/900.css";
 import "@fontsource/oswald/700.css";
 
 // A clip lives in public/. startFrom is where to start inside it, in seconds.
-export type Clip = { src: string; startFrom?: number } | null;
+export type Clip = { src: string; startFrom?: number; focus?: string } | null;
 export type EditProps = { clips: Clip[]; music: string | null };
 
 const FPS = 30;
@@ -73,6 +73,7 @@ const Footage: React.FC<{
     width: "100%",
     height: "100%",
     objectFit: "cover",
+    objectPosition: clip?.focus ?? "50% 50%",
     transform: `scale(${scale})`,
     filter,
   };
@@ -192,23 +193,23 @@ const SceneOne: React.FC<{ clip: Clip; dur: number }> = ({ clip, dur }) => {
         text="IS HE"
         at={0.5}
         hold={1.2}
-        style={{ top: 330, width: "100%", textAlign: "center", fontSize: 90, color: "#d22" }}
+        style={{ top: 190, width: "100%", textAlign: "center", fontSize: 72, color: "#d22", textShadow: "0 0 20px rgba(0,0,0,0.9)" }}
       />
       <RevealWord
         text="THE ONE I LOST"
         at={1.4}
         hold={1.3}
-        style={{ top: 330, width: "100%", textAlign: "center", fontSize: 90, color: "#d22" }}
+        style={{ top: 190, width: "100%", textAlign: "center", fontSize: 72, color: "#d22", textShadow: "0 0 20px rgba(0,0,0,0.9)" }}
       />
       <RevealWord
         text="LEGACY"
         at={2.9}
         style={{
-          top: 480,
+          top: 1180,
           width: "100%",
           textAlign: "center",
           fontFamily: "Oswald, sans-serif",
-          fontSize: 210,
+          fontSize: 230,
           color: "#c9a227",
           transform: "rotate(-6deg)",
           textShadow: "0 0 30px rgba(201,162,39,0.35)",
@@ -289,7 +290,7 @@ const SceneTwo: React.FC<{ clip: Clip; dur: number }> = ({ clip, dur }) => {
         }}
       />
       <Vignette strength={0.9} />
-      <div style={{ position: "absolute", right: 170, top: 330, width: 230, height: 230, opacity: 0.8 }}>
+      <div style={{ position: "absolute", right: 90, top: 170, width: 220, height: 220, opacity: 0.8 }}>
         <Clock size={230} />
       </div>
       {["SOMEWHERE", "ACROSS", "THE SEA"].map((w, i) => (
@@ -298,12 +299,12 @@ const SceneTwo: React.FC<{ clip: Clip; dur: number }> = ({ clip, dur }) => {
           text={w}
           at={0.3 + i * 0.7}
           style={{
-            left: 230,
-            top: 300 + i * 95,
-            fontSize: 82,
-            color: "#e8344a",
+            left: 70,
+            top: 1330 + i * 105,
+            fontSize: 92,
+            color: "#ff4d63",
             transform: "rotate(-14deg)",
-            textShadow: "0 0 25px rgba(255,30,50,0.6)",
+            textShadow: "0 0 6px #000, 0 0 22px rgba(0,0,0,0.95), 0 0 30px rgba(255,30,50,0.5)",
           }}
         />
       ))}
@@ -338,8 +339,8 @@ const SceneThree: React.FC<{ clip: Clip; dur: number }> = ({ clip, dur }) => {
           transform: `scale(${0.6 + ringIn * 0.4})`,
         }}
       >
-        <div style={{ position: "relative", width: 700, height: 700, left: 0 }}>
-          <Clock size={700} roman />
+        <div style={{ position: "relative", width: 900, height: 900, top: 150 }}>
+          <Clock size={900} roman />
         </div>
       </AbsoluteFill>
     </AbsoluteFill>
@@ -364,16 +365,16 @@ const SceneFour: React.FC<{ clip: Clip; dur: number }> = ({ clip, dur }) => {
         />
       </AbsoluteFill>
       <Vignette strength={0.95} />
-      <RevealWord text="A" at={0.4} hold={0.9} style={{ left: 640, top: 70, fontSize: 130, color: "#aaa" }} />
-      <RevealWord text="LOVE" at={0.8} hold={0.5} style={{ left: 820, top: 70, fontSize: 130, color: "#777" }} />
+      <RevealWord text="A" at={0.4} hold={0.9} style={{ left: 250, top: 110, fontSize: 130, color: "#aaa" }} />
+      <RevealWord text="LOVE" at={0.8} hold={0.5} style={{ left: 420, top: 110, fontSize: 130, color: "#777" }} />
       <RevealWord
         text="IMMORTAL"
         at={1.4}
         style={{
-          top: 90,
+          top: 120,
           width: "100%",
           textAlign: "center",
-          fontSize: 170,
+          fontSize: 138,
           fontWeight: 700,
           color: "#3a6cff",
           textShadow: `0 0 ${glow}px rgba(60,110,255,0.9), 0 0 ${glow * 2.5}px rgba(60,110,255,0.5)`,
@@ -409,9 +410,9 @@ const SceneFive: React.FC<{ clip: Clip; dur: number }> = ({ clip, dur }) => {
         text="MINE"
         at={0.15}
         style={{
-          left: 90,
-          top: 70,
-          fontSize: 150,
+          left: 0, width: "100%", textAlign: "center",
+          top: 1430,
+          fontSize: 220,
           fontWeight: 700,
           color: "#fff",
           textShadow: "0 0 30px rgba(255,255,255,0.8)",
@@ -438,12 +439,12 @@ const SceneSix: React.FC<{ clip: Clip; dur: number }> = ({ clip, dur }) => {
         filter="contrast(1.3) brightness(0.6) saturate(1.2)"
       />
       <Vignette />
-      <AbsoluteFill style={{ perspective: 1200, alignItems: "center", paddingTop: 330 }}>
+      <AbsoluteFill style={{ perspective: 1200, alignItems: "center", paddingTop: 1380 }}>
         <div
           style={{
             fontFamily: SERIF,
             fontWeight: 900,
-            fontSize: 230,
+            fontSize: 250,
             color: "#d0141f",
             opacity: swing,
             transform: `rotateY(${(1 - swing) * -75}deg) rotateZ(-6deg)`,
@@ -456,7 +457,7 @@ const SceneSix: React.FC<{ clip: Clip; dur: number }> = ({ clip, dur }) => {
       <div
         style={{
           position: "absolute",
-          top: 160,
+          top: 150,
           width: "100%",
           textAlign: "center",
           fontFamily: SERIF,

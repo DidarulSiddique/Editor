@@ -1,4 +1,11 @@
 {
   "music": "music-temp.m4a",
-  "clips": [null, null, null, null, null, null]
+  "clips": [
+    { "src": "cr7-1.png", "focus": "50% 30%" },
+    { "src": "cr7-2.png", "focus": "35% 50%" },
+    { "src": "cr7-3.png", "focus": "50% 40%" },
+    { "src": "cr7-4.png", "focus": "50% 50%" },
+    { "src": "cr7-5.png", "focus": "50% 50%" },
+    { "src": "cr7-6.png", "focus": "23% 50%" }
+  ]
 }
