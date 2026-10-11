@@ -3,7 +3,16 @@
 The user's ratings and the rules they taught. `/make-edit` reads this first;
 these rules override its defaults. Newest first.
 
-## 2026-10-11 — Messi "Blaugrana scrapbook" (awaiting score)
+## 2026-10-11 — Messi v2 (awaiting score)
+- v1 feedback: "must be better… use mograph, viral fonts and layouts".
+  The torn-paper/sticker scrapbook read as a template and most of it was
+  static photos. **Rule:** footage first, with speed ramps and hit-synced
+  punch/shake/RGB; photos only as 2.5D parallax, never flat stickers.
+- **Rule:** editorial type pairing (italic serif lyrics word-by-word +
+  ultra-condensed display between depth layers + tiny tracked labels).
+- Heavy filter stacks can time out a render: pass `--timeout=240000`.
+
+## 2026-10-11 — Messi "Blaugrana scrapbook" v1 (rejected: "must be better")
 - Brief said Neymar; every supplied asset was Messi. Made a Messi edit and
   said so up front. **Rule:** check who is actually in the assets first.
 - Screen-recorded sources need: crop of the video area, trimming of lock

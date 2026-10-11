@@ -1,4 +1,27 @@
-# Messi — "Blaugrana scrapbook" edit
+# Messi edit — v2 (current) and v1 "Blaugrana scrapbook"
+
+**v2 (`src/MessiV2.tsx`, composition `MessiV2`)** replaces the scrapbook
+look after feedback that v1 looked like a template. Changes:
+- Speed ramps on every footage shot (time-remapped with `<Freeze>`:
+  0.45x slow-motion into 2.2x snaps), zoom punch + shake + RGB split
+  (SVG channel-offset filter) on every cut and strong onset.
+- Editorial type: Instrument Serif italic lyrics revealed word by word on
+  the sung times, Bebas Neue display words set *between* photo depth
+  layers with an outline copy in front, tracked Inter labels and a
+  timecode/number HUD.
+- Layouts: letterbox for emotional beats, 3-panel split screen on "and
+  the time", 2.5D parallax photos (blurred plate / type / cut-out),
+  flicker cuts on "my" and "mind", light leak on the Argentina turn.
+- Narrative hook: "he left barcelona in 2021." then the chorus plays
+  out as Barça → Argentina, ending on the Copa América kiss.
+- Footage sharpened (SVG convolve) and graded teal/warm.
+
+Render v2 with `MessiV2` in place of `MessiEdit` below and
+`--timeout=240000 --concurrency=3` (the freeze scene stacks heavy filters).
+
+---
+
+# v1 — "Blaugrana scrapbook"
 
 11 s vertical football edit built in Remotion from the supplied clips and
 photos, benchmarked against a Neymar TikTok edit.
