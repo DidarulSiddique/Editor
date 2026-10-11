@@ -7,6 +7,7 @@ set -euo pipefail
 here=$(cd "$(dirname "$0")" && pwd)
 out=$1; shift
 mkdir -p "$out"
+out=$(cd "$out" && pwd)
 deps="$HOME/.cache/edit-kit"
 if [ ! -d "$deps/node_modules/@imgly/background-removal-node" ]; then
   mkdir -p "$deps"
@@ -15,6 +16,7 @@ if [ ! -d "$deps/node_modules/@imgly/background-removal-node" ]; then
 fi
 up=(); cut=()
 for f in "$@"; do
+  f=$(realpath "$f")
   name=$(basename "${f%.*}")
   up+=("$f:$name.png")
   cut+=("$out/$name.png:$out/$name-cut.png")
