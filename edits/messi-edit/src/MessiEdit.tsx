@@ -632,8 +632,10 @@ export const MessiEdit: React.FC = () => {
   return (
     <AbsoluteFill style={{ background: "#000" }}>
       <AbsoluteFill style={{ transform: `scale(${punch})` }}>
+        {/* Each scene runs 8 frames under the next one, so torn-paper
+            entrances reveal the previous shot instead of black. */}
         {SCENES.map(([a, b, Scene], i) => (
-          <Sequence key={i} from={s(a)} durationInFrames={s(b) - s(a)}>
+          <Sequence key={i} from={s(a)} durationInFrames={s(b) - s(a) + (i < SCENES.length - 1 ? 8 : 0)}>
             <Scene />
           </Sequence>
         ))}

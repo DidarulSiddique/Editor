@@ -78,7 +78,14 @@ pose as 1ffe19d4, so redundant.
 
 ## Technical
 
-- 1080x1920, 60 fps, H.264 (CRF 14), AAC 48 kHz, 11.0 s
+- 1080x1920, 60 fps (660 frames), 11.0 s
+- Video: H.264 High, yuv420p limited range (BT.709), CRF 12 / preset slow,
+  about 20 Mb/s. Remotion renders full-range yuvj420p, so the master is
+  converted with ffmpeg (`scale=in_range=full:out_range=tv`).
+- Audio: AAC-LC 48 kHz 320 kb/s, -14.0 LUFS integrated, true peak -5.3 dBTP
+  (song turned down 5.6 dB, limited at 4x sample rate).
+- Verified: frame count 660, no black frames (`blackdetect`), every cut and
+  transition reviewed on 4 fps and 10 fps contact sheets.
 - Sources: iPad screen recordings 2732x2048 HEVC (variable ~55–60 fps);
   the video area was cropped out, conformed to 1920x1080 @ 60 fps. A 9:16
   crop of a 16:9 broadcast frame keeps only ~600 source pixels of width, so
@@ -93,7 +100,12 @@ pose as 1ffe19d4, so redundant.
 cd edits/messi-edit
 npm install
 ./prepare.sh /path/to/uploads        # rebuilds public/ from the originals
-npx remotion render src/index.ts MessiEdit out/messi-edit.mp4 \
+npx remotion render src/index.ts MessiEdit out/raw.mp4 \
   --browser-executable=/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell \
   --concurrency=4 --crf=14
+ffmpeg -i out/raw.mp4 -vf "scale=in_range=full:out_range=tv,format=yuv420p" \
+  -c:v libx264 -crf 12 -preset slow -color_range tv -colorspace bt709 \
+  -color_primaries bt709 -color_trc bt709 \
+  -af "volume=-5.6dB,aresample=192000,alimiter=limit=0.84:attack=3:release=60:level=disabled,aresample=48000" \
+  -c:a aac -b:a 320k -movflags +faststart out/messi-edit.mp4
 ```

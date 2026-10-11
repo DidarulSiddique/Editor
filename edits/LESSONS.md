@@ -3,6 +3,17 @@
 The user's ratings and the rules they taught. `/make-edit` reads this first;
 these rules override its defaults. Newest first.
 
+## 2026-10-11 — Messi "Blaugrana scrapbook" (awaiting score)
+- Brief said Neymar; every supplied asset was Messi. Made a Messi edit and
+  said so up front. **Rule:** check who is actually in the assets first.
+- Screen-recorded sources need: crop of the video area, trimming of lock
+  screen/Control Centre/player-UI frames, and checks for PiP zoom
+  transitions (black edges). **Rule:** sheet every clip before choosing.
+- Tracking keys read off small grids were wrong by up to 0.2. **Rule:**
+  measure on 480 px frames at 5–10 fps and verify with a render still.
+- Torn-paper entrances revealed black until scenes overlapped by 8 frames.
+- Remotion outputs full-range yuvj420p; convert to limited yuv420p.
+
 ## 2026-10-11 — overall 5/10
 
 ### "Floodlights" (original, faceless) — 2/10
