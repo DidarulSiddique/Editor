@@ -28,3 +28,6 @@
 [submodule "background-removal-js"]
 	path = background-removal-js
 	url = https://github.com/imgly/background-removal-js.git
+[submodule "awesome-stock-resources"]
+	path = awesome-stock-resources
+	url = https://github.com/neutraltone/awesome-stock-resources.git
