@@ -30,8 +30,8 @@ export type Clip = {
 export type EditProps = { clips: Clip[]; music: string | null };
 
 const FPS = 30;
-const s = (sec: number) => Math.round(sec * FPS);
-const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
+export const s = (sec: number) => Math.round(sec * FPS);
+export const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 
 // Timings follow the reference edit so the cuts land on the same beats.
 const SCENES = [
@@ -46,7 +46,7 @@ const SCENES = [
 export const TOTAL_FRAMES = s(24.5);
 
 const SERIF = "Cinzel, serif";
-const easeOut = Easing.bezier(0.16, 1, 0.3, 1);
+export const easeOut = Easing.bezier(0.16, 1, 0.3, 1);
 
 const SHOT_HINTS = [
   "Back to camera, arms out",
@@ -75,7 +75,7 @@ const Media: React.FC<{ src: string; clip: NonNullable<Clip>; style: React.CSSPr
 
 // Background, then `behind`, then the cut-out player, then `front`.
 // Both image layers share one transform so they stay pixel-aligned.
-const Layered: React.FC<{
+export const Layered: React.FC<{
   clip: Clip;
   index: number;
   dur: number;
@@ -137,7 +137,7 @@ const Layered: React.FC<{
   );
 };
 
-const Vignette: React.FC<{ strength?: number }> = ({ strength = 0.85 }) => (
+export const Vignette: React.FC<{ strength?: number }> = ({ strength = 0.85 }) => (
   <AbsoluteFill
     style={{
       background: `radial-gradient(ellipse at center, transparent 38%, rgba(0,0,0,${strength}) 100%)`,
@@ -145,7 +145,7 @@ const Vignette: React.FC<{ strength?: number }> = ({ strength = 0.85 }) => (
   />
 );
 
-const Grain: React.FC = () => {
+export const Grain: React.FC = () => {
   const frame = useCurrentFrame();
   return (
     <AbsoluteFill style={{ opacity: 0.13, mixBlendMode: "overlay" }}>
@@ -160,7 +160,7 @@ const Grain: React.FC = () => {
 };
 
 // Drifting dust / embers / petals. Deterministic per seed.
-const Particles: React.FC<{
+export const Particles: React.FC<{
   seed: string;
   count: number;
   color: string;
