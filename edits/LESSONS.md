@@ -1,0 +1,29 @@
+# Edit lessons
+
+The user's ratings and the rules they taught. `/make-edit` reads this first;
+these rules override its defaults. Newest first.
+
+## 2026-10-11 — overall 5/10
+
+### "Floodlights" (original, faceless) — 2/10
+- Procedural 3D pitch read as a video game / screensaver. **Rule:** no
+  code-drawn main visuals; use real or AI-generated footage, keep
+  procedural for graphics and light effects.
+- Music synthesised in Python sounded cheap. **Rule:** use a real track or
+  `vidiq_generate_music`; synthesise only SFX.
+- The story was told only in text over the same pitch. **Rule:** every
+  text beat needs its own image that shows it; have a person (or a human
+  trace) in most shots.
+- Master peaked at +0.9 dBTP (found later by `audiocheck.py`). **Rule:**
+  true-peak limit to -1 dBTP (fixed: limiter now runs at 4x sample rate, master is -14.6 LUFS / -1.5 dBTP).
+
+### CR7 remake of the LeBron reference — 6/10
+- Worked: cut-out layering with text behind the player, 3D clock ring,
+  bloom transition, glitch hit, matching the reference's timing.
+- Weak: stills instead of moving clips; borrowed song; no lyric sync
+  (no transcription available). **Rule:** prefer moving clips, use
+  image-to-video on stills when clips are missing, transcribe lyrics.
+
+### CR7 "Villain of Football" — not scored separately
+- Built from a vidIQ viral pattern; beat-synced, safe-zone layout,
+  outline-in-front text. Same stills/music limits as above.
