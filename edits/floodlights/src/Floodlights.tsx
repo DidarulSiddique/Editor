@@ -70,6 +70,13 @@ const lampLevel = (t: number, bank: 0 | 1 | 2) => {
 
 // ---------- world pieces ----------
 
+// Grass colour scaled by how lit the pitch is (cheaper than a CSS filter
+// on a very large 3D plane).
+const grass = (r: number, g: number, b: number, lit: number) => {
+  const k = 0.18 + lit * 0.82;
+  return `rgb(${Math.round(r * k)}, ${Math.round(g * k)}, ${Math.round(b * k)})`;
+};
+
 const PitchMarkings: React.FC = () => {
   const m = 60;
   const w = PW - 2 * m;
@@ -188,7 +195,6 @@ const Beam: React.FC<{ level: number; inward: 1 | -1 }> = ({ level, inward }) =>
         height: "100%",
         opacity: Math.min(1, level) * 0.55,
         mixBlendMode: "screen",
-        filter: "blur(18px)",
         background: "linear-gradient(180deg, rgba(255,246,220,0.95) 0%, rgba(255,240,205,0.35) 45%, rgba(255,240,205,0) 100%)",
         clipPath:
           inward === 1
@@ -258,9 +264,8 @@ const World: React.FC<{ t: number }> = ({ t }) => {
         <div
           style={{
             position: "absolute",
-            inset: -2500,
-            background: "repeating-linear-gradient(0deg, #17431f 0 160px, #1d5126 160px 320px)",
-            filter: `brightness(${0.18 + lit * 0.82})`,
+            inset: -1400,
+            background: `repeating-linear-gradient(0deg, ${grass(0x17, 0x43, 0x1f, lit)} 0 160px, ${grass(0x1d, 0x51, 0x26, lit)} 160px 320px)`,
           }}
         />
         <div

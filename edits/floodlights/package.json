@@ -2,7 +2,7 @@
   "name": "floodlights",
   "private": true,
   "scripts": {
-    "music": "python3 music/compose.py public/floodlights.wav",
+    "music": "music/build.sh",
     "studio": "remotion studio src/index.ts",
     "render": "remotion render src/index.ts Floodlights out/floodlights.mp4"
   },
