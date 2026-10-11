@@ -1,0 +1,21 @@
+{
+  "name": "floodlights",
+  "private": true,
+  "scripts": {
+    "music": "python3 music/compose.py public/floodlights.wav",
+    "studio": "remotion studio src/index.ts",
+    "render": "remotion render src/index.ts Floodlights out/floodlights.mp4"
+  },
+  "dependencies": {
+    "@fontsource/inter": "^5.3.0",
+    "@fontsource/oswald": "^5.3.0",
+    "@remotion/cli": "^4.0.534",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "remotion": "^4.0.534"
+  },
+  "devDependencies": {
+    "@types/react": "^19.3.0",
+    "typescript": "^7.0.2"
+  }
+}
