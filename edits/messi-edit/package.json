@@ -6,6 +6,7 @@
     "render": "remotion render src/index.ts MessiEdit out/messi-edit.mp4 --concurrency=4 --crf=14"
   },
   "dependencies": {
+    "@fontsource/allura": "^5.3.0",
     "@fontsource/anton": "^5.3.0",
     "@fontsource/bebas-neue": "^5.3.0",
     "@fontsource/cormorant-garamond": "^5.3.0",

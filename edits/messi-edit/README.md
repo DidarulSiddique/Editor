@@ -1,4 +1,4 @@
-# Messi edit — v3 "Forever Ten" (current)
+# Messi edit — v3 "Forever Remembered" (current)
 
 `src/MessiV3.tsx`, composition `MessiV3`. Output: `out/messi-edit-v3.mp4`.
 
@@ -41,15 +41,15 @@ settles. There are no hard graphics.
 | 1.92 | d735f99e (full-length, Barça), gold | "Messi" · "1987" · "Rosario…" |
 | 2.60 | collage: d735 + 785a, 1fa6, 12fb faces | "Rosario, 1987…" / "La Pulga —" |
 | 3.43 | clip 5, 2.55 s, 0.55x, sky grade | push-in 1.18→1.42 tracking Messi |
-| 4.23 | clip 3 (B&W) + clip 2 close-up (green) | "Forever Ten" |
-| 5.00 | punch-in, checker floor | ghost "Forever" over "Forever Ten" |
+| 4.23 | clip 3 (B&W) + clip 2 close-up (green) | "Forever Remembered" |
+| 5.00 | punch-in, checker floor | ghost "Forever" over "Forever Remembered" |
 | 5.97 | 1ffe19d4 (shirt to the crowd), garnet | "Barcelona" · 672 GOALS · 778 GAMES · "672" |
 | 6.60 | 12fbf6b3 (Copa América kiss), teal | "Argentina" · COPA AMÉRICA · "10" |
 | 7.40 | clip 1, 4.95 s, profile → hands to face, gold | "Leo" · "Forever…" |
-| 8.10 | collage: 17d3 + 1fa6, 785a, d923 | "Forever Ten…" / "since 2004 —" |
+| 8.10 | collage: 17d3 + 1fa6, 785a, d923 | "Forever Remembered…" / "since 2004 —" |
 | 8.90 | clip 3, 6.0 s dribble, sky | push-in with tracking |
-| 9.73 | clip 1 wide (B&W) + d923c80d cut-out (green) | "Forever Ten" |
-| 10.50 | punch-in + crop flicker, checker | ghost "Forever" over "Forever Ten" |
+| 9.73 | clip 1 wide (B&W) + d923c80d cut-out (green) | "Forever Remembered" |
+| 10.50 | punch-in + crop flicker, checker | ghost "Forever" over "Forever Remembered" |
 | 11.10 | white, then black | `CREATOR` signature (edit the constant) |
 
 How it is built:
@@ -57,7 +57,7 @@ How it is built:
 - **Photos:** each photo is drawn as an illustration: the tinted cut-out sits over a faint copy of the full photo and fades out at the bottom.
 - **Broadcast clutter:** scoreboards and channel bugs are hidden under paper haze or cropped out.
 - **Motion blur:** only on whips, using an anisotropic SVG blur (`stdDeviation="N 0"`). Nothing else is blurred.
-- **Type:**
+- **Type** (title lines use Allura, chosen for legibility):
   - Names: Mrs Saint Delafield, revealed by a moving mask so they write on, with an echo copy.
   - Second script line: Monsieur La Doulaise.
   - Captions: Cormorant Garamond in tracked caps.

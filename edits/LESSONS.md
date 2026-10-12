@@ -15,6 +15,11 @@ these rules override its defaults. Newest first.
   hands cover it after 5.05 s. A PiP zoom left a border in n2 until it was
   cropped past it. **Rule:** check every footage choice on a 480 px frame
   *and* a render still before the full render.
+- Feedback: in the Mrs Saint Delafield script, "Forever Ten" read as "Forever
+  Jew". Changed to "Forever Remembered", set in Allura. **Rule:** before
+  render, read every script/handwritten line at small size as a stranger
+  would and check it can't be misread as something offensive. Use a more
+  legible script for any line that matters.
 - Portrait photos in a landscape frame: frame them from the cut-out's
   alpha bounding box (head height), not the image box.
 

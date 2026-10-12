@@ -14,8 +14,9 @@ import {
 import "@fontsource/mrs-saint-delafield/400.css";
 import "@fontsource/monsieur-la-doulaise/400.css";
 import "@fontsource/cormorant-garamond/600.css";
+import "@fontsource/allura/400.css";
 
-// v3 — "Forever Ten". Rebuilt on the second reference (97d7904d, a high-key
+// v3 — "Forever Remembered". Rebuilt on the second reference (97d7904d, a high-key
 // watercolour character edit): white paper, one pastel tint per shot,
 // hand-written script names that write themselves on, ghosted double
 // exposures and horizontal whip-blur transitions, cut to the reference's
@@ -32,6 +33,7 @@ const inOut = Easing.bezier(0.65, 0, 0.35, 1);
 
 const NAME = "'Mrs Saint Delafield', cursive";
 const HAND = "'Monsieur La Doulaise', cursive";
+const TITLE = "Allura, cursive"; // legible script for the title lines
 const CAPS = "'Cormorant Garamond', serif";
 const INK = "#2a2626";
 export const CREATOR = "by.didarul";
@@ -453,11 +455,11 @@ const Fade1: React.FC<{ dur: number; tight?: boolean; flicker?: boolean; base: R
       </AbsoluteFill>
       {tight ? (
         <>
-          <Script text={title.split(" ")[0]} x={40} y={300} size={210} color={INK} at={-1} echo={false} opacity={0.55} />
-          <Script text={title} x={150} y={450} size={150} color={INK} at={-1} />
+          <Script text={title.split(" ")[0]} x={40} y={300} size={190} color={INK} font={TITLE} at={-1} echo={false} opacity={0.5} />
+          <Script text={title} x={110} y={450} size={112} color={INK} font={TITLE} at={-1} />
         </>
       ) : (
-        <Script text={title} x={90} y={330} size={150} color={INK} at={0.12} dur={0.5} />
+        <Script text={title} x={60} y={330} size={112} color={INK} font={TITLE} at={0.12} dur={0.55} />
       )}
     </Shot>
   );
@@ -540,7 +542,7 @@ const SCENES: Scene[] = [
     ({ dur }) => (
       <Fade1
         dur={dur}
-        title="Forever Ten"
+        title="Forever Remembered"
         enter={{ kind: "whip", dir: -1 }}
         exit={{ kind: "cut" }}
         base={<Clip src="n3.mp4" start={2.6} rate={0.5} keys={N3A} zoom={[1.25, 1.3]} fy={0.5} tint="mono" dur={dur} mask={bottomUp} style={{ top: 160 }} />}
@@ -555,7 +557,7 @@ const SCENES: Scene[] = [
       <Fade1
         dur={dur}
         tight
-        title="Forever Ten"
+        title="Forever Remembered"
         enter={{ kind: "cut" }}
         exit={{ kind: "whip", dir: 1 }}
         base={<Clip src="n3.mp4" start={2.98} rate={0.5} keys={N3A} zoom={[1.3, 1.34]} fy={0.5} tint="mono" dur={dur} mask={bottomUp} style={{ top: 160 }} />}
@@ -614,7 +616,7 @@ const SCENES: Scene[] = [
         <Ghost id="785a0283" tint="gold" x={-40} y={520} w={620} h={620} focus="52% 30%" zoom={1.5} opacity={0.5} />
         <Ghost id="d923c80d" tint="gold" x={780} y={470} w={600} h={700} focus="50% 30%" zoom={1.4} opacity={0.45} />
         <Figure id="17d36584" tint="gold" cx={570} cy={560} h={1150} ghost={0} fadeBottom={0.8} />
-        <Script text="Forever Ten…" x={880} y={230} size={78} color={INK} font={HAND} at={0.05} dur={0.55} echo={false} />
+        <Script text="Forever Remembered…" x={760} y={230} size={72} color={INK} font={TITLE} at={0.05} dur={0.55} echo={false} />
         <Script text="since 2004 —" x={1020} y={350} size={70} color={INK} font={HAND} at={0.45} dur={0.3} echo={false} />
       </Shot>
     ),
@@ -636,7 +638,7 @@ const SCENES: Scene[] = [
     ({ dur }) => (
       <Fade1
         dur={dur}
-        title="Forever Ten"
+        title="Forever Remembered"
         enter={{ kind: "whip", dir: -1 }}
         exit={{ kind: "cut" }}
         base={<Clip src="n1.mp4" start={6.05} rate={0.5} keys={N1W} zoom={[1.1, 1.15]} fy={0.45} tint="mono" dur={dur} mask={bottomUp} style={{ top: 120 }} />}
@@ -652,7 +654,7 @@ const SCENES: Scene[] = [
         dur={dur}
         tight
         flicker
-        title="Forever Ten"
+        title="Forever Remembered"
         enter={{ kind: "cut" }}
         exit={{ kind: "whip", dir: 1 }}
         base={<Clip src="n1.mp4" start={6.43} rate={0.5} keys={N1W} zoom={[1.15, 1.18]} fy={0.45} tint="mono" dur={dur} mask={bottomUp} style={{ top: 120 }} />}
