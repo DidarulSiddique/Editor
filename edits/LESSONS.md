@@ -3,7 +3,14 @@
 The user's ratings and the rules they taught. `/make-edit` reads this first;
 these rules override its defaults. Newest first.
 
-## 2026-10-11 — Messi v2 (awaiting score)
+## 2026-10-12 — Messi v2: approved ("look how much better")
+- **Rule:** never ship the first pass. After the first full render, do a
+  hard self-critique against these rules and rebuild before sending.
+- What made v2 land: speed ramps, word-by-word serif lyrics, display type
+  between depth layers, split-screen + letterbox layouts, punch/shake/RGB
+  on every hit, a narrative hook line in the first second.
+
+## 2026-10-11 — Messi v2
 - v1 feedback: "must be better… use mograph, viral fonts and layouts".
   The torn-paper/sticker scrapbook read as a template and most of it was
   static photos. **Rule:** footage first, with speed ramps and hit-synced

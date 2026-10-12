@@ -85,7 +85,21 @@ behind them.
   (`Layered`, `Particles`, `Grain`, `Vignette`) and `Villain.tsx`
   (`Slam`, `Counter`, `SpeedLines`, `Rings`, hit-driven shake/punch/flash).
 
+### 6b. House style (what got approved — use unless the brief says otherwise)
+`edits/messi-edit/src/MessiV2.tsx` is the reference implementation:
+- Footage first, speed-ramped via `<Freeze>` time remapping (slow 0.45x
+  into 2x+ snaps on the beat); punch + shake + RGB split on every cut/hit.
+- Type: italic serif lyrics (Instrument Serif) revealed word by word;
+  ultra-condensed display words (Bebas Neue) between depth layers with an
+  outline copy in front; tiny tracked caps labels + a small HUD.
+- Layouts: letterbox for emotional beats, stacked split screens, 2.5D
+  parallax photos (blurred plate / type / cut-out). No flat stickers or
+  paper/scrapbook templates.
+- A one-line narrative hook in the first second.
+
 ### 7. Self-review (see `references/qa.md`)
+Never send the first full render as final: critique it against
+`edits/LESSONS.md` and the house style, rebuild what is weakest, then send.
 Render stills and a full contact sheet; review against the QA checklist:
 story readable with sound off, hook lands in 3 s, every beat has an image,
 text legible and inside safe zones, no frame where text is hidden by the
