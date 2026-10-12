@@ -1,4 +1,91 @@
-# Messi edit — v2 (current) and v1 "Blaugrana scrapbook"
+# Messi edit — v3 "Forever Ten" (current)
+
+`src/MessiV3.tsx`, composition `MessiV3`. Output: `out/messi-edit-v3.mp4`.
+
+Rebuilt on the second reference (`97d7904d…mp4`), which is not a football
+edit: it is a high-key watercolour anime character edit (Hunter x Hunter,
+"The Fade", by.inx). Earlier versions were benchmarked on the Neymar
+reference, so they could not look like this one.
+
+## Reference breakdown (768x576 4:3, ~20 unique fps in a 30 fps file, 16.6 s)
+
+Checked at 4 fps for the whole file, 10 fps for every shot, and a per-frame
+difference/luma scan for cut times. The cuts fall about every 2 beats of a
+152 BPM song. The edit runs two passes of the same eight shots. Each shot
+enters with a fast move that eases out over about 0.5 s, then drifts.
+
+| Time (pass 1 / pass 2) | Shot | Technique |
+|---|---|---|
+| 0.00–0.43 | blank paper | faint inner frame, white |
+| 0.43 / 5.97 | Hisoka, red tint | whip in from the left (horizontal blur), "Hisoka" in red script writes on with a faint echo below |
+| 1.13 / 6.60 | Killua, teal | whip from the right, giant faded face ghost behind, "Killua" bottom-left |
+| 1.92 / 7.40 | Gon, yellow | fades up from white, "Gon" in yellow, small dark script line starts above |
+| 2.60 / 8.10 | Gon + two big faded faces | pull-out zoom into a collage, "One Summer… Night—" / "The Fade… By.inx" in a second script |
+| 3.43 / 8.90 | Gon punch, sky blue | whip from the left, push-in, no text |
+| 4.23 / 9.73 | B&W trio + big green Leorio | double exposure, "The Fade" in black script |
+| 5.00 / 10.50 | punch-in crop | diagonal checker floor, big ghost "The" over "The Fade"; pass 2 flickers between crops |
+| 5.71 / 11.10 | white | smear out to white |
+| 11.20–12.45 | black | small "by.inx" signature |
+
+Identity: white paper, one pastel duotone per shot, coloured paper edges,
+script type in the shot's colour with an echo, horizontal whip blur and ease-out
+settles. There are no hard graphics.
+
+## What v3 does with Messi
+
+| Time | Shot (source) | Type |
+|---|---|---|
+| 0.00 | paper, a hairline frame draws itself | — |
+| 0.43 | 785a0283 (Barça kiss), garnet | "Lionel" · FC BARCELONA · 2004 — 2021 · outline "10" |
+| 1.13 | 1fa6cf3b (World Cup kiss), teal | "Andrés" · CAMPEÓN DEL MUNDO · QATAR 2022 · "2022" |
+| 1.92 | d735f99e (full-length, Barça), gold | "Messi" · "1987" · "Rosario…" |
+| 2.60 | collage: d735 + 785a, 1fa6, 12fb faces | "Rosario, 1987…" / "La Pulga —" |
+| 3.43 | clip 5, 2.55 s, 0.55x, sky grade | push-in 1.18→1.42 tracking Messi |
+| 4.23 | clip 3 (B&W) + clip 2 close-up (green) | "Forever Ten" |
+| 5.00 | punch-in, checker floor | ghost "Forever" over "Forever Ten" |
+| 5.97 | 1ffe19d4 (shirt to the crowd), garnet | "Barcelona" · 672 GOALS · 778 GAMES · "672" |
+| 6.60 | 12fbf6b3 (Copa América kiss), teal | "Argentina" · COPA AMÉRICA · "10" |
+| 7.40 | clip 1, 4.95 s, profile → hands to face, gold | "Leo" · "Forever…" |
+| 8.10 | collage: 17d3 + 1fa6, 785a, d923 | "Forever Ten…" / "since 2004 —" |
+| 8.90 | clip 3, 6.0 s dribble, sky | push-in with tracking |
+| 9.73 | clip 1 wide (B&W) + d923c80d cut-out (green) | "Forever Ten" |
+| 10.50 | punch-in + crop flicker, checker | ghost "Forever" over "Forever Ten" |
+| 11.10 | white, then black | `CREATOR` signature (edit the constant) |
+
+How it is built:
+- **Tints:** a single SVG filter per colour does a partial desaturate and then a lifted duotone. Footage gets a light 3x3 sharpen first and keeps more mid-tones.
+- **Photos:** each photo is drawn as an illustration: the tinted cut-out sits over a faint copy of the full photo and fades out at the bottom.
+- **Broadcast clutter:** scoreboards and channel bugs are hidden under paper haze or cropped out.
+- **Motion blur:** only on whips, using an anisotropic SVG blur (`stdDeviation="N 0"`). Nothing else is blurred.
+- **Type:**
+  - Names: Mrs Saint Delafield, revealed by a moving mask so they write on, with an echo copy.
+  - Second script line: Monsieur La Doulaise.
+  - Captions: Cormorant Garamond in tracked caps.
+  - Outline numerals sit behind the figures.
+- **Facts used:** born Rosario 1987; nickname La Pulga; FC Barcelona 2004–2021, with 672 goals in 778 games; World Cup champion in Qatar 2022; Copa América winner. Year left off the Copa photo, since he won it in 2021 and 2024.
+
+## Technical
+- 1440x1080 (4:3, matches the reference), 60 fps, 747 frames, 12.45 s.
+- H.264 High, yuv420p limited range BT.709, CRF 14 / preset slow (~8 Mb/s).
+- AAC 48 kHz 320 kb/s, -14.3 LUFS integrated, -6.0 dBTP true peak.
+- Checked: frame count; `blackdetect` (black only on the 11.2–12.43 s end card); contact sheets at 4 and 10 fps; side-by-side with the reference (`out/v3-vs-reference.png`).
+- Soundtrack: the reference's song, used locally for timing. Post with the official sound in-app.
+
+Render:
+```bash
+npx remotion render src/index.ts MessiV3 out/v3-raw.mp4 \
+  --browser-executable=/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell \
+  --concurrency=4 --timeout=240000 --crf=12
+ffmpeg -i out/v3-raw.mp4 -vf "scale=in_range=full:out_range=tv,format=yuv420p" \
+  -c:v libx264 -crf 14 -preset slow -profile:v high -color_range tv -colorspace bt709 \
+  -color_primaries bt709 -color_trc bt709 \
+  -af "volume=1.5dB,aresample=192000,alimiter=limit=0.84:attack=3:release=60:level=disabled,aresample=48000" \
+  -c:a aac -b:a 320k -movflags +faststart out/messi-edit-v3.mp4
+```
+
+---
+
+# Messi edit — v2 and v1 "Blaugrana scrapbook"
 
 **v2 (`src/MessiV2.tsx`, composition `MessiV2`)** replaces the scrapbook
 look after feedback that v1 looked like a template. Changes:

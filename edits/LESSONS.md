@@ -3,6 +3,21 @@
 The user's ratings and the rules they taught. `/make-edit` reads this first;
 these rules override its defaults. Newest first.
 
+## 2026-10-12 — Messi v3 "Forever Ten" (second reference)
+- The new reference was a high-key anime character edit, not football. Its
+  style is soft (white paper, pastel duotones, hand-written script names,
+  whip blur), so the house style from v2 (punch/shake/RGB, Bebas) did not
+  fit. **Rule:** the reference's own visual language overrides the house
+  style. Re-derive the system from each new reference.
+- **Rule:** read cut times off a per-frame difference/luma scan, not only
+  sheets. The settle curves after each cut show the camera move.
+- Thumbnail reads were wrong again: the n1 "face" sat at x .48, not .2, and
+  hands cover it after 5.05 s. A PiP zoom left a border in n2 until it was
+  cropped past it. **Rule:** check every footage choice on a 480 px frame
+  *and* a render still before the full render.
+- Portrait photos in a landscape frame: frame them from the cut-out's
+  alpha bounding box (head height), not the image box.
+
 ## 2026-10-12 — Messi v2: approved ("look how much better")
 - **Rule:** never ship the first pass. After the first full render, do a
   hard self-critique against these rules and rebuild before sending.

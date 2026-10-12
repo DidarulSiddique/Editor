@@ -35,5 +35,10 @@ node "$kit/cutout.js" "$HOME/.cache/edit-kit/node_modules" "$pub/freeze-4.0.png:
 ffmpeg -v error -y -i "$up/ac1c2a70-v14044g50000d8mjtb7og65mkjqtpbog.mp4" -vn -ac 2 -t 11.0 \
   -af "afade=t=out:st=10.4:d=0.6" "$pub/song.wav"
 
+# 5. v3 soundtrack: the second reference's song, up to where its music ends
+#    (12.45 s, before the TikTok outro sting).
+ffmpeg -v error -y -i "$up/97d7904d-v15044gf0000d7tkmgvog65pl4p0ame0.mp4" -vn -ac 2 -ar 48000 -t 12.45 \
+  -af "afade=t=out:st=12.1:d=0.35" "$pub/fade.wav"
+
 rm -rf "$tmp"
 echo "public/ ready"
