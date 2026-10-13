@@ -75,7 +75,9 @@ Design system:
 ## Technical
 - 1920x1080, 60 fps, 3660 frames, 61.0 s.
 - H.264 High, yuv420p (limited range, BT.709), CRF 14 / preset slow.
-- AAC 48 kHz, 320 kb/s.
+- AAC 48 kHz, 320 kb/s, -13.1 LUFS integrated, -5.5 dBTP true peak.
+- Verified: 3660 frames, no black frames (`blackdetect`), full 2 fps contact sheet reviewed.
+- `out/the-art-of-dribbling-share.mp4`: 28 MB copy (CRF 25, ~3.6 Mb/s) for sending.
 - Music: the reference's soundtrack, used locally for timing, faded from 60.3 s. Use your own licensed track or the official sound when posting.
 
 Reproduce:
@@ -87,6 +89,6 @@ npx remotion render src/index.ts Dribbling out/raw.mp4 \
   --concurrency=4 --timeout=240000 --crf=12
 ffmpeg -i out/raw.mp4 -vf "scale=in_range=full:out_range=tv,format=yuv420p" -c:v libx264 -crf 14 -preset slow \
   -color_range tv -colorspace bt709 -color_primaries bt709 -color_trc bt709 \
-  -af "aresample=192000,alimiter=limit=0.84:attack=3:release=60:level=disabled,aresample=48000" \
+  -af "volume=-6dB,aresample=192000,alimiter=limit=0.84:attack=3:release=60:level=disabled,aresample=48000" \
   -c:a aac -b:a 320k -movflags +faststart out/the-art-of-dribbling.mp4
 ```
