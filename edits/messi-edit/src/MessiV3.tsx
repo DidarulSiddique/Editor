@@ -36,7 +36,7 @@ const HAND = "'Monsieur La Doulaise', cursive";
 const TITLE = "Allura, cursive"; // legible script for the title lines
 const CAPS = "'Cormorant Garamond', serif";
 const INK = "#2a2626";
-export const CREATOR = "by.didarul";
+export const CREATOR = "Brightonboyedits";
 
 // ---------------------------------------------------------------- tints
 
@@ -268,7 +268,8 @@ const Script: React.FC<{
   echo?: boolean;
   rotate?: number;
   opacity?: number;
-}> = ({ text, x, y, size, color, at, dur = 0.45, font = NAME, echo = true, rotate = -3, opacity = 1 }) => {
+  center?: boolean;
+}> = ({ text, x, y, size, color, at, dur = 0.45, font = NAME, echo = true, rotate = -3, opacity = 1, center }) => {
   const t = useCurrentFrame() / FPS;
   const p = interpolate(t, [at, at + dur], [0, 1], { ...clamp, easing: Easing.inOut(Easing.sin) });
   if (p <= 0) return null;
@@ -287,7 +288,7 @@ const Script: React.FC<{
         color,
         whiteSpace: "nowrap",
         padding: "0.25em 0.35em",
-        transform: `translate(${drift}px, -50%) rotate(${rotate}deg)`,
+        transform: `translate(${center ? `calc(-50% + ${drift}px)` : `${drift}px`}, -50%) rotate(${rotate}deg)`,
         maskImage: mask,
         WebkitMaskImage: mask,
         ...extra,
@@ -671,7 +672,7 @@ const SCENES: Scene[] = [
       return (
         <AbsoluteFill style={{ background: "#000", opacity: interpolate(t, [dur - 0.25, dur], [1, 1], clamp) }}>
           <div style={{ opacity: interpolate(t, [dur - 0.35, dur - 0.05], [1, 0], clamp) }}>
-            <Script text={CREATOR} x={W / 2 - 150} y={H / 2} size={64} color="#d8d4d0" font={HAND} at={0.15} dur={0.5} echo={false} rotate={-2} />
+            <Script text={CREATOR} x={W / 2 - 5} y={H / 2} size={150} color="#ece8e4" font={TITLE} at={0.06} dur={0.45} echo={false} rotate={-3} center />
           </div>
         </AbsoluteFill>
       );

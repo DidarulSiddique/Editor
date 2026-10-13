@@ -50,7 +50,7 @@ settles. There are no hard graphics.
 | 8.90 | clip 3, 6.0 s dribble, sky | push-in with tracking |
 | 9.73 | clip 1 wide (B&W) + d923c80d cut-out (green) | "Forever Remembered" |
 | 10.50 | punch-in + crop flicker, checker | ghost "Forever" over "Forever Remembered" |
-| 11.10 | white, then black | `CREATOR` signature (edit the constant) |
+| 11.10 | white, then black | "Brightonboyedits" end card (`CREATOR`) |
 
 How it is built:
 - **Tints:** a single SVG filter per colour does a partial desaturate and then a lifted duotone. Footage gets a light 3x3 sharpen first and keeps more mid-tones.
