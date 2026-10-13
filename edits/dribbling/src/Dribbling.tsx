@@ -526,29 +526,30 @@ const SKILLS: Def[] = [
     titleEnd: 1.65,
     steps: ["Foot circles the ball", "Defender shifts weight", "Go the other way"],
     stepsAt: 2.05,
-    stepsEnd: 4.25,
+    stepsEnd: 4.9,
     word: "BAIT",
-    wordAt: 4.25,
+    wordAt: 4.9,
     segs: [
+      { src: "st2.mp4", from: 0, to: 1.65, keys: [[0, 0.0], [1.65, 0.75]], zoom: [[0, 1.1], [1.65, 1.04]], focus: [0.55, 0.55] },
       {
         src: "st1.mp4",
-        from: 0,
-        to: 4.25,
-        keys: [[0, 0.05], [1.65, 0.42], [2.0, 0.55], [3.2, 0.55], [4.25, 1.75]],
-        zoom: [[0, 1.04], [1.9, 1.04], [2.3, 1.2], [3.2, 1.2], [3.6, 1.04]],
-        focus: [0.66, 0.62],
+        from: 1.65,
+        to: 4.9,
+        keys: [[1.65, 0.05], [2.0, 0.3], [3.15, 0.3], [4.9, 1.9]],
+        zoom: [[1.65, 1.04], [2.0, 1.04], [2.35, 1.15], [3.15, 1.15], [3.5, 1.04]],
+        focus: [0.5, 0.85],
         ann: (t) => {
           const a = 2.05;
           return (
-            <Ann on={a} off={3.2} t={t} html={<><Callout x={1330} y={700} text="FOOT CIRCLES THE BALL" p={draw(t, a + 0.35, 0.25)} color={C.st} /><Callout x={1190} y={300} text="DEFENDER READS IT" p={draw(t, a + 0.55, 0.25)} color="#ffffff" /></>}>
-              <Ring x={1256} y={820} r={40} p={draw(t, a, 0.2)} color={C.st} t={t} />
-              <Path d="M1140 850 C1110 770, 1250 740, 1350 790 S1380 900, 1260 905" p={draw(t, a + 0.1, 0.45)} color={C.st} />
-              <Bracket box={[1190, 270, 1620, 910]} p={draw(t, a + 0.45, 0.25)} color="#ffffff" />
+            <Ann on={a} off={3.15} t={t} html={<><Callout x={1050} y={860} text="FOOT CIRCLES THE BALL" p={draw(t, a + 0.35, 0.25)} color={C.st} /><Callout x={230} y={235} text="DEFENDER READS IT" p={draw(t, a + 0.55, 0.25)} color="#ffffff" /></>}>
+              <Ring x={910} y={940} r={38} p={draw(t, a, 0.2)} color={C.st} t={t} />
+              <Path d="M800 970 C770 890, 900 860, 1000 900 S1030 1000, 905 1005" p={draw(t, a + 0.1, 0.45)} color={C.st} />
+              <Bracket box={[210, 170, 1050, 1000]} p={draw(t, a + 0.45, 0.25)} color="#ffffff" />
             </Ann>
           );
         },
       },
-      { src: "st2.mp4", from: 4.25, to: 7.03, keys: [[4.25, 0.0], [7.03, 2.5]], zoom: [[4.25, 1.15], [7.03, 1.05]], focus: [0.58, 0.72] },
+      { src: "st2.mp4", from: 4.9, to: 7.03, keys: [[4.9, 0.85], [7.03, 2.25]], zoom: [[4.9, 1.2], [7.03, 1.08]], focus: [0.58, 0.55] },
     ],
   },
   {
@@ -644,35 +645,34 @@ const SKILLS: Def[] = [
     titleEnd: 1.65,
     steps: ["Push it out", "Snap it back", "Defender is wrong-footed"],
     stepsAt: 2.05,
-    stepsEnd: 4.9,
+    stepsEnd: 4.25,
     word: "SNAP",
-    wordAt: 4.9,
+    wordAt: 4.25,
     segs: [
-      { src: "el2.mp4", from: 0, to: 1.65, keys: [[0, 0.0], [1.65, 0.75]], zoom: [[0, 1.1], [1.65, 1.04]], focus: [0.55, 0.55] },
       {
         src: "el1.mp4",
-        from: 1.65,
-        to: 4.9,
-        keys: [[1.65, 0.05], [2.0, 0.3], [3.15, 0.3], [4.9, 1.9]],
-        zoom: [[1.65, 1.04], [2.0, 1.04], [2.35, 1.15], [3.15, 1.15], [3.5, 1.04]],
-        focus: [0.5, 0.85],
+        from: 0,
+        to: 4.25,
+        keys: [[0, 0.05], [1.65, 0.42], [2.0, 0.55], [3.2, 0.55], [4.25, 1.75]],
+        zoom: [[0, 1.04], [1.9, 1.04], [2.3, 1.2], [3.2, 1.2], [3.6, 1.04]],
+        focus: [0.66, 0.62],
         ann: (t) => {
           const a = 2.05;
           return (
             <Ann
               on={a}
-              off={3.15}
+              off={3.2}
               t={t}
-              html={<><Callout x={480} y={820} text="1 · OUT" p={draw(t, a + 0.3, 0.2)} color="#ffffff" /><Callout x={1290} y={880} text="2 · BACK" p={draw(t, a + 0.75, 0.2)} color={C.el} /></>}
+              html={<><Callout x={1440} y={740} text="1 · OUT" p={draw(t, a + 0.3, 0.2)} color="#ffffff" /><Callout x={860} y={940} text="2 · BACK" p={draw(t, a + 0.75, 0.2)} color={C.el} /></>}
             >
-              <Ring x={910} y={940} r={38} p={draw(t, a, 0.2)} color={C.el} t={t} />
-              <Path d="M900 935 Q800 900 700 950" p={draw(t, a + 0.1, 0.3)} color="#ffffff" width={6} />
-              <Path d="M690 965 Q900 1060 1250 960" p={draw(t, a + 0.5, 0.35)} color={C.el} />
+              <Ring x={1256} y={820} r={40} p={draw(t, a, 0.2)} color={C.el} t={t} />
+              <Path d="M1270 815 Q1360 780 1430 810" p={draw(t, a + 0.1, 0.3)} color="#ffffff" width={6} />
+              <Path d="M1440 830 Q1300 940 1090 890" p={draw(t, a + 0.5, 0.35)} color={C.el} />
             </Ann>
           );
         },
       },
-      { src: "el2.mp4", from: 4.9, to: 6.93, keys: [[4.9, 0.85], [6.93, 2.25]], zoom: [[4.9, 1.2], [6.93, 1.08]], focus: [0.58, 0.55] },
+      { src: "el2.mp4", from: 4.25, to: 6.93, keys: [[4.25, 0.0], [6.93, 2.45]], zoom: [[4.25, 1.15], [6.93, 1.05]], focus: [0.58, 0.72] },
     ],
   },
   {
@@ -755,8 +755,8 @@ const SKILLS: Def[] = [
 
 const OPEN_BG: [string, number][] = [
   ["mx1.mp4", 0.2],
-  ["st2.mp4", 1.0],
-  ["el1.mp4", 0.6],
+  ["el2.mp4", 1.0],
+  ["st1.mp4", 0.6],
   ["cq1.mp4", 0.6],
   ["bf1.mp4", 3.6],
   ["ro1.mp4", 0.9],
@@ -847,10 +847,10 @@ const Open: React.FC = () => {
 // ---------------------------------------------------------------- recap
 
 const RECAP: { src: string; keys: K[]; fx: number; d: Def }[] = [
-  { src: "st1.mp4", keys: [[0, 0.3], [7, 2.0]], fx: 0.55, d: SKILLS[0] },
+  { src: "st1.mp4", keys: [[0, 0.2], [7, 1.6]], fx: 0.5, d: SKILLS[0] },
   { src: "bf1.mp4", keys: [[0, 3.4], [7, 4.9]], fx: 0.5, d: SKILLS[1] },
   { src: "cq1.mp4", keys: [[0, 0.2], [7, 1.6]], fx: 0.22, d: SKILLS[2] },
-  { src: "el1.mp4", keys: [[0, 0.2], [7, 1.6]], fx: 0.5, d: SKILLS[3] },
+  { src: "el1.mp4", keys: [[0, 0.3], [7, 2.0]], fx: 0.55, d: SKILLS[3] },
   { src: "fs1.mp4", keys: [[0, 0.1], [7, 1.2]], fx: 0.25, d: SKILLS[4] },
   { src: "ro1.mp4", keys: [[0, 0.4], [7, 1.9]], fx: 0.45, d: SKILLS[5] },
 ];
