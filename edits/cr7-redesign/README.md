@@ -43,7 +43,8 @@ Why it felt flat:
 Quote wording comes from the interview audio, transcribed offline with Whisper small.en via sherpa-onnx (`tools/edit-kit/asr.py`) on the voice stem separated by `tools/edit-kit/instrumental.py`. Pelé's lines match his subtitles. Word timings are estimated within each spoken phrase.
 
 ## Technical
-- 1080x1920, 60 fps, 46.6 s. H.264 High, yuv420p (BT.709), CRF 15.
+- 1080x1920, 60 fps, 2796 frames, 46.6 s. H.264 High, yuv420p (BT.709), CRF 15, about 13.7 Mb/s. `out/cr7-redesign-share.mp4` is a 21 MB copy (CRF 24).
+- Verified: frame count, no black frames (`blackdetect`), audio at -15.6 LUFS and -1.5 dBTP, full contact sheet at 1.5 fps reviewed.
 - Audio: the original soundtrack (music and interviews), +15 dB with a true-peak limiter (the export was at -29.8 LUFS), faded where the TikTok outro began.
 
 ## Limitations
