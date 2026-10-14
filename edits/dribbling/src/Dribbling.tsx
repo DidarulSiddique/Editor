@@ -15,6 +15,7 @@ import "@fontsource/anton/400.css";
 import "@fontsource/inter/500.css";
 import "@fontsource/inter/700.css";
 import "@fontsource/inter/900.css";
+import CAPTIONS from "./captions.json";
 
 // "The Art of Dribbling" — six skills, built on the editing language of the
 // anime power-systems reference (e1f66500): glowing title open with cycling
@@ -964,6 +965,33 @@ const EndCard: React.FC = () => {
   );
 };
 
+// Voiceover subtitles: one phrase at a time, bottom centre, in the
+// section's colour bar (timings from vo/build.py).
+const Captions: React.FC<{ t: number }> = ({ t }) => {
+  const c = (CAPTIONS as { t0: number; t1: number; text: string; color: string }[]).find((x) => t >= x.t0 - 0.04 && t < x.t1 + 0.12);
+  if (!c) return null;
+  const p = interpolate(t, [c.t0 - 0.04, c.t0 + 0.12], [0, 1], { ...clamp, easing: settle });
+  const q = interpolate(t, [c.t1, c.t1 + 0.12], [1, 0], clamp);
+  return (
+    <div style={{ position: "absolute", left: 0, right: 0, bottom: 58, display: "flex", justifyContent: "center", opacity: p * q }}>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: 16,
+          padding: "12px 26px",
+          background: "rgba(6,6,10,0.78)",
+          transform: `translateY(${(1 - p) * 14}px)`,
+          boxShadow: "0 8px 30px rgba(0,0,0,0.45)",
+        }}
+      >
+        <div style={{ width: 6, height: 34, background: c.color, boxShadow: Glow(c.color, 0.4) }} />
+        <div style={{ fontFamily: UI, fontWeight: 900, fontSize: 38, letterSpacing: "0.04em", color: "#fff", textTransform: "uppercase", whiteSpace: "nowrap" }}>{c.text}</div>
+      </div>
+    </div>
+  );
+};
+
 // ---------------------------------------------------------------- master
 
 export const Dribbling: React.FC = () => {
@@ -1000,8 +1028,9 @@ export const Dribbling: React.FC = () => {
       {live ? (
         <div style={{ position: "absolute", left: 0, right: 0, bottom: 22, textAlign: "center", fontFamily: UI, fontWeight: 900, fontSize: 14, letterSpacing: "0.5em", color: "#ffffff70" }}>{HANDLE}</div>
       ) : null}
+      {live ? <Captions t={t} /> : null}
       <AbsoluteFill style={{ background: "#fff", opacity: flash, pointerEvents: "none" }} />
-      <Audio src={staticFile("music.wav")} />
+      <Audio src={staticFile("mix.wav")} />
     </AbsoluteFill>
   );
 };

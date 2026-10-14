@@ -92,3 +92,13 @@ ffmpeg -i out/raw.mp4 -vf "scale=in_range=full:out_range=tv,format=yuv420p" -c:v
   -af "volume=-3dB,aresample=192000,alimiter=limit=0.84:attack=3:release=60:level=disabled,aresample=48000" \
   -c:a aac -b:a 320k -movflags +faststart out/the-art-of-dribbling.mp4
 ```
+
+## Voiceover (v3)
+
+- Script by the channel. Voiced with vidIQ's stock "Adam – Dominant, Firm" AI voice: one 600-character take, 14 credits, 42.4 s.
+- The take is saved as `public/vo-full.mp3`. It is not in git; regenerate it with vidIQ if it's lost.
+- `vo/build.py`:
+  - Splits the take at its own pauses and tightens each gap to 0.18 s.
+  - Speeds lines up 5–10% where they need to fit their section, and starts each line just as its section opens.
+  - Writes `public/vo.wav`, the subtitle timings in `src/captions.json`, and `public/mix.wav`, with the music sidechain-ducked about 8 dB under the voice.
+- Subtitles: one phrase at a time, bottom centre, with the section's colour bar.
