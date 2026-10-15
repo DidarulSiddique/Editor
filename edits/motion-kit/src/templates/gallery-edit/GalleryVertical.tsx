@@ -225,18 +225,18 @@ const WORDS_V: { a: WordPos; b: WordPos }[] = [
   { a: { x: 130, y: 110, ry: 18, size: 280 }, b: { x: 440, y: 1060, ry: -24, size: 300 } },
   { a: { x: 150, y: 110, ry: -18, size: 270 }, b: { x: 50, y: 1060, ry: 24, size: 300 } },
 ];
-// (Kept for the voiced variant.) What Messi says on cards 1 and 3 (Whisper-small multilingual on the voice
-// stem; card-local seconds, matching the soundtrack built in love-me-v.wav).
+// What Messi says on the hero cards (Whisper-small multilingual on the voice stems), card-local
+// seconds matching love-me-og2.wav. Card 4 keeps only the sung "love me".
 type Sub = { t0: number; t1: number; es: string; en: string };
-const SUBS: Record<number, Sub[]> = {}; // speech removed on the hero cards
-const SUBS_WITH_VOICE: Record<number, Sub[]> = {
+const SUBS: Record<number, Sub[]> = {
   0: [
-    { t0: 2.5, t1: 3.95, es: "Querían las tres…", en: "YOU WANTED ALL THREE…" },
-    { t0: 3.95, t1: 5.9, es: "…acá están las tres.", en: "…HERE ARE ALL THREE." },
+    { t0: 0.99, t1: 2.0, es: "Querían las tres…", en: "YOU WANTED ALL THREE…" },
+    { t0: 2.0, t1: 3.2, es: "…acá están las tres.", en: "…HERE ARE ALL THREE." },
   ],
+  1: [{ t0: 0.75, t1: 3.2, es: "…que no nos falta nada por conseguir.", en: "…THERE'S NOTHING LEFT FOR US TO WIN." }],
   2: [
-    { t0: 5.05, t1: 6.2, es: "¿Qué mirás, bobo?", en: "WHAT ARE YOU LOOKING AT, FOOL?" },
-    { t0: 6.2, t1: 9.0, es: "Andá pa' allá.", en: "GO ON, GET OUT OF HERE." },
+    { t0: 0.82, t1: 1.75, es: "¿Qué mirás, bobo?", en: "WHAT ARE YOU LOOKING AT, FOOL?" },
+    { t0: 1.75, t1: 3.2, es: "Andá pa' allá.", en: "GO ON, GET OUT OF HERE." },
   ],
 };
 // Clip crop for 9:16: subject x in the 16:9 frame, playback rate.
@@ -829,9 +829,8 @@ export const GalleryVertical: React.FC = () => {
       </AbsoluteFill>
       <AbsoluteFill style={{ background: "#fff", opacity: flash, pointerEvents: "none" }} />
       <Grain />
-      <Audio src={staticFile("love-me-og.wav")} />
+      <Audio src={staticFile("love-me-og2.wav")} />
     </AbsoluteFill>
   );
 };
 
-void SUBS_WITH_VOICE;
