@@ -17,7 +17,7 @@ import { KitDefs, clamp, ease, progress } from "../../kit";
 export const W = 1080;
 export const H = 1920;
 export const FPS = 30;
-export const END = 51.0;
+export const END = 41.0;
 export const FRAMES = Math.round(END * FPS);
 
 const SERIF = "'Playfair Display', serif";
@@ -27,9 +27,9 @@ const CREAM = "#fbeedd";
 const NEON = ["#c6ff3d", "#ff3dd2", "#ff8a2b", "#2fe6ff", "#9b6bff", "#ffe14a"];
 
 // Section starts (bar grid of the song: 3.33 s per bar from 1.93 s).
-// Cards 1 and 3 are 2 and 3 bars long so Messi's full lines fit (see MUSIC_V / build-audio notes).
-const S = { fly: 0, h1: 1.93, h2: 8.6, h3: 11.93, h4: 21.93, oh: 24.1, wall: 25.3, c1: 28.7, c2: 30.5, c3: 32.2, yea: 34.0, strip: 36.4, gilt: 38.5, frames: 39.95, push: 42.55, stars: 42.95, recur: 46.55, end: 48.35 };
-const HITS = [1.93, 8.6, 11.93, 21.93, 24.1, 25.3, 28.7, 30.5, 32.2, 34.0, 36.4, 38.5, 39.95, 42.95, 46.55];
+// Original song timing (bar grid 3.33 s from 1.93 s).
+const S = { fly: 0, h1: 1.93, h2: 5.27, h3: 8.6, h4: 11.93, oh: 14.1, wall: 15.3, c1: 18.7, c2: 20.5, c3: 22.2, yea: 24.0, strip: 26.4, gilt: 28.5, frames: 29.95, push: 32.55, stars: 32.95, recur: 36.55, end: 38.35 };
+const HITS = [1.93, 5.27, 8.6, 11.93, 14.1, 15.3, 18.7, 20.5, 22.2, 24.0, 26.4, 28.5, 29.95, 32.95, 36.55];
 
 const useT = () => {
   const f = useCurrentFrame();
@@ -225,10 +225,11 @@ const WORDS_V: { a: WordPos; b: WordPos }[] = [
   { a: { x: 130, y: 110, ry: 18, size: 280 }, b: { x: 440, y: 1060, ry: -24, size: 300 } },
   { a: { x: 150, y: 110, ry: -18, size: 270 }, b: { x: 50, y: 1060, ry: 24, size: 300 } },
 ];
-// What Messi says on cards 1 and 3 (Whisper-small multilingual on the voice
+// (Kept for the voiced variant.) What Messi says on cards 1 and 3 (Whisper-small multilingual on the voice
 // stem; card-local seconds, matching the soundtrack built in love-me-v.wav).
 type Sub = { t0: number; t1: number; es: string; en: string };
-const SUBS: Record<number, Sub[]> = {
+const SUBS: Record<number, Sub[]> = {}; // speech removed on the hero cards
+const SUBS_WITH_VOICE: Record<number, Sub[]> = {
   0: [
     { t0: 2.5, t1: 3.95, es: "Querían las tres…", en: "YOU WANTED ALL THREE…" },
     { t0: 3.95, t1: 5.9, es: "…acá están las tres.", en: "…HERE ARE ALL THREE." },
@@ -828,7 +829,9 @@ export const GalleryVertical: React.FC = () => {
       </AbsoluteFill>
       <AbsoluteFill style={{ background: "#fff", opacity: flash, pointerEvents: "none" }} />
       <Grain />
-      <Audio src={staticFile("love-me-v.wav")} />
+      <Audio src={staticFile("love-me-og.wav")} />
     </AbsoluteFill>
   );
 };
+
+void SUBS_WITH_VOICE;
