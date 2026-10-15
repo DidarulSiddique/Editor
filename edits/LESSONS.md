@@ -3,6 +3,16 @@
 The user's ratings and the rules they taught. `/make-edit` reads this first;
 these rules override its defaults. Newest first.
 
+## 2026-10-15 — Player Edit template: "terrible, looks AI, no zooms/transitions/3D text"
+- I built the template from a summary of 16 references instead of copying the
+  strongest one's actual moves. Result: flat 2D cards, hard cuts, generic type.
+- **Rule:** when a reference is given, rebuild ITS shot list and camera moves
+  first (3D card corridor, extruded serif words, gilt frames, push-through,
+  recursion), then customise. Every shot needs camera motion and every cut a
+  designed transition; type must be dimensional (real extrusion, perspective).
+- 3D in Remotion: own camera + per-item CSS perspective, painted far→near
+  (GalleryEdit `Space`), extrusion = stacked layers along the word's normal.
+
 ## 2026-10-12 — Messi v3 "Forever Ten" (second reference)
 - The new reference was a high-key anime character edit, not football. Its
   style is soft (white paper, pastel duotones, hand-written script names,
