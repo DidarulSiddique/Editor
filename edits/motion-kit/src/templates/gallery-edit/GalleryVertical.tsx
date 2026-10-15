@@ -28,8 +28,8 @@ const NEON = ["#c6ff3d", "#ff3dd2", "#ff8a2b", "#2fe6ff", "#9b6bff", "#ffe14a"];
 
 // Section starts (bar grid of the song: 3.33 s per bar from 1.93 s).
 // Original song timing (bar grid 3.33 s from 1.93 s).
-const S = { fly: 0, h1: 1.93, h2: 5.27, h3: 8.6, h4: 11.93, oh: 14.1, wall: 15.3, c1: 18.7, c2: 20.5, c3: 22.2, yea: 24.0, strip: 26.4, gilt: 28.5, frames: 29.95, push: 32.55, stars: 32.95, recur: 36.55, end: 38.35 };
-const HITS = [1.93, 5.27, 8.6, 11.93, 14.1, 15.3, 18.7, 20.5, 22.2, 24.0, 26.4, 28.5, 29.95, 32.95, 36.55];
+const S = { fly: 0, h1: 1.93, h2: 5.27, h3: 8.6, h4: 11.93, oh: 14.1, wall: 15.3, c1: 18.7, c2: 20.5, c3: 22.2, yea: 24.0, strip: 26.4, gilt: 28.72, frames: 29.95, push: 32.55, stars: 32.95, recur: 36.55, end: 38.35 };
+const HITS = [1.93, 5.27, 8.6, 11.93, 14.1, 15.3, 18.7, 20.5, 22.2, 24.0, 26.4, 28.72, 29.95, 32.95, 36.55];
 
 const useT = () => {
   const f = useCurrentFrame();
@@ -565,7 +565,7 @@ const Strip: React.FC = () => {
 
 const GiltWall: React.FC = () => {
   const t = useT();
-  const z = interpolate(t, [0, 0.55, 1.45], [0.92, 1.12, 0.82], { ...clamp, easing: ease.drift });
+  const z = interpolate(t, [0, 0.45, 1.23], [0.92, 1.12, 0.82], { ...clamp, easing: ease.drift });
   return (
     <AbsoluteFill style={{ background: "radial-gradient(ellipse at 50% 45%, #ffffff 0%, #e9e7e3 50%, #2a2826 100%)" }}>
       <div style={{ position: "absolute", left: W / 2 - 470, top: H / 2 - 325, transform: `scale(${z})` }}>
@@ -573,10 +573,10 @@ const GiltWall: React.FC = () => {
           <Pic src={FRAME_PHOTO} pos="50% 40%" />
         </Gilt>
       </div>
-      <FlyIn t={t} at={1.0} from={[-700, 0]}>
+      <FlyIn t={t} at={0.7} from={[-700, 0]}>
         <Extrude text={TEXT.words.a} size={240} ry={16} face="#fff2c0" side={["#c9922a", "#4a2c06"]} glow={GOLD} style={{ left: 140, top: 330 }} />
       </FlyIn>
-      <FlyIn t={t} at={1.15} from={[700, 0]}>
+      <FlyIn t={t} at={0.85} from={[700, 0]}>
         <Extrude text={TEXT.words.b} size={280} ry={-16} face="#fff2c0" side={["#c9922a", "#4a2c06"]} glow={GOLD} style={{ left: 330, top: 1330 }} />
       </FlyIn>
       <Tag id="FRAME PHOTO" />
