@@ -2,7 +2,7 @@
 // edit changes lives here. Stand-ins are your earlier Messi/dribbling
 // assets; PREVIEW shows the slot tags on screen.
 
-export const PREVIEW = true;
+export const PREVIEW = false;
 
 export const MUSIC = { file: "love-me.wav" }; // reference song (0–28.5 s + 47.4–60.4 s), local timing only
 
@@ -13,27 +13,31 @@ export const TEXT = {
 };
 
 // Hero cards: photo + cut-out (the template puts words behind the player).
-// ytop = where the head starts in the cut-out (0–1), x = subject centre on screen.
-export type Hero = { id: string; photo: string; cut: string; ytop: number; ar: number; x: number; caption: string; need: string };
+// ytop = top of the subject in the cut-out (0–1), cx = subject centre in the
+// cut-out (0–1), x = where that centre sits on screen, scale = height vs frame.
+export type Hero = { id: string; photo: string; cut: string; ytop: number; cx: number; ar: number; x: number; scale: number; caption: string; need: string };
 export const HEROES: Hero[] = [
-  { id: "PHOTO 01", photo: "p-785a0283.png", cut: "p-785a0283-cut.png", ytop: 0.37, ar: 1332 / 2194, x: 1150, caption: "FC BARCELONA · 2004 — 2021", need: "Hero portrait 1 — waist-up, clean background" },
-  { id: "PHOTO 02", photo: "p-1fa6cf3b.png", cut: "p-1fa6cf3b-cut.png", ytop: 0.02, ar: 1298 / 1700, x: 760, caption: "WORLD CHAMPION · QATAR 2022", need: "Hero portrait 2" },
-  { id: "PHOTO 03", photo: "p-12fbf6b3.png", cut: "p-12fbf6b3-cut.png", ytop: 0.11, ar: 1056 / 2324, x: 1140, caption: "COPA AMÉRICA CHAMPION", need: "Hero portrait 3" },
-  { id: "PHOTO 04", photo: "p-17d36584.png", cut: "p-17d36584-cut.png", ytop: 0.15, ar: 1168 / 2092, x: 780, caption: "THE NUMBER 10", need: "Hero portrait 4" },
+  { id: "PHOTO 01", photo: "m4c4f489e.png", cut: "m4c4f489e-cut.png", ytop: 0.1, cx: 0.5, ar: 2118 / 1898, x: 1180, scale: 0.92, caption: "COPA AMÉRICA · 2021 · 2024", need: "Hero portrait 1" },
+  { id: "PHOTO 02", photo: "m072c11e6.png", cut: "m072c11e6-cut.png", ytop: 0.02, cx: 0.47, ar: 1604 / 2360, x: 720, scale: 1.15, caption: "FIFA CLUB WORLD CUP · 2009", need: "Hero portrait 2" },
+  { id: "PHOTO 03", photo: "m4ff1d30b.png", cut: "m4ff1d30b-cut.png", ytop: 0.05, cx: 0.52, ar: 1568 / 1552, x: 1130, scale: 0.95, caption: "CHAMPIONS LEAGUE · WEMBLEY 2011", need: "Hero portrait 3" },
+  { id: "PHOTO 04", photo: "m283f87e4.png", cut: "m283f87e4-cut.png", ytop: 0.0, cx: 0.5, ar: 1312 / 2026, x: 1010, scale: 1.12, caption: "INTER MIAMI", need: "Hero portrait 4" },
 ];
-export const YEA_HERO: Hero = { id: "PHOTO 05", photo: "p-d923c80d.png", cut: "p-d923c80d-cut.png", ytop: 0.2, ar: 1278 / 2368, x: 960, caption: "", need: "Photo with the player standing tall (giant word goes behind)" };
+export const YEA_HERO: Hero = { id: "PHOTO 05", photo: "mec553ca0.png", cut: "mec553ca0-cut.png", ytop: 0.25, cx: 0.5, ar: 1038 / 2342, x: 960, scale: 1.25, caption: "", need: "Player standing tall" };
 
 // Clips for the mid section (16:9).
 export type Clip = { id: string; file: string; start: number; need: string };
 export const CLIPS: Clip[] = [
-  { id: "CLIP 01", file: "s-mx1.mp4", start: 0.0, need: "Walk-out / close-up, 2 s" },
-  { id: "CLIP 02", file: "s-st1.mp4", start: 0.2, need: "Skill or goal, 2 s" },
-  { id: "CLIP 03", file: "s-fs1.mp4", start: 0.0, need: "Celebration or close-up, 2 s" },
+  { id: "CLIP 01", file: "r-clip1.mp4", start: 0.0, need: "Close-up / walk-back" },
+  { id: "CLIP 02", file: "r-clip2.mp4", start: 0.0, need: "Dribble" },
+  { id: "CLIP 03", file: "r-clip3.mp4", start: 0.0, need: "Dribble / celebration" },
 ];
 
-// Gallery pool: any landscape stills (photos or frames from clips). Used on
-// the 3D card corridor, the tile wall, the framed-photo wall and the strip.
-export const GALLERY = Array.from({ length: 19 }, (_, i) => `g-${String(i + 1).padStart(2, "0")}.jpg`);
-export const STRIP = ["p-1ffe19d4.png", "p-d735f99e.png", "p-1fa6cf3b.png", "p-12fbf6b3.png"]; // 4 portraits for the break-apart strip
-export const FRAME_PHOTO = "p-785a0283.png"; // the hero in the gilt frame
-export const STAR_CARDS = ["p-17d36584.png", "p-1ffe19d4.png"]; // slanted cards in the starfield
+// Gallery pool: landscape stills (frames from the clips + the photos).
+export const GALLERY = [
+  "rg-01.jpg", "m2e4a1fb5.png", "rg-02.jpg", "m92d09410.png", "rg-03.jpg", "m2455458b.png", "rg-04.jpg", "m4ff1d30b.png", "rg-05.jpg", "m0fd532a8.png",
+  "rg-06.jpg", "m4c4f489e.png", "rg-07.jpg", "m19b181bc.png", "rg-08.jpg", "m283f87e4.png", "rg-09.jpg", "m072c11e6.png", "rg-10.jpg", "rg-11.jpg",
+];
+export const STRIP = ["m19b181bc.png", "m3ca03216.png", "m0fd532a8.png", "m2e4a1fb5.png"];
+export const OH_PHOTO = "m2455458b.png";
+export const FRAME_PHOTO = "m92d09410.png"; // landscape: the 5 Ballons d'Or in the gilt frame
+export const STAR_CARDS = ["me6cd394b.png", "m072c11e6.png"];

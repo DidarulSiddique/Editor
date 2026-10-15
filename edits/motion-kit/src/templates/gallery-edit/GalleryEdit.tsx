@@ -4,7 +4,7 @@ import "@fontsource/playfair-display/900.css";
 import "@fontsource/playfair-display/900-italic.css";
 import "@fontsource/inter/800.css";
 import "@fontsource/inter/900.css";
-import { CLIPS, FRAME_PHOTO, GALLERY, HEROES, Hero, MUSIC, PREVIEW, STAR_CARDS, STRIP, TEXT, YEA_HERO } from "./config";
+import { CLIPS, FRAME_PHOTO, GALLERY, HEROES, Hero, MUSIC, OH_PHOTO, PREVIEW, STAR_CARDS, STRIP, TEXT, YEA_HERO } from "./config";
 import { KitDefs, clamp, ease, progress } from "../../kit";
 
 // GALLERY EDIT — landscape 1920x1080, 30 fps, built shot-for-shot on the
@@ -277,7 +277,7 @@ const HeroCard: React.FC<{ hero: Hero; n: number; dur: number }> = ({ hero, n, d
   // camera: whip-zoom in (6 f), then slow push; cut-out moves faster than bg (parallax)
   const whip = interpolate(t, [0, 0.22], [1, 0], { ...clamp, easing: ease.settle });
   const push = interpolate(t, [0, dur], [0, 1], clamp);
-  const hD = H * 1.32;
+  const hD = H * hero.scale;
   const wD = hD * hero.ar;
   const top = 0.07 * H - hero.ytop * hD;
   const drift = (n % 2 ? -1 : 1) * 30 * push;
@@ -293,7 +293,7 @@ const HeroCard: React.FC<{ hero: Hero; n: number; dur: number }> = ({ hero, n, d
       <FlyIn t={t} at={0.12} from={[L.a.ry > 0 ? -220 : 220, 0]}>
         <Extrude text={TEXT.words.a} size={L.a.size} ry={L.a.ry} rx={-6} face="#fff1f6" side={["#d79ab8", "#3a1830"]} glow="#ffb3da" style={{ left: L.a.x, top: L.a.y }} />
       </FlyIn>
-      <div style={{ position: "absolute", left: hero.x - wD / 2 + drift, top, width: wD, height: hD, transform: `scale(${1.02 + 0.07 * push + whip * 0.5})`, transformOrigin: "50% 30%", filter: whip > 0.2 ? `blur(${whip * 8}px)` : undefined }}>
+      <div style={{ position: "absolute", left: hero.x - wD * hero.cx + drift, top, width: wD, height: hD, transform: `scale(${1.02 + 0.07 * push + whip * 0.5})`, transformOrigin: "50% 30%", filter: whip > 0.2 ? `blur(${whip * 8}px)` : undefined }}>
         <Img src={staticFile(hero.cut)} style={{ width: "100%", height: "100%", filter: "contrast(1.08) saturate(1.15) drop-shadow(0 0 30px rgba(255,200,230,0.35)) drop-shadow(0 30px 40px rgba(0,0,0,0.5))" }} />
       </div>
       {/* word B in FRONT */}
@@ -335,7 +335,7 @@ const OhBaby: React.FC = () => {
       <div style={{ position: "absolute", left: W / 2 - 170, top: H / 2 - 230, perspective: 1200 }}>
         <div style={{ transform: `rotateY(${spin}deg) scale(${0.9 + progress(t, 0, 0.3) * 0.1})` }}>
           <Gilt w={340} h={460} thick={26}>
-            <Pic src={HEROES[2].photo} />
+            <Pic src={OH_PHOTO} />
           </Gilt>
         </div>
       </div>
@@ -410,7 +410,7 @@ const ClipShot: React.FC<{ n: number; dur: number; kind: "flash" | "whip" | "iri
   const whip = kind === "whip" ? interpolate(t, [0, 0.25], [1, 0], { ...clamp, easing: ease.settle }) : 0;
   const iris = kind === "iris" ? interpolate(t, [0, 0.3], [0, 1], { ...clamp, easing: ease.settle }) : 1;
   const flash = kind === "flash" ? interpolate(t, [0, 0.15], [1, 0], clamp) : 0;
-  const grade = ["saturate(0.7) contrast(1.15) sepia(0.15) hue-rotate(150deg) brightness(1.05)", "saturate(1.15) contrast(1.12)", "saturate(1.05) contrast(1.15) brightness(0.95)"][n];
+  const grade = ["saturate(0.85) contrast(1.15) brightness(1.04)", "saturate(1.15) contrast(1.12)", "saturate(1.05) contrast(1.15) brightness(0.95)"][n];
   return (
     <AbsoluteFill style={{ background: "#000" }}>
       <AbsoluteFill style={{ clipPath: kind === "iris" ? `circle(${iris * 75}% at 50% 50%)` : undefined }}>
@@ -517,9 +517,9 @@ const GiltWall: React.FC = () => {
   const z = interpolate(t, [0, 0.55, 1.45], [0.92, 1.12, 0.78], { ...clamp, easing: ease.drift });
   return (
     <AbsoluteFill style={{ background: "radial-gradient(ellipse at 50% 45%, #ffffff 0%, #e9e7e3 50%, #2a2826 100%)" }}>
-      <div style={{ position: "absolute", left: W / 2 - 330, top: H / 2 - 400, transform: `scale(${z})` }}>
-        <Gilt w={660} h={800} thick={48}>
-          <Pic src={FRAME_PHOTO} pos="50% 30%" />
+      <div style={{ position: "absolute", left: W / 2 - 480, top: H / 2 - 330, transform: `scale(${z})` }}>
+        <Gilt w={960} h={660} thick={48}>
+          <Pic src={FRAME_PHOTO} pos="50% 40%" />
         </Gilt>
       </div>
       <FlyIn t={t} at={1.0} from={[-700, 0]}>
@@ -573,12 +573,12 @@ const FrameWall: React.FC = () => {
     x: 0,
     y: 0,
     z: -10,
-    w: 420,
-    h: 520,
+    w: 560,
+    h: 400,
     fog: false,
     node: (
-      <Gilt w={420} h={520} thick={34}>
-        <Pic src={FRAME_PHOTO} pos="50% 30%" />
+      <Gilt w={560} h={400} thick={34}>
+        <Pic src={FRAME_PHOTO} pos="50% 40%" />
       </Gilt>
     ),
   });
@@ -671,13 +671,13 @@ const PushThrough: React.FC = () => {
   const s = lerp(1, 4.2, p);
   return (
     <AbsoluteFill style={{ background: "#e9e5dc", overflow: "hidden" }}>
-      <div style={{ position: "absolute", left: W / 2 - 210, top: H / 2 - 260, transform: `scale(${s})`, transformOrigin: "50% 50%" }}>
-        <Gilt w={420} h={520} thick={34}>
+      <div style={{ position: "absolute", left: W / 2 - 280, top: H / 2 - 200, transform: `scale(${s})`, transformOrigin: "50% 50%" }}>
+        <Gilt w={560} h={400} thick={34}>
           <div style={{ position: "absolute", inset: 0, opacity: p }}>
-            <StarWorld t={0} w={352} h={452} />
+            <StarWorld t={0} w={492} h={332} />
           </div>
           <div style={{ position: "absolute", inset: 0, opacity: 1 - p }}>
-            <Pic src={FRAME_PHOTO} pos="50% 30%" />
+            <Pic src={FRAME_PHOTO} pos="50% 40%" />
           </div>
         </Gilt>
       </div>
