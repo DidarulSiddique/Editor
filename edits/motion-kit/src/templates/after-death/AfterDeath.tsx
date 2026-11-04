@@ -225,7 +225,8 @@ const Whip: React.FC<{ t: number; dur: number; inAt?: number; out?: boolean; chi
   const pout = out ? progress(t, dur - 0.35, 0.35, ease.exit) : 0;
   const x = (1 - pin) * W * 0.9 - pout * W * 1.0;
   const skew = (1 - pin) * -10 + pout * 10;
-  return <AbsoluteFill style={{ transform: `translateX(${x}px) skewX(${skew}deg)` }}>{children}</AbsoluteFill>;
+  const push = 1 + 0.05 * interpolate(t, [0, dur], [0, 1], { ...clamp, easing: ease.drift });
+  return <AbsoluteFill style={{ transform: `translateX(${x}px) skewX(${skew}deg) scale(${push})`, transformOrigin: "50% 60%" }}>{children}</AbsoluteFill>;
 };
 
 // ---------------------------------------------------------------- 1 · hook + 2 · teach
@@ -233,7 +234,7 @@ const Opening: React.FC = () => {
   const t = useT();
   const dur = S.soul - S.hook;
   const push = progress(t, dur - 0.75, 0.75, ease.swift); // camera dives into the arch
-  const z = 1 + push * 7;
+  const z = (1 + 0.06 * progress(t, 0, dur - 0.75, ease.drift)) * (1 + push * 7);
   const dark = interpolate(t, [dur - 0.35, dur], [0, 1], clamp);
   const hookOut = S.teach - 0.3;
   return (
@@ -413,7 +414,7 @@ const Grave: React.FC = () => {
   const fadeIn = interpolate(t, [0, 0.5], [0, 1], clamp);
   const rise = progress(t, dur - 0.7, 0.7, ease.swift); // camera rises back out
   return (
-    <AbsoluteFill style={{ opacity: fadeIn, transform: `translateY(${rise * 1100}px)` }}>
+    <AbsoluteFill style={{ opacity: fadeIn, transform: `translateY(${rise * 1100}px) scale(${1 + 0.05 * progress(t, 0, dur, ease.drift)})`, transformOrigin: "50% 70%" }}>
       <AbsoluteFill style={{ background: "#1d0c12" }} />
       <svg width={W} height={H} style={{ position: "absolute", inset: 0 }}>
         {/* earth strata */}
