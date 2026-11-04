@@ -7,7 +7,7 @@
 - The camera swoops down to pitch level on key moments.
 
 **Kits:** Brighton in blue/white. The opponent is a generic team in red so it doesn't point at any club.
-**Players:** labelled by role (GK, 6, 10, ST…), not by name, so no line-up detail can be wrong.
+**Players:** key Brighton players are named, from the confirmed XI vs Man City on 31 Oct 2026 (WhoScored, FotMob): Verbruggen (GK), Dunk (CB, captain), Groß (6), Gómez (10), Kostoulas (ST, joint top scorer with 3, per ESPN). Everyone else is tagged by role only, because their exact position wasn't confirmed.
 
 ## Voiceover script (about 120 words, calm and quick, like the reference)
 

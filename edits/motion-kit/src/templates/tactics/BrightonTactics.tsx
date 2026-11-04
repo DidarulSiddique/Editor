@@ -96,8 +96,9 @@ const Scene: React.FC<{ def: SceneDef }> = ({ def }) => {
         if (!s.visible) return null;
         const col = p.tagColor ?? LIME;
         return (
-          <div key={p.id} style={{ position: "absolute", left: s.x, top: s.y, transform: `translate(-50%, -100%) scale(${0.85 + 0.15 * o})`, opacity: o, padding: "5px 12px 4px", borderRadius: 7, background: col, color: col === RED ? "#fff" : "#06140a", fontFamily: COND, fontSize: 26, letterSpacing: "0.04em", whiteSpace: "nowrap", boxShadow: `0 0 18px ${col}aa` }}>
-            {p.tag}
+          <div key={p.id} style={{ position: "absolute", left: Math.min(W - 150, Math.max(150, s.x)), top: Math.max(200, s.y), transform: `translate(-50%, -100%) scale(${0.85 + 0.15 * o})`, opacity: o, padding: "5px 12px 4px", borderRadius: 7, background: col, color: col === RED ? "#fff" : "#06140a", fontFamily: COND, fontSize: p.tag.includes("|") ? 30 : 26, lineHeight: 1.05, textAlign: "center", letterSpacing: "0.04em", whiteSpace: "nowrap", boxShadow: `0 0 18px ${col}aa` }}>
+            {p.tag.split("|")[0]}
+            {p.tag.includes("|") && <div style={{ fontFamily: MONO, fontSize: 15, letterSpacing: "0.12em", marginTop: 1, opacity: 0.8 }}>{p.tag.split("|")[1]}</div>}
           </div>
         );
       })}
@@ -126,7 +127,7 @@ const withKeys = (ps: PDef[], over: Record<string, Partial<PDef>>) => ps.map((p)
 // 1 · HOOK — Brighton's 10 finishes; scoreboard card.
 const HOOK: SceneDef = {
   players: [
-    F("b10", "B", 6, -20, { keys: [[0, 6, -20], [0.7, 0, -26], [2.3, -2, -33.5], [3.4, -1.5, -35], [6, -1, -36]], tag: "BRIGHTON 10", tagAt: 0.3, tagUntil: 2.9 }),
+    F("b10", "B", 6, -20, { keys: [[0, 6, -20], [0.7, 0, -26], [2.3, -2, -33.5], [3.4, -1.5, -35], [6, -1, -36]], tag: "KOSTOULAS|ST · 3 GOALS", tagAt: 0.3, tagUntil: 2.9 }),
     F("bst", "B", 9, -38, { keys: [[0, 12, -34], [3, 8, -42], [6, 7, -43]] }),
     F("blw", "B", -20, -30, { keys: [[0, -22, -26], [3, -14, -40]] }),
     F("rlcb", "R", -4, -38, { keys: [[0, -6, -40], [1.8, -3.5, -36.5], [3.4, -3, -37]], tag: "CB", tagColor: RED, tagAt: 0.8, tagUntil: 2.7 }),
@@ -136,9 +137,9 @@ const HOOK: SceneDef = {
   ],
   ball: [[0, 14, -14, 0], [0.7, 0.6, -26.8, 0], [1.5, -1, -30, 0], [2.3, -1.6, -34.3, 0], [2.65, -1.6, -34.3, 0.9], [3.15, 2.6, -52.8, 0], [3.5, 2.8, -53.6, 0], [9, 2.8, -53.6, 0]],
   cam: [
-    [0, [11, 3.8, -9], [4, 1, -28], 42],
-    [0.7, [5, 3.5, -15], [-1, 1, -36], 42],
-    [2.3, [3, 3.2, -23], [-0.5, 1.2, -44], 40],
+    [0, [12, 4, -8], [5, 1, -22], 42],
+    [0.7, [6, 3.8, -14], [0, 1, -28], 42],
+    [2.3, [3, 3.4, -22], [-1.5, 1, -36], 40],
     [3.4, [1, 2.6, -30], [1.5, 1.4, -52], 38],
     [7, [-6, 3.6, -38], [1, 1.2, -52], 38],
   ],
@@ -147,7 +148,8 @@ const HOOK: SceneDef = {
 };
 
 // 2 · HOW — camera lifts to reveal Brighton's 4-2-3-1.
-const ROLES: Record<string, string> = { bgk: "GK", brcb: "RCB", blcb: "LCB", brb: "RB", blb: "LB", b6: "6", b8: "8", brw: "RW", b10: "10", blw: "LW", bst: "ST" };
+// Names from the confirmed XI vs Man City, 31 Oct 2026 (WhoScored/FotMob); others by role only.
+const ROLES: Record<string, string> = { bgk: "VERBRUGGEN|GK", brcb: "CB", blcb: "DUNK|CB · CAPTAIN", brb: "RB", blb: "LB", b6: "GROSS|6", b8: "8", brw: "RW", b10: "GÓMEZ|10", blw: "LW", bst: "KOSTOULAS|ST" };
 const HOW: SceneDef = {
   players: [...BHA_BUILD().map((p, i) => ({ ...p, tag: ROLES[p.id], tagAt: 0.6 + i * 0.12 })), ...RED_MID()],
   ball: [[0, 0, 46.3, 0]],
@@ -157,7 +159,7 @@ const HOW: SceneDef = {
 
 // 3 · BAIT — keeper stands on the ball; red press jumps.
 const BAIT_PLAYERS = withKeys([...BHA_BUILD(), ...RED_MID()], {
-  bgk: { keys: [[0, 0, 47]], tag: "FOOT ON THE BALL", tagAt: 1.2 },
+  bgk: { keys: [[0, 0, 47]], tag: "VERBRUGGEN|FOOT ON THE BALL", tagAt: 1.2 },
   brcb: { keys: [[0, 10, 42], [1.2, 14, 44]] },
   blcb: { keys: [[0, -10, 42], [1.2, -14, 44]] },
   b6: { keys: [[0, 4, 32], [2.0, 3, 36]] },
@@ -182,8 +184,8 @@ const PASS_PLAYERS = withKeys([...BHA_BUILD(), ...RED_MID()], {
   bgk: { keys: [[0, 0, 47]] },
   brcb: { keys: [[0, 14, 44]] },
   blcb: { keys: [[0, -14, 44]] },
-  b6: { keys: [[0, 3, 36], [1.1, 2.5, 35.5]], tag: "6", tagAt: 0.4, tagUntil: 2.4 },
-  b10: { keys: [[0, 1, 15], [1.6, 1, 18], [2.5, 0.5, 16.5], [5.7, 0, -2]], tag: "10", tagAt: 1.6 },
+  b6: { keys: [[0, 3, 36], [1.1, 2.5, 35.5]], tag: "GROSS|6", tagAt: 0.4, tagUntil: 2.4 },
+  b10: { keys: [[0, 1, 15], [1.6, 1, 18], [2.5, 0.5, 16.5], [5.7, 0, -2]], tag: "GÓMEZ|10", tagAt: 1.6 },
   rf1: { keys: [[0, -4, 38], [0.8, -2, 42]] },
   rf2: { keys: [[0, 10, 39], [0.8, 6, 41]] },
   rcm1: { keys: [[0, -4, 18], [1.5, -3, 24]] },
@@ -213,8 +215,8 @@ const HUNT: SceneDef = {
     F("rlb", "R", -29, -30, { keys: [[0, -27, -28], [1.2, -30, -30], [2.8, -30.5, -30.5]], tag: "BALL", tagColor: RED, tagAt: 1.1, tagUntil: 3.3 }),
     F("rcm1", "R", -8, -24), F("rcm2", "R", 8, -26), F("rlm", "R", -24, -12), F("rf1", "R", -4, -6),
     F("blw", "B", -18, -18, { keys: [[0, -18, -18], [1.2, -19, -20], [2.6, -28, -27.5], [3.6, -28.5, -29]], tag: "LW", tagAt: 1.4 }),
-    F("bst", "B", -8, -30, { keys: [[0, -6, -32], [1.2, -10, -33], [2.6, -26, -33]], tag: "ST", tagAt: 1.5 }),
-    F("b8", "B", -12, -12, { keys: [[0, -12, -12], [1.2, -14, -16], [2.7, -24, -24]], tag: "8", tagAt: 1.6 }),
+    F("bst", "B", -8, -30, { keys: [[0, -6, -32], [1.2, -10, -33], [2.6, -26, -33]], tag: "KOSTOULAS|ST", tagAt: 1.5 }),
+    F("b8", "B", -12, -12, { keys: [[0, -12, -12], [1.2, -14, -16], [2.7, -24, -24]], tag: "GÓMEZ|10", tagAt: 1.6 }),
     F("b10", "B", 0, -16, { keys: [[0, 0, -16], [2.5, -6, -22]] }),
     F("brw", "B", 18, -22), F("blb", "B", -24, 2, { keys: [[0, -26, 4], [2.5, -28, -8]] }),
   ],
