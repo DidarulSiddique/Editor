@@ -84,7 +84,7 @@ const Scene: React.FC<{ def: SceneDef }> = ({ def }) => {
         })}
         {(def.lines ?? []).map((l, i) => <NeonLine key={`l${i}`} pts={l.pts} draw={smooth(clamp01((t - l.at) / l.dur))} color={l.color} dashed={l.dashed} arrow={l.arrow} w={l.w} fade={l.until === undefined ? 1 : 1 - clamp01((t - l.until) / 0.3)} />)}
         {(def.arcs ?? []).map((a, i) => <ArcLine key={`a${i}`} a={a.a} b={a.b} h={a.h} draw={clamp01((t - a.at) / a.dur)} color={a.color} fade={a.until === undefined ? 1 : 1 - clamp01((t - a.until) / 0.3)} />)}
-        {players.map(({ p, x, z, heading, stride, phase }) => <Player key={p.id} x={x} z={z} heading={heading} phase={phase} stride={stride} kit={KITS[p.kit]} seed={p.id} />)}
+        {players.map(({ p, x, z, heading, stride, phase }) => <Player key={p.id} x={x} z={z} heading={heading} phase={phase} stride={stride} kit={{ ...KITS[p.kit], ...(p.tag ? LOOK[p.tag.split("|")[0]] : undefined) }} seed={p.id} />)}
         <Ball p={ball} spin={spin} />
       </ThreeCanvas>
       {/* player tags (projected) */}
@@ -104,6 +104,15 @@ const Scene: React.FC<{ def: SceneDef }> = ({ def }) => {
       })}
     </AbsoluteFill>
   );
+};
+
+// Real skin/hair for the named Brighton players (the rest of the squad varies at random).
+const LOOK: Record<string, { skin: string; hair: string }> = {
+  VERBRUGGEN: { skin: "#f2cfae", hair: "#6b4a2b" },
+  DUNK: { skin: "#efc8a4", hair: "#3a2616" },
+  GROSS: { skin: "#f0cba8", hair: "#4a3220" },
+  "GÓMEZ": { skin: "#d9a67d", hair: "#1c130d" },
+  KOSTOULAS: { skin: "#e6b98f", hair: "#2a1a10" },
 };
 
 // ---------------------------------------------------------------- formations
@@ -387,6 +396,35 @@ const Card: React.FC<{ t: number; at: number; until: number; title: string; big:
   );
 };
 
+// Form guide (results from the club site / ESPN / VAVEL, Aug–Oct 2026).
+const RESULTS: [string, string, string][] = [["W", "AVL", "4–0"], ["L", "@CHE", "3–4"], ["D", "LEE", "1–1"], ["W", "@COV", "5–0"], ["W", "ARS", "3–0"], ["W", "@SUN", "2–0"], ["W", "CRY", "5–0"], ["L", "@LIV", "0–2"], ["W", "@MCI", "1–0"]];
+const Form: React.FC<{ t: number; at: number; until: number }> = ({ t, at, until }) => {
+  const a = clamp01((t - at) / 0.35) * (1 - clamp01((t - until) / 0.3));
+  if (a <= 0) return null;
+  return (
+    <div style={{ position: "absolute", left: 0, right: 0, top: 1180, display: "flex", justifyContent: "center", opacity: a, transform: `translateY(${(1 - a) * 30}px)` }}>
+      <div style={{ padding: "16px 22px 16px", borderRadius: 18, background: "rgba(6,18,10,0.85)", border: `2px solid ${LIME}66`, boxShadow: `0 0 40px ${LIME}33`, textAlign: "center" }}>
+        <div style={{ fontFamily: MONO, fontSize: 21, letterSpacing: "0.3em", color: `${LIME}cc`, marginBottom: 12 }}>FORM · PREMIER LEAGUE 2026/27</div>
+        <div style={{ display: "flex", gap: 8 }}>
+          {RESULTS.map(([r, opp, sc], i) => {
+            const p = clamp01((t - at - 0.15 - i * 0.11) / 0.2);
+            const col = r === "W" ? LIME : r === "L" ? RED : "#cfcfcf";
+            const big = r === "L" || ["CRY", "@COV", "ARS", "@MCI"].includes(opp);
+            return (
+              <div key={i} style={{ width: 96, padding: "8px 0 7px", borderRadius: 10, background: `${col}22`, border: `2px solid ${col}`, boxShadow: big ? `0 0 16px ${col}88` : "none", opacity: p, transform: `translateY(${(1 - p) * 14}px) scale(${0.9 + 0.1 * p})` }}>
+                <div style={{ fontFamily: COND, fontSize: 34, color: col, lineHeight: 1 }}>{r}</div>
+                <div style={{ fontFamily: COND, fontSize: 28, color: "#fff", lineHeight: 1.15 }}>{sc}</div>
+                <div style={{ fontFamily: MONO, fontSize: 15, letterSpacing: "0.06em", color: "rgba(255,255,255,0.7)" }}>{opp}</div>
+              </div>
+            );
+          })}
+        </div>
+        <div style={{ marginTop: 12, fontFamily: MONO, fontSize: 19, letterSpacing: "0.12em", color: "rgba(255,255,255,0.75)" }}>5–0 PALACE · 3–0 ARSENAL · 1–0 AT MAN CITY</div>
+      </div>
+    </div>
+  );
+};
+
 const Hud: React.FC<{ t: number }> = ({ t }) => (
   <div style={{ position: "absolute", left: 70, top: 170, fontFamily: MONO, fontSize: 20, letterSpacing: "0.22em", color: "rgba(255,255,255,0.55)", opacity: clamp01(t / 0.6) }}>
     BRIGHTON · 2026/27 · TACTICS
@@ -414,7 +452,9 @@ export const BrightonTactics: React.FC = () => {
       <AbsoluteFill style={{ pointerEvents: "none", background: "radial-gradient(ellipse at 50% 50%, transparent 55%, rgba(0,0,0,0.6) 100%)" }} />
       <Hud t={t} />
       <Captions t={t} />
-      <Card t={t} at={1.9} until={6.8} title="PREMIER LEAGUE · 9 GAMES" big="3RD · 19 PTS" sub="W6 D1 L2 · 24 FOR · 7 AGAINST" />
+      <Card t={t} at={1.9} until={3.3} title="PREMIER LEAGUE · 9 GAMES" big="3RD · 19 PTS" sub="W6 D1 L2 · 24 FOR · 7 AGAINST" />
+      <Form t={t} at={3.45} until={6.85} />
+      <Card t={t} at={32.1} until={34.2} title="THE PRICE · 2 DEFEATS" big="3–4 · 0–2" sub="AT CHELSEA · AT LIVERPOOL" />
       <Card t={t} at={23.3} until={27.6} title="PASSES ALLOWED PER DEFENSIVE ACTION" big="PPDA 7.4" sub="LOWEST IN THE PREMIER LEAGUE" />
       <Card t={t} at={29.0} until={31.9} title="BRIGHTON 2026/27" big="58% POSSESSION" sub="4-2-3-1 · LAST 5 GAMES" />
       <Card t={t} at={50.0} until={53.5} title="CRITICAL LOSSES IN DANGEROUS AREAS" big="34 · 2ND MOST" sub="IN THE PREMIER LEAGUE" />

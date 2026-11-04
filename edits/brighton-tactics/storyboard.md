@@ -35,3 +35,7 @@
 ## Audio
 - **Voiceover:** vidIQ text-to-speech, about 750 characters, so about 14 credits (you have 135).
 - **Underneath:** a low dark ambient bed plus whooshes and hits on camera moves, like the reference.
+
+## Results shown (form card at 3.4–6.9 s; "the price" card at 32–34 s)
+W 4–0 Aston Villa (23 Aug) · L 3–4 at Chelsea (30 Aug) · D 1–1 Leeds (5 Sep) · W 5–0 at Coventry (13 Sep) · W 3–0 Arsenal (19 Sep) · W 2–0 at Sunderland (10 Oct) · W 5–0 Crystal Palace (18 Oct) · L 0–2 at Liverpool (25 Oct) · W 1–0 at Man City (31 Oct, Ayari).
+These add up to W6 D1 L2, 24 for and 7 against, which matches the table. Sources: brightonandhovealbion.com, ESPN, VAVEL, Football Web Pages, Goal.com.
