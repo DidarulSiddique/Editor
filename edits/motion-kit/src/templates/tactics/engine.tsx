@@ -288,12 +288,16 @@ export const Stadium: React.FC = () => {
 };
 
 // ---------------------------------------------------------------- players
-export type Kit = { shirt: string; sleeve: string; shorts: string; socks: string; skin?: string; hair?: string };
+export type HairStyle = "short" | "receding" | "curly" | "long" | "buzz";
+export type Kit = { shirt: string; sleeve: string; shorts: string; socks: string; skin?: string; hair?: string; hairStyle?: HairStyle; beard?: boolean };
 export const KITS: Record<string, Kit> = {
   B: { shirt: "#1d5fe0", sleeve: "#ffffff", shorts: "#1d5fe0", socks: "#ffffff" },
   BGK: { shirt: "#e8d21d", sleeve: "#e8d21d", shorts: "#1a1a1a", socks: "#e8d21d" },
   R: { shirt: "#d8202e", sleeve: "#d8202e", shorts: "#ffffff", socks: "#d8202e" },
   RGK: { shirt: "#7b3fe4", sleeve: "#7b3fe4", shorts: "#2a2a2a", socks: "#7b3fe4" },
+  LIV: { shirt: "#c8102e", sleeve: "#c8102e", shorts: "#c8102e", socks: "#c8102e" },
+  CHE: { shirt: "#0a3a9e", sleeve: "#0a3a9e", shorts: "#0a3a9e", socks: "#ffffff" },
+  BAWAY: { shirt: "#ffffff", sleeve: "#1d5fe0", shorts: "#ffffff", socks: "#ffffff" },
 };
 const SKINS = ["#e9b98f", "#c68b5e", "#8d5a3b", "#f1c9a5", "#a8704a"];
 const HAIRS = ["#1d140e", "#3b2414", "#0c0c0c", "#6b4a22", "#2a1c10"];
@@ -357,13 +361,47 @@ export const Player: React.FC<{ x: number; z: number; heading: number; phase: nu
           <sphereGeometry args={[0.14, 16, 12]} />
           <meshStandardMaterial color={skin} roughness={0.6} />
         </mesh>
-        <mesh position={[0, 1.92, -0.02]} scale={[1.05, 0.75, 1.05]}>
-          <sphereGeometry args={[0.142, 16, 12]} />
-          <meshStandardMaterial color={hair} roughness={0.9} />
-        </mesh>
+        <Hair style={kit.hairStyle ?? (["short", "buzz", "curly", "short", "long"] as HairStyle[])[Math.floor(random(`hs${seed}`) * 5)]} color={hair} />
+        {kit.beard && (
+          <mesh position={[0, 1.8, 0.03]} scale={[1.02, 0.62, 1.0]}>
+            <sphereGeometry args={[0.142, 16, 12, 0, Math.PI * 2, Math.PI * 0.55, Math.PI * 0.45]} />
+            <meshStandardMaterial color={hair} roughness={0.95} />
+          </mesh>
+        )}
       </group>
     </group>
   );
+};
+
+// Hair shapes around the head (centre y 1.86, r 0.14). Faces are +z.
+const Hair: React.FC<{ style: HairStyle; color: string }> = ({ style, color }) => {
+  const m = <meshStandardMaterial color={color} roughness={0.9} />;
+  if (style === "buzz")
+    return <mesh position={[0, 1.9, -0.01]} scale={[1.03, 0.8, 1.03]}><sphereGeometry args={[0.142, 16, 12, 0, Math.PI * 2, 0, Math.PI * 0.5]} />{m}</mesh>;
+  if (style === "receding")
+    return (
+      <group>
+        <mesh position={[0, 1.87, -0.03]} scale={[1.06, 0.9, 1.0]}><sphereGeometry args={[0.144, 16, 12, Math.PI * 0.75, Math.PI * 1.5, 0.35, Math.PI * 0.4]} />{m}</mesh>
+      </group>
+    );
+  if (style === "curly")
+    return (
+      <group>
+        <mesh position={[0, 1.94, -0.02]} scale={[1.12, 0.85, 1.12]}><sphereGeometry args={[0.15, 16, 12, 0, Math.PI * 2, 0, Math.PI * 0.55]} />{m}</mesh>
+        {Array.from({ length: 9 }).map((_, i) => {
+          const a = (i / 9) * Math.PI * 2;
+          return <mesh key={i} position={[Math.sin(a) * 0.12, 1.97 + (i % 2) * 0.02, Math.cos(a) * 0.12 - 0.02]}><sphereGeometry args={[0.055, 8, 6]} />{m}</mesh>;
+        })}
+      </group>
+    );
+  if (style === "long")
+    return (
+      <group>
+        <mesh position={[0, 1.93, -0.02]} scale={[1.1, 0.85, 1.1]}><sphereGeometry args={[0.148, 16, 12, 0, Math.PI * 2, 0, Math.PI * 0.55]} />{m}</mesh>
+        <mesh position={[0, 1.82, -0.1]} scale={[1.05, 1.3, 0.6]}><sphereGeometry args={[0.13, 12, 10]} />{m}</mesh>
+      </group>
+    );
+  return <mesh position={[0, 1.92, -0.02]} scale={[1.05, 0.75, 1.05]}><sphereGeometry args={[0.142, 16, 12]} />{m}</mesh>;
 };
 
 export const Ball: React.FC<{ p: V3; spin: number }> = ({ p, spin }) => (

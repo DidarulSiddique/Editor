@@ -107,12 +107,12 @@ const Scene: React.FC<{ def: SceneDef }> = ({ def }) => {
 };
 
 // Real skin/hair for the named Brighton players (the rest of the squad varies at random).
-const LOOK: Record<string, { skin: string; hair: string }> = {
-  VERBRUGGEN: { skin: "#f2cfae", hair: "#6b4a2b" },
-  DUNK: { skin: "#efc8a4", hair: "#3a2616" },
-  GROSS: { skin: "#f0cba8", hair: "#4a3220" },
-  "GÓMEZ": { skin: "#d9a67d", hair: "#1c130d" },
-  KOSTOULAS: { skin: "#e6b98f", hair: "#2a1a10" },
+const LOOK: Record<string, { skin: string; hair: string; hairStyle: "short" | "receding" | "curly" | "long" | "buzz"; beard?: boolean }> = {
+  VERBRUGGEN: { skin: "#f2cfae", hair: "#7a5634", hairStyle: "short" },
+  DUNK: { skin: "#efc8a4", hair: "#2e1f14", hairStyle: "short", beard: true },
+  GROSS: { skin: "#f0cba8", hair: "#5a3e28", hairStyle: "receding" },
+  "GÓMEZ": { skin: "#d9a67d", hair: "#16100b", hairStyle: "long" },
+  KOSTOULAS: { skin: "#e6b98f", hair: "#1f150e", hairStyle: "curly" },
 };
 
 // ---------------------------------------------------------------- formations
@@ -199,6 +199,7 @@ const PASS_PLAYERS = withKeys([...BHA_BUILD(), ...RED_MID()], {
   rf2: { keys: [[0, 10, 39], [0.8, 6, 41]] },
   rcm1: { keys: [[0, -4, 18], [1.5, -3, 24]] },
   rcm2: { keys: [[0, 6, 20], [1.5, 5, 26]] },
+  bst: { keys: [[0, 0, -2], [2.2, -2, -5], [5.7, -10, -13]] },
   rlcb: { keys: [[0, -8, -14], [3, -6, -8]], tag: "BACK FOUR", tagColor: RED, tagAt: 2.8 },
   rrcb: { keys: [[0, 8, -14], [3, 6, -8]] },
   rlb: { keys: [[0, -22, -12], [3, -18, -8]] },
@@ -221,38 +222,38 @@ const PASS: SceneDef = {
 const HUNT: SceneDef = {
   players: [
     F("rgk", "RGK", 0, -48), F("rlcb", "R", -9, -41), F("rrcb", "R", 10, -41), F("rrb", "R", 26, -32),
-    F("rlb", "R", -29, -30, { keys: [[0, -27, -28], [1.2, -30, -30], [2.8, -30.5, -30.5]], tag: "BALL", tagColor: RED, tagAt: 1.1, tagUntil: 3.3 }),
+    F("rlb", "R", -29, -30, { keys: [[0, -27, -28], [1.2, -30, -30], [2.8, -31.6, -30.6]], tag: "TRAPPED", tagColor: RED, tagAt: 1.1 }),
     F("rcm1", "R", -8, -24), F("rcm2", "R", 8, -26), F("rlm", "R", -24, -12), F("rf1", "R", -4, -6),
-    F("blw", "B", -18, -18, { keys: [[0, -18, -18], [1.2, -19, -20], [2.6, -28, -27.5], [3.6, -28.5, -29]], tag: "LW", tagAt: 1.4 }),
-    F("bst", "B", -8, -30, { keys: [[0, -6, -32], [1.2, -10, -33], [2.6, -26, -33]], tag: "KOSTOULAS|ST", tagAt: 1.5 }),
-    F("b8", "B", -12, -12, { keys: [[0, -12, -12], [1.2, -14, -16], [2.7, -24, -24]], tag: "GÓMEZ|10", tagAt: 1.6 }),
+    F("blw", "B", -18, -18, { keys: [[0, -18, -18], [1.2, -19, -20], [2.7, -28.8, -28.4]], tag: "LW", tagAt: 1.4 }),
+    F("bst", "B", -8, -30, { keys: [[0, -6, -32], [1.2, -10, -33], [2.7, -30.6, -33.5]], tag: "KOSTOULAS|ST", tagAt: 1.5 }),
+    F("b8", "B", -12, -12, { keys: [[0, -12, -12], [1.2, -14, -16], [2.8, -27.6, -31.4]], tag: "GÓMEZ|10", tagAt: 1.6 }),
     F("b10", "B", 0, -16, { keys: [[0, 0, -16], [2.5, -6, -22]] }),
     F("brw", "B", 18, -22), F("blb", "B", -24, 2, { keys: [[0, -26, 4], [2.5, -28, -8]] }),
   ],
-  ball: [[0, -9, -40.4, 0], [0.4, -9, -40.4, 0], [1.2, -29.4, -29.6, 0], [3.0, -29.8, -30.0, 0], [3.25, -28.2, -28.8, 0], [6.9, -28.2, -28.8, 0]],
+  ball: [[0, -9, -40.4, 0], [0.4, -9, -40.4, 0], [1.2, -29.6, -29.7, 0], [2.8, -31.0, -30.2, 0], [6.9, -31.0, -30.2, 0]],
   cam: [[0, [4, 24, -6], [-20, 0, -30], 42], [3.0, [-6, 15, -12], [-26, 0, -29], 40], [6.9, [-10, 12, -14], [-27, 0, -29], 38]],
   rings: [
-    { pid: "rlb", at: 1.1, until: 3.3, color: RED },
+    { pid: "rlb", at: 1.1, color: RED },
     { pid: "blw", at: 1.4, color: LIME }, { pid: "bst", at: 1.5, color: LIME }, { pid: "b8", at: 1.6, color: LIME },
   ],
   lines: [
     { pts: [[-9, -40.4], [-28.8, -30]], at: 0.4, dur: 0.6, until: 2.0, color: RED, w: 0.22 },
-    { pts: curve([-19, -20], [-27.5, -27.4], -2), at: 1.3, dur: 0.6, until: 4.5, color: LIME, dashed: true },
-    { pts: curve([-10, -33], [-26.5, -32.8], 2), at: 1.4, dur: 0.6, until: 4.5, color: LIME, dashed: true },
-    { pts: curve([-14, -16], [-24, -24.5], -1), at: 1.5, dur: 0.6, until: 4.5, color: LIME, dashed: true },
+    { pts: curve([-19, -20], [-28.4, -28.0], -2), at: 1.3, dur: 0.6, until: 4.5, color: LIME, dashed: true },
+    { pts: curve([-10, -33], [-30.0, -33.4], 2), at: 1.4, dur: 0.6, until: 4.5, color: LIME, dashed: true },
+    { pts: curve([-14, -16], [-27.2, -31.0], -1), at: 1.5, dur: 0.6, until: 4.5, color: LIME, dashed: true },
   ],
 };
 
 // 6 · WIDE — overhead: the touchline as the extra man.
 const WIDE: SceneDef = {
   players: HUNT.players.map((p) => ({ ...p, keys: [[0, ...posAt(p.keys, 6.9)] as PKey], tag: undefined })),
-  ball: [[0, -28.2, -28.8, 0]],
+  ball: [[0, -31.0, -30.2, 0]],
   cam: [[0, [-12, 46, -8], [-24, 0, -29], 42], [4.3, [-14, 38, -12], [-25, 0, -29], 42]],
   zones: [
     { pts: [[-34, -44], [-30.5, -44], [-30.5, -14], [-34, -14]], at: 0.4, color: LIME, opacity: 0.3 },
-    { pts: [[-28.5, -29], [-26, -33], [-24, -24]], at: 0.2, color: LIME, opacity: 0.25 },
+    { pts: [[-34, -27.4], [-28.8, -28.4], [-27.6, -31.4], [-30.6, -33.5], [-34, -34.5]], at: 0.2, color: LIME, opacity: 0.28 },
   ],
-  rings: [{ pos: [-30.5, -30.5], at: 0.2, color: RED, r: 1.6 }],
+  rings: [{ pos: [-31.6, -30.6], at: 0.2, color: RED, r: 1.6 }],
 };
 
 // 7 · BUT — pitch level behind Brighton's high line.
@@ -301,6 +302,51 @@ const C2: SceneDef = {
   ],
   zones: [{ pts: [[-34, 9.5], [34, 9.5], [34, 30], [-34, 30]], at: 1.4, until: 5.6, color: LIME, opacity: 0.12 }],
   rings: [{ pid: "rrun", at: 2.8, color: LIME }, { pid: "r10", at: 2.6, until: 4.6, color: LIME }],
+};
+
+// 8b · EXAMPLE — Liverpool 2–0 (25 Oct): sat in a low block, gave Brighton 64% of the ball.
+const LIVB: [number, number, number][] = [[0, -10, 5], [1.1, 10, 5], [2.2, 24, -4], [3.3, 10, 5], [4.4, -10, 5], [5.5, -24, -4]];
+const livBallX = (t: number) => posAt(LIVB.map(([tt, x, z]) => [tt, x, z] as PKey), t)[0];
+const LIVS: SceneDef = {
+  players: [
+    F("lgk", "RGK", 0, -48),
+    ...[-18, -6, 6, 18].map((x, i) => F(`ld${i}`, "LIV", x, -31, { keys: [0, 1.6, 2.7, 3.8, 4.9, 6].map((tt) => [tt, x * 0.85 + livBallX(tt) * 0.25, -31] as PKey) })),
+    ...[-18, -6, 6, 18].map((x, i) => F(`lm${i}`, "LIV", x, -21, { keys: [0, 1.6, 2.7, 3.8, 4.9, 6].map((tt) => [tt, x * 0.85 + livBallX(tt) * 0.3, -21] as PKey) })),
+    F("lf1", "LIV", -5, -10, { tag: "LIVERPOOL", tagColor: RED, tagAt: 0.5 }), F("lf2", "LIV", 6, -9),
+    F("bl1", "B", -10, 6), F("bl2", "B", 10, 6), F("bl3", "B", 24, -4), F("bl4", "B", -24, -4), F("bl5", "B", 2, -4), F("bl6", "B", -6, -8), F("bl7", "B", 14, -14), F("bl8", "B", -14, -15), F("bl9", "B", 0, -15, { tag: "BRIGHTON", tagColor: BLUE, tagAt: 0.6 }),
+  ],
+  ball: [[0, -9.4, 5.4, 0], [0.3, -9.4, 5.4, 0], [1.1, 9.4, 5.4, 0], [1.4, 9.4, 5.4, 0], [2.2, 23.4, -3.6, 0], [2.5, 23.4, -3.6, 0], [3.3, 9.4, 5.4, 0], [3.6, 9.4, 5.4, 0], [4.4, -9.4, 5.4, 0], [4.7, -9.4, 5.4, 0], [5.5, -23.4, -3.6, 0]],
+  cam: [[0, [0, 34, -74], [0, 0, -14], 42], [6, [-8, 30, -70], [0, 0, -12], 42]],
+  zones: [{ pts: [[-26, -34], [26, -34], [26, -18], [-26, -18]], at: 0.4, color: RED, opacity: 0.16 }],
+  lines: [
+    { pts: [[-9.4, 5.4], [9.4, 5.4]], at: 0.3, dur: 0.6, until: 2.0, color: "#9fc2ff" },
+    { pts: [[9.4, 5.4], [23.4, -3.6]], at: 1.4, dur: 0.6, until: 3.1, color: "#9fc2ff" },
+    { pts: [[23.4, -3.6], [9.4, 5.4]], at: 2.5, dur: 0.6, until: 4.2, color: "#9fc2ff" },
+    { pts: [[9.4, 5.4], [-9.4, 5.4]], at: 3.6, dur: 0.6, until: 5.3, color: "#9fc2ff" },
+    { pts: [[-9.4, 5.4], [-23.4, -3.6]], at: 4.7, dur: 0.6, color: "#9fc2ff" },
+  ],
+};
+
+// 9b · EXAMPLE — Chelsea 4–3 (30 Aug): straight at them, 2–0 in 14 min, 3–0 after 32.
+const CHES: SceneDef = {
+  players: [
+    F("bgk", "BGK", 0, 49, { keys: [[0, 0, 49], [3.4, 0, 49], [3.9, 2.4, 50.2]] }),
+    ...[-21, -7, 7, 21].map((x, i) => F(`bd${i}`, "B", x, 6, { keys: [[0, x, 6], [1.0, x, 6], [3.6, x * 0.6, 24]], ...(i === 1 ? { tag: "BRIGHTON", tagColor: BLUE, tagAt: 0.3, tagUntil: 1.6 } : {}) })),
+    F("c1", "CHE", -2, -4, { keys: [[0, -2, -4], [0.8, -1, 0], [2.0, 0, 10]], tag: "CHELSEA", tagColor: "#5b8cff", tagAt: 0.4 }),
+    F("c2", "CHE", 12, -2, { keys: [[0, 12, -2], [0.9, 12, 4], [2.4, 8, 26], [3.4, 4, 36]] }),
+    F("c3", "CHE", -14, -2, { keys: [[0, -14, -2], [0.9, -14, 4], [2.6, -9, 26], [3.6, -5, 34]] }),
+    F("c4", "CHE", 0, -12, { keys: [[0, 0, -12], [3, 0, 8]] }),
+  ],
+  ball: [[0, -1.6, -3.4, 0], [0.8, -0.6, 0.6, 0], [2.0, 0.4, 9.6, 0], [2.3, 0.4, 9.6, 0], [3.3, 4.4, 35.4, 0], [3.5, 4.4, 35.4, 0.7], [3.95, 2.2, 52.7, 0], [6.5, 2.4, 53.4, 0]],
+  cam: [[0, [-14, 12, -16], [2, 0, 10], 42], [2.3, [-12, 10, 6], [4, 0, 26], 42], [4.2, [-8, 6, 28], [2, 1, 48], 40], [6.5, [-6, 5, 32], [2, 1, 50], 40]],
+  lines: [
+    { pts: [[-30, 6.6], [30, 6.6]], at: 0.2, dur: 0.5, until: 2.4, color: "#ffffff", dashed: true, arrow: false, w: 0.2 },
+    { pts: curve([12, 4], [4, 35], -3), at: 0.9, dur: 0.8, until: 4.5, color: LIME, dashed: true },
+    { pts: curve([-14, 4], [-5, 33], 3), at: 1.0, dur: 0.8, until: 4.5, color: LIME, dashed: true },
+    { pts: [[0.4, 9.6], [4.4, 35.4]], at: 2.3, dur: 0.6, until: 4.5, color: LIME },
+    { pts: curve([4.4, 35.4], [2.2, 52.5], 0.6), at: 3.5, dur: 0.4, color: LIME, arrow: false },
+  ],
+  rings: [{ pid: "c2", at: 2.3, until: 4.2, color: LIME }],
 };
 
 // 10 · COUNTER 3 — press them back: steal at the box edge.
