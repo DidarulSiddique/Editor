@@ -3,10 +3,12 @@ import { SHOWCASE, Showcase } from "./showcase/Showcase";
 import * as PE from "./templates/player-edit/PlayerEdit";
 import * as GE from "./templates/gallery-edit/GalleryEdit";
 import * as GV from "./templates/gallery-edit/GalleryVertical";
+import * as BT from "./templates/tactics/BrightonTactics";
 import * as AD from "./templates/after-death/AfterDeath";
 
 export const Root = () => (
   <>
+    <Composition id="BrightonTactics" component={BT.BrightonTactics} durationInFrames={BT.FRAMES} fps={BT.FPS} width={BT.W} height={BT.H} />
     <Composition id="AfterDeath" component={AD.AfterDeath} durationInFrames={AD.FRAMES} fps={AD.FPS} width={AD.W} height={AD.H} />
     <Composition id="GalleryVertical" component={GV.GalleryVertical} durationInFrames={GV.FRAMES} fps={GV.FPS} width={GV.W} height={GV.H} />
     <Composition id="GalleryEdit" component={GE.GalleryEdit} durationInFrames={GE.FRAMES} fps={GE.FPS} width={GE.W} height={GE.H} />
