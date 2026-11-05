@@ -39,3 +39,7 @@
 ## Results shown (form card at 3.4–6.9 s; "the price" card at 32–34 s)
 W 4–0 Aston Villa (23 Aug) · L 3–4 at Chelsea (30 Aug) · D 1–1 Leeds (5 Sep) · W 5–0 at Coventry (13 Sep) · W 3–0 Arsenal (19 Sep) · W 2–0 at Sunderland (10 Oct) · W 5–0 Crystal Palace (18 Oct) · L 0–2 at Liverpool (25 Oct) · W 1–0 at Man City (31 Oct, Ayari).
 These add up to W6 D1 L2, 24 for and 7 against, which matches the table. Sources: brightonandhovealbion.com, ESPN, VAVEL, Football Web Pages, Goal.com.
+
+## Real counter examples (second voiceover, spliced in; total 70.8 s)
+- After counter 1, 40.2–47.3 s: "Liverpool did exactly that. They gave Brighton sixty-four percent of the ball… and won two-nil." Liverpool (red) sit in a low block while Brighton circulate. Card: LIVERPOOL v BRIGHTON · 25 OCT · 2–0 · BRIGHTON 64% POSSESSION · 1 SHOT ON TARGET. (NBC Sports, Sky Sports, Yahoo)
+- After counter 2, 54.7–61.4 s: "Chelsea went straight at them. Two goals in fourteen minutes. Three-nil after thirty-two." Chelsea (blue, tagged) break past the high line. Card: CHELSEA v BRIGHTON · 30 AUG · 4–3 · 2–0 AFTER 14' · 3–0 AFTER 32'. (Sky Sports, Yahoo, 101 Great Goals)

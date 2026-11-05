@@ -10,11 +10,12 @@ import { ArcLine, BKey, BLUE, Ball, CKey, CameraRig, KITS, LIME, Lane, NeonLine,
 export const FPS = 30;
 export const W = 1080;
 export const H = 1920;
-export const END = 57.0;
+export const END = 70.8;
 export const FRAMES = Math.round(END * FPS);
 
 // Beat starts (s), set on the voiceover's sentence boundaries.
-export const B = { hook: 0, how: 7.0, bait: 10.0, pass: 15.1, hunt: 20.8, wide: 27.7, but: 32.0, c1: 34.3, c2: 40.2, c3: 47.6, cta: 53.6, end: END };
+// liv / che: real matches where opponents used counters 1 and 2 (second voiceover, spliced in).
+export const B = { hook: 0, how: 7.0, bait: 10.0, pass: 15.1, hunt: 20.8, wide: 27.7, but: 32.0, c1: 34.3, liv: 40.2, c2: 47.32, che: 54.7, c3: 61.4, cta: 67.4, end: END };
 
 // ---------------------------------------------------------------- fonts
 const COND = "Anton, 'Bebas Neue', sans-serif";
@@ -305,25 +306,26 @@ const C2: SceneDef = {
 };
 
 // 8b · EXAMPLE — Liverpool 2–0 (25 Oct): sat in a low block, gave Brighton 64% of the ball.
-const LIVB: [number, number, number][] = [[0, -10, 5], [1.1, 10, 5], [2.2, 24, -4], [3.3, 10, 5], [4.4, -10, 5], [5.5, -24, -4]];
+const LIVB: [number, number, number][] = [[0, -10, 5], [1.1, 10, 5], [2.2, 24, -4], [3.3, 10, 5], [4.4, -10, 5], [5.5, -24, -4], [6.6, -10, 5]];
 const livBallX = (t: number) => posAt(LIVB.map(([tt, x, z]) => [tt, x, z] as PKey), t)[0];
 const LIVS: SceneDef = {
   players: [
     F("lgk", "RGK", 0, -48),
-    ...[-18, -6, 6, 18].map((x, i) => F(`ld${i}`, "LIV", x, -31, { keys: [0, 1.6, 2.7, 3.8, 4.9, 6].map((tt) => [tt, x * 0.85 + livBallX(tt) * 0.25, -31] as PKey) })),
-    ...[-18, -6, 6, 18].map((x, i) => F(`lm${i}`, "LIV", x, -21, { keys: [0, 1.6, 2.7, 3.8, 4.9, 6].map((tt) => [tt, x * 0.85 + livBallX(tt) * 0.3, -21] as PKey) })),
+    ...[-18, -6, 6, 18].map((x, i) => F(`ld${i}`, "LIV", x, -31, { keys: [0, 1.6, 2.7, 3.8, 4.9, 6, 7.1].map((tt) => [tt, x * 0.85 + livBallX(tt) * 0.25, -31] as PKey) })),
+    ...[-18, -6, 6, 18].map((x, i) => F(`lm${i}`, "LIV", x, -21, { keys: [0, 1.6, 2.7, 3.8, 4.9, 6, 7.1].map((tt) => [tt, x * 0.85 + livBallX(tt) * 0.3, -21] as PKey) })),
     F("lf1", "LIV", -5, -10, { tag: "LIVERPOOL", tagColor: RED, tagAt: 0.5 }), F("lf2", "LIV", 6, -9),
     F("bl1", "B", -10, 6), F("bl2", "B", 10, 6), F("bl3", "B", 24, -4), F("bl4", "B", -24, -4), F("bl5", "B", 2, -4), F("bl6", "B", -6, -8), F("bl7", "B", 14, -14), F("bl8", "B", -14, -15), F("bl9", "B", 0, -15, { tag: "BRIGHTON", tagColor: BLUE, tagAt: 0.6 }),
   ],
-  ball: [[0, -9.4, 5.4, 0], [0.3, -9.4, 5.4, 0], [1.1, 9.4, 5.4, 0], [1.4, 9.4, 5.4, 0], [2.2, 23.4, -3.6, 0], [2.5, 23.4, -3.6, 0], [3.3, 9.4, 5.4, 0], [3.6, 9.4, 5.4, 0], [4.4, -9.4, 5.4, 0], [4.7, -9.4, 5.4, 0], [5.5, -23.4, -3.6, 0]],
-  cam: [[0, [0, 34, -74], [0, 0, -14], 42], [6, [-8, 30, -70], [0, 0, -12], 42]],
+  ball: [[0, -9.4, 5.4, 0], [0.3, -9.4, 5.4, 0], [1.1, 9.4, 5.4, 0], [1.4, 9.4, 5.4, 0], [2.2, 23.4, -3.6, 0], [2.5, 23.4, -3.6, 0], [3.3, 9.4, 5.4, 0], [3.6, 9.4, 5.4, 0], [4.4, -9.4, 5.4, 0], [4.7, -9.4, 5.4, 0], [5.5, -23.4, -3.6, 0], [5.8, -23.4, -3.6, 0], [6.6, -9.4, 5.4, 0]],
+  cam: [[0, [0, 34, -74], [0, 0, -14], 42], [7.2, [-9, 30, -69], [0, 0, -12], 42]],
   zones: [{ pts: [[-26, -34], [26, -34], [26, -18], [-26, -18]], at: 0.4, color: RED, opacity: 0.16 }],
   lines: [
     { pts: [[-9.4, 5.4], [9.4, 5.4]], at: 0.3, dur: 0.6, until: 2.0, color: "#9fc2ff" },
     { pts: [[9.4, 5.4], [23.4, -3.6]], at: 1.4, dur: 0.6, until: 3.1, color: "#9fc2ff" },
     { pts: [[23.4, -3.6], [9.4, 5.4]], at: 2.5, dur: 0.6, until: 4.2, color: "#9fc2ff" },
     { pts: [[9.4, 5.4], [-9.4, 5.4]], at: 3.6, dur: 0.6, until: 5.3, color: "#9fc2ff" },
-    { pts: [[-9.4, 5.4], [-23.4, -3.6]], at: 4.7, dur: 0.6, color: "#9fc2ff" },
+    { pts: [[-9.4, 5.4], [-23.4, -3.6]], at: 4.7, dur: 0.6, until: 6.4, color: "#9fc2ff" },
+    { pts: [[-23.4, -3.6], [-9.4, 5.4]], at: 5.8, dur: 0.6, color: "#9fc2ff" },
   ],
 };
 
@@ -338,7 +340,7 @@ const CHES: SceneDef = {
     F("c4", "CHE", 0, -12, { keys: [[0, 0, -12], [3, 0, 8]] }),
   ],
   ball: [[0, -1.6, -3.4, 0], [0.8, -0.6, 0.6, 0], [2.0, 0.4, 9.6, 0], [2.3, 0.4, 9.6, 0], [3.3, 4.4, 35.4, 0], [3.5, 4.4, 35.4, 0.7], [3.95, 2.2, 52.7, 0], [6.5, 2.4, 53.4, 0]],
-  cam: [[0, [-14, 12, -16], [2, 0, 10], 42], [2.3, [-12, 10, 6], [4, 0, 26], 42], [4.2, [-8, 6, 28], [2, 1, 48], 40], [6.5, [-6, 5, 32], [2, 1, 50], 40]],
+  cam: [[0, [-18, 16, -18], [2, 0, 12], 42], [2.3, [-18, 16, 4], [4, 0, 28], 42], [4.2, [-16, 13, 24], [2, 1, 46], 40], [6.7, [-14, 12, 28], [2, 1, 50], 40]],
   lines: [
     { pts: [[-30, 6.6], [30, 6.6]], at: 0.2, dur: 0.5, until: 2.4, color: "#ffffff", dashed: true, arrow: false, w: 0.2 },
     { pts: curve([12, 4], [4, 35], -3), at: 0.9, dur: 0.8, until: 4.5, color: LIME, dashed: true },
@@ -390,10 +392,14 @@ const CAPS: Cap[][] = [
   [{ t: 32.02, text: "BUT THAT PRESS…" }, { t: 33.13, text: "…HAS A [PRICE]" }],
   [{ t: 34.36, text: "[COUNTER 1]" }, { t: 35.48, text: "DON'T TAKE THE [BAIT]" }],
   [{ t: 36.73, text: "SKIP THEIR [FIRST LINE]" }, { t: 38.44, text: "GO [LONG.] GO [EARLY.]" }],
-  [{ t: 40.24, text: "[COUNTER 2]" }, { t: 41.31, text: "THEIR LINE GETS [CAUGHT SQUARE]" }],
-  [{ t: 44.76, text: "RUN [IN BEHIND]" }, { t: 46.05, text: "THE SECOND YOU [WIN IT]" }],
-  [{ t: 47.61, text: "[COUNTER 3]" }, { t: 48.74, text: "[PRESS] THEM BACK" }],
-  [{ t: 53.61, text: "WHICH TEAM DO WE" }, { t: 54.3, text: "[BREAK DOWN] NEXT?" }],
+  [{ t: 40.3, text: "[LIVERPOOL] DID EXACTLY THAT" }, { t: 42.29, text: "BRIGHTON HAD [64%] OF IT" }],
+  [{ t: 45.09, text: "…AND LOST [2–0]" }],
+  [{ t: 47.36, text: "[COUNTER 2]" }, { t: 48.43, text: "THEIR LINE GETS [CAUGHT SQUARE]" }],
+  [{ t: 51.88, text: "RUN [IN BEHIND]" }, { t: 53.17, text: "THE SECOND YOU [WIN IT]" }],
+  [{ t: 54.84, text: "[CHELSEA] WENT STRAIGHT AT THEM" }, { t: 56.6, text: "[2] GOALS IN [14] MINUTES" }],
+  [{ t: 59.18, text: "[3–0] AFTER [32]" }],
+  [{ t: 61.41, text: "[COUNTER 3]" }, { t: 62.54, text: "[PRESS] THEM BACK" }],
+  [{ t: 67.41, text: "WHICH TEAM DO WE" }, { t: 68.10, text: "[BREAK DOWN] NEXT?" }],
 ];
 const Captions: React.FC<{ t: number }> = ({ t }) => {
   const gi = CAPS.reduce((acc, g, i) => (g[0].t - 0.05 <= t ? i : acc), -1);
@@ -477,7 +483,7 @@ const Hud: React.FC<{ t: number }> = ({ t }) => (
   </div>
 );
 
-const CUTS = [B.how, B.bait, B.pass, B.hunt, B.wide, B.but, B.c1, B.c2, B.c3, B.cta];
+const CUTS = [B.how, B.bait, B.pass, B.hunt, B.wide, B.but, B.c1, B.liv, B.c2, B.che, B.c3, B.cta];
 const sec = (a: number, b: number) => ({ from: Math.round(a * FPS), durationInFrames: Math.round((b - a) * FPS) });
 
 export const BrightonTactics: React.FC = () => {
@@ -486,7 +492,7 @@ export const BrightonTactics: React.FC = () => {
   const flash = CUTS.reduce((m, c) => Math.max(m, interpolate(t, [c, c + 0.02, c + 0.18], [0, 0.55, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })), 0);
   const scenes: [number, number, SceneDef][] = [
     [B.hook, B.how, HOOK], [B.how, B.bait, HOW], [B.bait, B.pass, BAIT], [B.pass, B.hunt, PASS], [B.hunt, B.wide, HUNT],
-    [B.wide, B.but, WIDE], [B.but, B.c1, BUT], [B.c1, B.c2, C1], [B.c2, B.c3, C2], [B.c3, B.cta, C3], [B.cta, B.end, CTA],
+    [B.wide, B.but, WIDE], [B.but, B.c1, BUT], [B.c1, B.liv, C1], [B.liv, B.c2, LIVS], [B.c2, B.che, C2], [B.che, B.c3, CHES], [B.c3, B.cta, C3], [B.cta, B.end, CTA],
   ];
   return (
     <AbsoluteFill style={{ background: "#020804" }}>
@@ -503,7 +509,9 @@ export const BrightonTactics: React.FC = () => {
       <Card t={t} at={32.1} until={34.2} title="THE PRICE · 2 DEFEATS" big="3–4 · 0–2" sub="AT CHELSEA · AT LIVERPOOL" />
       <Card t={t} at={23.3} until={27.6} title="PASSES ALLOWED PER DEFENSIVE ACTION" big="PPDA 7.4" sub="LOWEST IN THE PREMIER LEAGUE" />
       <Card t={t} at={29.0} until={31.9} title="BRIGHTON 2026/27" big="58% POSSESSION" sub="4-2-3-1 · LAST 5 GAMES" />
-      <Card t={t} at={50.0} until={53.5} title="CRITICAL LOSSES IN DANGEROUS AREAS" big="34 · 2ND MOST" sub="IN THE PREMIER LEAGUE" />
+      <Card t={t} at={42.4} until={47.1} title="LIVERPOOL v BRIGHTON · 25 OCT" big="2–0" sub="BRIGHTON 64% POSSESSION · 1 SHOT ON TARGET" />
+      <Card t={t} at={56.7} until={61.2} title="CHELSEA v BRIGHTON · 30 AUG" big="4–3" sub="2–0 AFTER 14' · 3–0 AFTER 32'" />
+      <Card t={t} at={63.8} until={67.3} title="CRITICAL LOSSES IN DANGEROUS AREAS" big="34 · 2ND MOST" sub="IN THE PREMIER LEAGUE" />
       <AbsoluteFill style={{ background: "#fff", opacity: flash, pointerEvents: "none" }} />
       <Audio src={staticFile("brighton-mix.wav")} />
     </AbsoluteFill>
