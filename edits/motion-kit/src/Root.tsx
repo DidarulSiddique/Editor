@@ -4,10 +4,12 @@ import * as PE from "./templates/player-edit/PlayerEdit";
 import * as GE from "./templates/gallery-edit/GalleryEdit";
 import * as GV from "./templates/gallery-edit/GalleryVertical";
 import * as BT from "./templates/tactics/BrightonTactics";
+import * as RP from "./templates/pixel/RonaldoPortugal";
 import * as AD from "./templates/after-death/AfterDeath";
 
 export const Root = () => (
   <>
+    <Composition id="RonaldoPortugal" component={RP.RonaldoPortugal} durationInFrames={RP.FRAMES} fps={RP.FPS} width={RP.W} height={RP.H} />
     <Composition id="BrightonTactics" component={BT.BrightonTactics} durationInFrames={BT.FRAMES} fps={BT.FPS} width={BT.W} height={BT.H} />
     <Composition id="AfterDeath" component={AD.AfterDeath} durationInFrames={AD.FRAMES} fps={AD.FPS} width={AD.W} height={AD.H} />
     <Composition id="GalleryVertical" component={GV.GalleryVertical} durationInFrames={GV.FRAMES} fps={GV.FPS} width={GV.W} height={GV.H} />
