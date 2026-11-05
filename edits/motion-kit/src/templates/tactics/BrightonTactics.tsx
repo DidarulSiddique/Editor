@@ -393,7 +393,7 @@ const CAPS: Cap[][] = [
   [{ t: 34.36, text: "[COUNTER 1]" }, { t: 35.48, text: "DON'T TAKE THE [BAIT]" }],
   [{ t: 36.73, text: "SKIP THEIR [FIRST LINE]" }, { t: 38.44, text: "GO [LONG.] GO [EARLY.]" }],
   [{ t: 40.3, text: "[LIVERPOOL] DID EXACTLY THAT" }, { t: 42.29, text: "BRIGHTON HAD [64%] OF IT" }],
-  [{ t: 45.09, text: "…AND LOST [2–0]" }],
+  [{ t: 45.09, text: "…AND [LIVERPOOL] WON [2–0]" }],
   [{ t: 47.36, text: "[COUNTER 2]" }, { t: 48.43, text: "THEIR LINE GETS [CAUGHT SQUARE]" }],
   [{ t: 51.88, text: "RUN [IN BEHIND]" }, { t: 53.17, text: "THE SECOND YOU [WIN IT]" }],
   [{ t: 54.84, text: "[CHELSEA] WENT STRAIGHT AT THEM" }, { t: 56.6, text: "[2] GOALS IN [14] MINUTES" }],
