@@ -1,0 +1,62 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 0
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Sub,Bricolage Grotesque ExtraBold,78,&H00FFFFFF,&H00FFFFFF,&H00261724,&H80000000,0,0,0,0,100,100,0,0,1,7,3,2,80,80,520,1
+Style: Title,Bricolage Grotesque ExtraBold,70,&H00B3E7FF,&H00FFFFFF,&H00261724,&H80000000,0,0,0,0,100,100,2,0,1,6,3,8,80,80,260,1
+Style: Src,JetBrains Mono SemiBold,34,&H00B3E7FF,&H00FFFFFF,&H00261724,&H80000000,0,0,0,0,100,100,4,0,1,4,2,8,80,80,300,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.30,0:00:04.80,Title,,0,0,0,,{\fad(250,300)}THE THREE MEN\NIN THE CAVE
+Dialogue: 0,0:00:51.90,0:00:57.60,Src,,0,0,0,,{\fad(300,400)}SAHIH AL-BUKHARI 2272
+Dialogue: 1,0:00:00.35,0:00:01.69,Sub,,0,0,0,,{\fad(60,60)}Three men were travelling
+Dialogue: 1,0:00:01.69,0:00:02.69,Sub,,0,0,0,,{\fad(60,60)}when night fell,
+Dialogue: 1,0:00:02.85,0:00:04.12,Sub,,0,0,0,,{\fad(60,60)}so they took shelter
+Dialogue: 1,0:00:04.12,0:00:04.90,Sub,,0,0,0,,{\fad(60,60)}in a cave.
+Dialogue: 1,0:00:05.06,0:00:05.89,Sub,,0,0,0,,{\fad(60,60)}Then a rock…
+Dialogue: 1,0:00:06.05,0:00:07.44,Sub,,0,0,0,,{\fad(60,60)}…rolled down the mountain,
+Dialogue: 1,0:00:07.60,0:00:09.16,Sub,,0,0,0,,{\fad(60,60)}and sealed it shut.
+Dialogue: 1,0:00:09.32,0:00:10.55,Sub,,0,0,0,,{\fad(60,60)}Trapped, they said:
+Dialogue: 1,0:00:10.71,0:00:12.49,Sub,,0,0,0,,{\fad(60,60)}“Only our sincere deeds
+Dialogue: 1,0:00:12.49,0:00:13.95,Sub,,0,0,0,,{\fad(60,60)}can save us now.”
+Dialogue: 1,0:00:14.11,0:00:15.04,Sub,,0,0,0,,{\fad(60,60)}The first said:
+Dialogue: 1,0:00:15.20,0:00:16.21,Sub,,0,0,0,,{\fad(60,60)}“O Allah,
+Dialogue: 1,0:00:16.37,0:00:17.29,Sub,,0,0,0,,{\fad(60,60)}I never fed my
+Dialogue: 1,0:00:17.29,0:00:18.59,Sub,,0,0,0,,{\fad(60,60)}family before my old
+Dialogue: 1,0:00:18.59,0:00:20.07,Sub,,0,0,0,,{\fad(60,60)}parents. One night they
+Dialogue: 1,0:00:20.07,0:00:21.18,Sub,,0,0,0,,{\fad(60,60)}fell asleep, so I
+Dialogue: 1,0:00:21.18,0:00:22.72,Sub,,0,0,0,,{\fad(60,60)}stood holding their milk
+Dialogue: 1,0:00:22.72,0:00:23.58,Sub,,0,0,0,,{\fad(60,60)}until dawn.
+Dialogue: 1,0:00:23.74,0:00:24.58,Sub,,0,0,0,,{\fad(60,60)}If that was for
+Dialogue: 1,0:00:24.58,0:00:24.96,Sub,,0,0,0,,{\fad(60,60)}You,
+Dialogue: 1,0:00:25.12,0:00:26.09,Sub,,0,0,0,,{\fad(60,60)}free us.”
+Dialogue: 1,0:00:26.25,0:00:27.83,Sub,,0,0,0,,{\fad(60,60)}The rock moved…
+Dialogue: 1,0:00:27.99,0:00:28.74,Sub,,0,0,0,,{\fad(60,60)}…a little.
+Dialogue: 1,0:00:28.90,0:00:29.91,Sub,,0,0,0,,{\fad(60,60)}The second said:
+Dialogue: 1,0:00:30.07,0:00:30.92,Sub,,0,0,0,,{\fad(60,60)}“I once had the
+Dialogue: 1,0:00:30.92,0:00:31.92,Sub,,0,0,0,,{\fad(60,60)}chance to commit a
+Dialogue: 1,0:00:31.92,0:00:32.62,Sub,,0,0,0,,{\fad(60,60)}great sin.
+Dialogue: 1,0:00:32.78,0:00:33.54,Sub,,0,0,0,,{\fad(60,60)}But when I was
+Dialogue: 1,0:00:33.54,0:00:34.77,Sub,,0,0,0,,{\fad(60,60)}reminded to fear You,
+Dialogue: 1,0:00:34.93,0:00:36.15,Sub,,0,0,0,,{\fad(60,60)}I walked away.”
+Dialogue: 1,0:00:36.31,0:00:38.19,Sub,,0,0,0,,{\fad(60,60)}The rock moved again.
+Dialogue: 1,0:00:38.35,0:00:39.34,Sub,,0,0,0,,{\fad(60,60)}The third said:
+Dialogue: 1,0:00:39.50,0:00:40.80,Sub,,0,0,0,,{\fad(60,60)}“A worker left without
+Dialogue: 1,0:00:40.80,0:00:41.48,Sub,,0,0,0,,{\fad(60,60)}his wage.
+Dialogue: 1,0:00:41.64,0:00:42.69,Sub,,0,0,0,,{\fad(60,60)}I invested it,
+Dialogue: 1,0:00:42.85,0:00:43.91,Sub,,0,0,0,,{\fad(60,60)}until it became a
+Dialogue: 1,0:00:43.91,0:00:44.74,Sub,,0,0,0,,{\fad(60,60)}whole herd.
+Dialogue: 1,0:00:44.90,0:00:45.98,Sub,,0,0,0,,{\fad(60,60)}When he came back,
+Dialogue: 1,0:00:46.14,0:00:46.90,Sub,,0,0,0,,{\fad(60,60)}I gave him all
+Dialogue: 1,0:00:46.90,0:00:47.43,Sub,,0,0,0,,{\fad(60,60)}of it.”
+Dialogue: 1,0:00:47.59,0:00:49.37,Sub,,0,0,0,,{\fad(60,60)}The rock rolled away…
+Dialogue: 1,0:00:49.53,0:00:50.73,Sub,,0,0,0,,{\fad(60,60)}…and they walked out
+Dialogue: 1,0:00:50.73,0:00:51.76,Sub,,0,0,0,,{\fad(60,60)}into the light.
+Dialogue: 1,0:00:51.92,0:00:54.01,Sub,,0,0,0,,{\fad(60,60)}Sincere deeds, done for
+Dialogue: 1,0:00:54.01,0:00:55.26,Sub,,0,0,0,,{\fad(60,60)}Allah alone,
+Dialogue: 1,0:00:55.42,0:00:56.74,Sub,,0,0,0,,{\fad(60,60)}open the way out.
