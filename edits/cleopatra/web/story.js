@@ -52,7 +52,7 @@ const CAKE_TOP = 1.03, CAKE = [BX, CAKE_TOP, TZ];
 const BRAZ = [[-2.5, 0, -12.4], [2.5, 0, -12.4], [-2.6, 1.2, -18.4], [2.6, 1.2, -18.4], [-2.5, 0, -4], [2.5, 0, -4]];
 const HALL_LIGHTS = [[-2.5, 2.2, -12.4, 3.2], [2.5, 2.2, -12.4, 3.2], [0, 3.4, -18.0, 3.6], [0, 2.4, -4, 2.6]];
 // map points on the cake top (world x/z offsets from the cake centre)
-const MAPPT = { maced: [-0.83, -0.77], egypt: [-0.5, 0.9] };
+const MAPPT = { maced: [-0.65, -0.95], egypt: [-0.5, 0.9] };
 
 // ---------- lights ----------
 const HALL = { az: 82, el: 20, sky: '#fff0dc', ground: '#6a6488', hemi: 1.2, sun: '#ffd09a', sunI: 2.4, fog: '#3a3354', fogNear: 35, fogFar: 320,
@@ -94,7 +94,7 @@ const CAMS = {
   cobra: [K(202, [-0.3, 3.05, -17.9], [0.0, 2.95, -19.9], 26), K(234, [-0.06, 3.0, -18.1], [0.0, 2.95, -19.9], 24)],
   bow: [K(235, [0.0, 0.45, -3.2], [0, 2.3, -19], 46), K(281, [0.0, 0.6, -5.4], [0, 2.3, -19], 44)],
   rewind: [K(282, [0.0, 3.0, -9.0], [0, 2.4, -19.9], 44), K(357, [0.0, 34, 60], [0, 2, -12], 60, 'easeIn', [[0, 5, 0], [0, 12, 22]])],
-  macedonia: [K(358, [BX - 0.3, 4.9, TZ + 2.4], [BX - 0.7, CAKE_TOP, TZ - 0.5], 40), K(415, [BX - 0.98, 3.45, TZ + 0.75], [BX - 0.98, CAKE_TOP, TZ - 0.7], 40, 'easeOut')],
+  macedonia: [K(358, [BX - 0.3, 4.9, TZ + 2.4], [BX - 0.7, CAKE_TOP, TZ - 0.5], 40), K(415, [BX - 0.75, 3.45, TZ + 0.75], [BX - 0.75, CAKE_TOP, TZ - 0.7], 40, 'easeOut')],
   battle: [K(416, [BX + 0.6, 0.45, 5.4], [BX + 0.1, 1.9, -3], 50), K(470, [BX + 0.2, 0.6, 6.4], [BX, 1.8, -3], 48)],
   riders: [K(471, [BX - 6.2, 1.1, 15.3], [BX - 6.2, 1.75, 4], 40), K(525, [BX + 5.2, 1.25, 15.1], [BX + 5.2, 1.75, 4], 40, 'linear')],
   dies: [K(526, [BX + 2.9, 1.25, 6.6], [BX + 2.3, 1.2, 0.0], 40), K(566, [BX + 2.6, 1.35, 5.8], [BX + 2.25, 1.2, 0.0], 38)],
@@ -144,7 +144,7 @@ export const camAt = (f) => {
 const dist = (a, b) => Math.hypot(a[0] - b[0], a[1] - b[1], a[2] - b[2]);
 const FOCUS = {
   eye: [0, 2.84, -19.9], spin: [0, 2.6, -19.9], coin: [0, 0.1, -12], picture: [0, 2.6, -19.9], collar: [0, 2.5, -19.9], cobra: [0, 2.95, -19.9],
-  macedonia: [BX - 0.83, CAKE_TOP, TZ - 0.77], battle: [BX, 1.5, 1.5], dies: [BX + 2.2, 1.6, 1.0], grab: [BX - 0.4, 1.5, TZ + 2.6], egypt: [SX + 30.6, 1.5, -59.4],
+  macedonia: [BX - 0.7, CAKE_TOP, TZ - 0.75], battle: [BX, 1.5, 1.5], dies: [BX + 2.2, 1.6, 1.0], grab: [BX - 0.4, 1.5, TZ + 2.6], egypt: [SX + 30.6, 1.5, -59.4],
   born: [NURS[0], 0.8, NURS[1] + 0.2], learn: [LIB[0] + 0.75, 1.3, LIB[1] + 1.2], dress: [0, 1.3, -14.8], isis: [PY[0], 1.6, PY[1] + 3.0], speech2: [PY[0], 9.1, PY[1] + 2.0],
   ruler: [0, 2.6, -19.9], blood: [0, 2.9, -19.9], maced: [BX + 0.5, 1.5, 1.0], aisle: null, kings: null, split: [SX, 1.3, -6],
 };

@@ -138,7 +138,7 @@ export function empireMap() {
   mtn(220, 170, 44); mtn(300, 120, 34); mtn(880, 300, 50); mtn(950, 360, 40);
   // labels
   g.fillStyle = '#3a2416'; g.textAlign = 'center'; g.font = 'bold 44px DejaVu Serif, serif';
-  g.fillText('MACEDONIA', 230, 250); g.fillText('EGYPT', 330, 900); g.fillText('PERSIA', 790, 600); g.font = 'bold 34px DejaVu Serif, serif'; g.fillText('GREECE', 270, 360);
+  g.font = 'bold 40px DejaVu Serif, serif'; g.fillText('MACEDONIA', 290, 255); g.font = 'bold 44px DejaVu Serif, serif'; g.fillText('EGYPT', 330, 900); g.fillText('PERSIA', 790, 600); g.font = 'bold 34px DejaVu Serif, serif'; g.fillText('GREECE', 270, 360);
   // fondant rim
   g.strokeStyle = '#f6efe0'; g.lineWidth = 40; g.beginPath(); g.arc(512, 512, 500, 0, 7); g.stroke();
   for (let i = 0; i < 48; i++) { const a = i / 48 * Math.PI * 2; dot(g, 512 + Math.cos(a) * 492, 512 + Math.sin(a) * 492, 16, i % 2 ? '#f9e7b8' : '#ffffff'); }
