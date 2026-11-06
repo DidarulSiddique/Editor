@@ -104,8 +104,8 @@ const CAMS = {
   alex: [K(724, [AX - 10, 72, -250], [PH[0], 52, PH[1]], 46), K(803, [AX + 4, 7.5, 62], [AX, 3.2, STOA_Z], 50, 'smooth', [[AX - 50, 62, -180], [AX - 20, 40, -90], [AX + 6, 22, 10]])],
   kings: [K(804, [AX - 2.9, 1.5, STOA_Z + 11.9], [AX + 0.2, 1.4, STOA_Z + 3.5], 42), K(862, [AX - 2.4, 1.65, STOA_Z + 11.2], [AX + 0.2, 1.4, STOA_Z + 3.5], 41)],
   born: [K(863, [NURS[0] - 0.2, 1.3, NURS[1] + 3.5], [NURS[0], 0.7, NURS[1] + 0.2], 40), K(937, [NURS[0] - 0.1, 1.15, NURS[1] + 3.0], [NURS[0], 0.65, NURS[1] + 0.2], 40)],
-  busts: [K(938, [AX - 15, 1.9, STOA_Z + 9.6], [AX - 13.5, 1.7, STOA_Z + 4.5], 42), K(1010, [AX + 13.5, 1.9, STOA_Z + 9.6], [AX + 15, 1.6, STOA_Z + 4.5], 42, 'smooth'), K(1032, [AX + 15.4, 1.45, STOA_Z + 9.7], [AX + 15.5, 1.0, STOA_Z + 5.2], 40, 'easeOut')],
-  learn: [K(1033, [LIB[0] + 0.9, 1.6, LIB[1] + 7.0], [LIB[0] + 0.84, 1.3, LIB[1]], 46), K(1076, [LIB[0] + 0.84, 1.6, LIB[1] + 6.6], [LIB[0] + 0.84, 1.3, LIB[1]], 45, 'easeOut')],
+  busts: [K(938, [AX - 17.5, 1.75, STOA_Z + 7.4], [AX - 7, 1.45, STOA_Z + 4.5], 40), K(1008, [AX + 1.5, 1.8, STOA_Z + 7.6], [AX + 12, 1.45, STOA_Z + 4.5], 40, 'smooth'), K(1032, [AX + 15.4, 1.45, STOA_Z + 9.7], [AX + 15.5, 1.0, STOA_Z + 5.2], 40, 'easeOut')],
+  learn: [K(1033, [LIB[0] + 0.8, 1.5, LIB[1] + 6.7], [LIB[0] + 0.75, 1.15, LIB[1] + 1.2], 46), K(1076, [LIB[0] + 0.75, 1.5, LIB[1] + 6.4], [LIB[0] + 0.75, 1.15, LIB[1] + 1.2], 45, 'easeOut')],
   dress: [K(1077, [0, 1.5, -11.9], [0, 1.25, -15.5], 40), K(1124, [0, 1.5, -11.9], [0, 1.25, -15.5], 40)],
   isis: [K(1125, [PY[0] + 0.3, 0.9, PY[1] + 10.2], [PY[0], 1.8, PY[1] + 3.0], 46), K(1178, [PY[0] + 0.2, 1.5, PY[1] + 9.6], [PY[0], 1.8, PY[1] + 3.0], 44, 'easeOut')],
   speech: [K(1179, [PY[0] + 0.8, 1.5, PY[1] + 13.4], [PY[0], 6.0, PY[1]], 50), K(1214, [PY[0] + 0.3, 1.8, PY[1] + 12.6], [PY[0], 6.3, PY[1]], 48)],
@@ -145,13 +145,13 @@ const dist = (a, b) => Math.hypot(a[0] - b[0], a[1] - b[1], a[2] - b[2]);
 const FOCUS = {
   eye: [0, 2.84, -19.9], spin: [0, 2.6, -19.9], coin: [0, 0.1, -12], picture: [0, 2.6, -19.9], collar: [0, 2.5, -19.9], cobra: [0, 2.95, -19.9],
   macedonia: [BX - 0.83, CAKE_TOP, TZ - 0.77], battle: [BX, 1.5, 1.5], dies: [BX + 2.2, 1.6, 1.0], grab: [BX - 0.4, 1.5, TZ + 2.6], egypt: [SX + 30.6, 1.5, -59.4],
-  born: [NURS[0], 0.8, NURS[1] + 0.2], learn: [LIB[0] + 0.6, 1.3, LIB[1] - 0.9], dress: [0, 1.3, -14.8], isis: [PY[0], 1.6, PY[1] + 3.0], speech2: [PY[0], 9.1, PY[1] + 2.0],
+  born: [NURS[0], 0.8, NURS[1] + 0.2], learn: [LIB[0] + 0.75, 1.3, LIB[1] + 1.2], dress: [0, 1.3, -14.8], isis: [PY[0], 1.6, PY[1] + 3.0], speech2: [PY[0], 9.1, PY[1] + 2.0],
   ruler: [0, 2.6, -19.9], blood: [0, 2.9, -19.9], maced: [BX + 0.5, 1.5, 1.0], aisle: null, kings: null, split: [SX, 1.3, -6],
 };
 export const dofAt = (f) => {
   const S = shotAt(f), C = camAt(f);
   if (S.id === 'aisle') { const z = cleoAisleZ(f); return { focus: dist(C.pos, [0, 1.4, z]), cinf: 7 }; }
-  if (S.id === 'busts') return { focus: 5.2, cinf: 6 };
+  if (S.id === 'busts') return f < 1008 ? { focus: 5.5, cinf: 4 } : { focus: 4.5, cinf: 6 };
   if (S.id === 'cake') { const t = ramp(f, 567, 639); return { focus: lerp(1.6, 7.0, t), cinf: 6 }; }
   const p = FOCUS[S.id]; if (p) return { focus: dist(C.pos, p), cinf: S.macro ? 9 : 7 };
   return { focus: 20, cinf: 0 };
@@ -266,8 +266,9 @@ export const actorsAt = (f, T) => {
     }
     case 'learn': {
       const said = f > 1040;
-      man('cleoGreek', 21, { expr: said ? (f > 1058 ? 'grin' : 'calm_o') : 'calm', look: 0.6, L: 'belly', R: 'belly' }, [LIB[0], 0, LIB[1] - 0.9]);
-      man('priest', 41, { expr: f > 1052 ? 'shock' : 'neutral', look: -0.6, L: f > 1052 ? 'cheek' : 'hang', R: f > 1052 ? 'cheek' : 'hang' }, [LIB[0] + 1.55, 0, LIB[1] + 0.9], f > 1052 && f < 1062 ? { hop: hop(f, 1053, 0.14) } : {});
+      man('cleoGreek', 21, { expr: said ? (f > 1058 ? 'grin' : 'calm_o') : 'calm', look: 0.6, L: 'belly', R: 'belly' }, [LIB[0] + 0.15, 0, LIB[1] + 1.15]);
+      out.push(FX('lscr', (p) => T.scroll(p, 1), [LIB[0] + 0.15, 0.42, LIB[1] + 1.3], 0.4, { order: 4 }));
+      man('priest', 41, { expr: f > 1052 ? 'shock' : 'neutral', look: -0.6, L: f > 1052 ? 'cheek' : 'hang', R: f > 1052 ? 'cheek' : 'hang' }, [LIB[0] + 1.35, 0, LIB[1] + 1.35], f > 1052 && f < 1062 ? { hop: hop(f, 1053, 0.14) } : {});
       break;
     }
     case 'dress': { const sp = spinAt(f, 1095, 10); queen({ expr: sp.swapped ? 'smug' : 'calm', look: 0 }, sp.swapped ? 'cleoEgypt' : 'cleoGreek', [0, 0, -14.8], { sx: sp.sx }); statues(); break; }
@@ -331,9 +332,9 @@ export const fxAt = (f, T) => {
     case 'alex': { const t = q((f * 0.04) % 1, 2); out.push(FX('pf' + t, (p) => T.fxFlame(p, t * 6.283), [PH[0], 58.2, PH[1] + 3.5], 4.0, { order: 3 })); break; }
     case 'kings': for (let i = 0; i < 6; i++) { const f0 = 810 + i * 7, t = q(ramp(f, f0, f0 + 8), 2); if (f >= f0) out.push(FXc('kb' + i + t, (p) => T.bubble(p, 'greek', t, i % 2 ? 1 : -1), [AX - 1.9 + i * 1.3 + (i % 2 ? 0.45 : -0.45), 2.55, STOA_Z + 7.6 - i * 1.7], 0.42)); } break;
     case 'born': if (f > 900) spark('bs', ramp(f, 900, 926), [NURS[0] - 0.2, 1.0, NURS[1] + 0.35], 0.5); break;
-    case 'busts': for (let i = 0; i < 7; i++) { const f0 = 942 + i * 9.5, t = q(ramp(f, f0, f0 + 7), 2); if (f >= f0) out.push(FXc('bq' + i + t, (p) => T.bubble(p, 'q', t, -1), [AX - 13.5 + i * 4.5 + 0.55, 2.75, STOA_Z + 4.6], 0.55)); }
+    case 'busts': for (let i = 0; i < 7; i++) { const f0 = 944 + i * 8, t = q(ramp(f, f0, f0 + 7), 2); if (f >= f0) out.push(FXc('bq' + i + t, (p) => T.bubble(p, 'q', t, -1), [AX - 13.5 + i * 4.5 + 0.35, 2.6, STOA_Z + 4.6], 0.5)); }
       if (f > 1010) out.push(FX('tscr', (p) => T.scroll(p, clamp((f - 1010) / 10)), [AX + 15.5, 0.42, STOA_Z + 5.35], 0.4, { order: 4 })); break;
-    case 'learn': if (f > 1040) { const t = q(ramp(f, 1040, 1048), 2); out.push(FXc('lb' + t, (p) => T.bubble(p, 'glyph', t, -1), [LIB[0] + 0.55, 2.3, LIB[1] - 0.7], 0.62)); } break;
+    case 'learn': if (f > 1040) { const t = q(ramp(f, 1040, 1048), 2); out.push(FXc('lb' + t, (p) => T.bubble(p, 'glyph', t, -1), [LIB[0] + 0.65, 2.35, LIB[1] + 1.2], 0.55)); } break;
     case 'dress': if (f > 1094 && f < 1116) { const t = ramp(f, 1094, 1112); spark('ds', t, [0, 1.5, -14.6], 0.7); out.push(FXc('db' + q(t, 2), (p) => { p.g.translate(50, 250); T.fxBurst(p, t, '#ffe9a0', 16, 60, 260); }, [0, 1.4, -15.1], 1.5, { order: 1 })); } break;
     case 'isis': { const t = q(((f - 1125) / 50) % 1, 2); out.push(FXc('ib' + t, (p) => { p.g.translate(50, 250); p.g.translate(250, 250); p.g.rotate(t * 0.6); p.g.translate(-250, -250); T.fxBurst(p, 1, '#ffe08a', 18, 80, 300); }, [PY[0], 2.4, PY[1] + 2.4], 2.2, { order: 1 })); if (f > 1130) spark('is', ramp(f, 1130, 1150), [PY[0], 2.45, PY[1] + 3.2], 0.45); break; }
     case 'speech': case 'speech2': { const t = q(ramp(f, S.id === 'speech' ? 1186 : 1218, S.id === 'speech' ? 1194 : 1226), 2); out.push(FXc('hb' + S.id + t, (p) => T.bubble(p, 'glyph', t, -1), S.id === 'speech' ? [PY[0] + 1.6, 10.6, PY[1] + 2.1] : [PY[0] + 0.62, 10.2, PY[1] + 2.1], S.id === 'speech' ? 1.2 : 0.55)); break; }

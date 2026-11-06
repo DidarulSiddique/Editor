@@ -11,10 +11,10 @@ t_all = np.arange(N) / SR
 def load(path, ch=1):
     raw = subprocess.run(["ffmpeg", "-v", "error", "-i", path, "-ac", str(ch), "-ar", str(SR), "-f", "f32le", "-"], capture_output=True, check=True).stdout
     return np.frombuffer(raw, np.float32).reshape(-1, ch).copy()
-def lp(x, a):  # one-pole low-pass (vectorised via lfilter-like recursion in chunks)
-    y = np.empty_like(x); acc = 0.0
-    for i in range(len(x)): acc += a * (x[i] - acc); y[i] = acc
-    return y
+def lp(x, a):  # one-pole low-pass y += a*(x - y), as an FFT convolution with its (truncated) impulse response
+    x = np.asarray(x, float); k = int(min(len(x), 7 / a)); h = a * (1 - a) ** np.arange(k); m = len(x) + k
+    L = 1 << (m - 1).bit_length()
+    return np.fft.irfft(np.fft.rfft(x, L) * np.fft.rfft(h, L), L)[: len(x)]
 def env(n, a, d):
     t = np.arange(n) / SR
     return np.minimum(1, t / max(a, 1e-4)) * np.exp(-np.maximum(0, t - a) / d)
@@ -29,9 +29,8 @@ def add(t, s, g=1.0):
     j = min(N, i + len(s)); sfx[i:j] += s[: j - i] * g
 
 def whoosh(d=0.5, up=True, g=0.25):
-    n = int(d * SR); x = noise(n); y = np.zeros(n); acc = 0.0
-    a = np.linspace(0.02, 0.25, n) if up else np.linspace(0.25, 0.02, n)
-    for i in range(n): acc += a[i] * (x[i] - acc); y[i] = acc
+    n = int(d * SR); x = noise(n); k = 8
+    y = np.concatenate([lp(c, a) for c, a in zip(np.array_split(x, k), (np.linspace(0.02, 0.25, k) if up else np.linspace(0.25, 0.02, k)))])
     sh = np.sin(np.linspace(0, np.pi, n)) ** 1.5
     return y / (np.abs(y).max() + 1e-9) * sh * g
 def boom(g=0.6, f0=55):
@@ -113,8 +112,11 @@ for a, b in [(0, 357), (358, 415), (567, 699), (1077, 1124), (1318, 1437), (1482
 voice = load("voice.wav")[:, 0]; vo = np.zeros(N); vo[: min(N, len(voice))] = voice[:N]
 music = load("music.wav", 2); mu = np.zeros((N, 2)); mu[: min(N, len(music))] = music[:N]
 # voice envelope (50 ms RMS, smoothed) -> duck depth
-w = int(0.05 * SR); e = np.sqrt(np.convolve(vo ** 2, np.ones(w) / w, "same")); e = e / (e.max() + 1e-9)
-act = np.clip(e * 6, 0, 1); act = np.convolve(act, np.ones(int(0.25 * SR)) / int(0.25 * SR), "same")
+def movavg(x, w):  # centred moving average via cumulative sum
+    c = np.concatenate([[0.0], np.cumsum(x)]); i = np.arange(len(x)); a = np.clip(i - w // 2, 0, len(x)); b = np.clip(i + w - w // 2, 0, len(x))
+    return (c[b] - c[a]) / np.maximum(1, b - a)
+e = np.sqrt(movavg(vo ** 2, int(0.05 * SR))); e = e / (e.max() + 1e-9)
+act = movavg(np.clip(e * 6, 0, 1), int(0.25 * SR))
 rv = np.sqrt(np.mean(vo[np.abs(vo) > 0.01] ** 2)); rm = np.sqrt(np.mean(mu ** 2))
 gm = (rv / rm) * (0.42 - 0.24 * act)                  # ~ -7.5 dB under the voice when talking, ~ -2.5 dB in gaps
 fade = np.minimum(1, t_all / 0.3) * np.minimum(1, (60 - t_all) / 1.2) * (1 - 0.3 * np.clip((t_all - 53.6) * 4, 0, 1) * np.clip((57.0 - t_all) * 4, 0, 1))  # clear the final question
