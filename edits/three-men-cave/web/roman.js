@@ -330,3 +330,6 @@ export const pouch = (p) => {
 };
 /** big gold "+": wealth growing */
 export const fxGrow = (p, t) => { const g = p.g; g.save(); g.globalAlpha = Math.min(1, (1 - t) * 3); p.stroke([[300, 600 - t * 200], [300, 800 - t * 200]], 26, "#f6d04d"); p.stroke([[200, 700 - t * 200], [400, 700 - t * 200]], 26, "#f6d04d"); g.restore(); };
+
+// ---- lip flap: same face with an open "o" mouth (never swap eyes/brows while talking) ----
+for (const k of Object.keys(FACE)) if (!k.endsWith("_o")) FACE[k + "_o"] = { ...FACE[k], mouth: "o" };
