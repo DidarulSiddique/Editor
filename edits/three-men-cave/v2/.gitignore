@@ -9,3 +9,7 @@ web/lib/
 web/toonbase.js
 web/toon.js
 render.log
+render*.log
+frames*/
+stills*/
+sheet*.jpg
