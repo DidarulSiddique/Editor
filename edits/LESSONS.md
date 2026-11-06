@@ -3,6 +3,19 @@
 The user's ratings and the rules they taught. `/make-edit` reads this first;
 these rules override its defaults. Newest first.
 
+## 2026-11-06 — Cleopatra mini-documentary (references: bell-in-the-grave, "Why Perfect Railroads Don't Work", pirate storm oil)
+- Built in `edits/cleopatra/` on the cave engine: 4 sets 1 km apart (throne hall, Macedonian battlefield + generals' tent,
+  Alexandria with the Pharos, a Greece|Egypt split world), 32 shots in 60 s, a 360° orbit for the costume change,
+  bloom + grain + split-tone (cool shadows, warm lights) in the ink pass. Captions: one word at a time, gold key words,
+  a white title box ("WAS CLEOPATRA EGYPTIAN?") in the hook and payoff, yellow name tags, slam-in stamps.
+- **Scale rule:** a bean-head character is ~1.8 m tall, face at ~1.5 m. Tables and props must stay under ~1.1 m,
+  or they hide the faces of anyone standing behind them (the map-cake hid the generals until the table came down).
+- **Seated characters:** the card's legs behind a throne still count in the safe-frame check; mark seated shots `cu`.
+- **Stage in the sun:** characters under a roof (colonnade, stoa) render as grey cut-outs; put them in the open.
+- **Accuracy notes kept in the script:** "came from a Greek royal family" and "her royal bloodline? Macedonian Greek" (the
+  dynasty), never "no Egyptian blood" (her mother is uncertain); "no Ptolemy before her is *known* to have" learned Egyptian (Plutarch).
+- Credits: vidIQ music 25 credits; narration with local Kokoro (Lewis) because the balance couldn't cover both.
+
 ## 2026-11-06 — Cave v2: "can't see the full picture on phone and iPad"
 - Players fill the screen with a 9:16 video: phones trim ~100 px off each side, iPads ~240 px off top and bottom.
   Most shots had faces/bodies at the frame edges, so they got cut.

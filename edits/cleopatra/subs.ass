@@ -1,0 +1,215 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 2
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: W,Bricolage Grotesque ExtraBold,108,&H00FFFFFF,&H00FFFFFF,&H00180F14,&H90000000,0,0,0,0,100,100,0,0,1,10,5,2,60,60,560,1
+Style: T,Bricolage Grotesque ExtraBold,56,&H00141014,&H00141014,&H00FFFFFF,&H64000000,0,0,0,0,100,100,0,0,3,16,0,8,60,60,300,1
+Style: N,Bricolage Grotesque ExtraBold,50,&H00141014,&H00141014,&H0031B5E8,&H64000000,0,0,0,0,100,100,1,0,3,12,0,5,0,0,0,1
+Style: S,Bricolage Grotesque ExtraBold,92,&H0031C8FF,&H0031C8FF,&H00180F14,&H96000000,0,0,0,0,100,100,2,0,1,9,6,5,0,0,0,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.35,0:00:00.58,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}The
+Dialogue: 0,0:00:00.58,0:00:00.87,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}most
+Dialogue: 0,0:00:00.87,0:00:01.27,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}famous
+Dialogue: 0,0:00:01.27,0:00:01.79,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}{\c&H31C8FF&}Egyptian
+Dialogue: 0,0:00:01.79,0:00:02.13,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}queen
+Dialogue: 0,0:00:02.13,0:00:02.30,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}in
+Dialogue: 0,0:00:02.30,0:00:02.82,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}history…
+Dialogue: 0,0:00:02.82,0:00:03.11,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}came
+Dialogue: 0,0:00:03.11,0:00:03.40,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}from
+Dialogue: 0,0:00:03.40,0:00:03.51,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}a
+Dialogue: 0,0:00:03.51,0:00:03.86,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}{\c&H31C8FF&}Greek
+Dialogue: 0,0:00:03.86,0:00:04.20,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}royal
+Dialogue: 0,0:00:04.20,0:00:04.78,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}family.
+Dialogue: 0,0:00:04.82,0:00:05.24,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}Picture
+Dialogue: 0,0:00:05.24,0:00:05.63,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}her.
+Dialogue: 0,0:00:05.67,0:00:06.10,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}Golden
+Dialogue: 0,0:00:06.10,0:00:06.72,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}collar.
+Dialogue: 0,0:00:06.76,0:00:07.19,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}Cobra
+Dialogue: 0,0:00:07.19,0:00:07.82,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}crown.
+Dialogue: 0,0:00:07.86,0:00:08.12,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}All
+Dialogue: 0,0:00:08.12,0:00:08.32,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}of
+Dialogue: 0,0:00:08.32,0:00:08.72,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}{\c&H31C8FF&}Egypt
+Dialogue: 0,0:00:08.72,0:00:09.37,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}bowing.
+Dialogue: 0,0:00:09.41,0:00:09.66,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}Now
+Dialogue: 0,0:00:09.66,0:00:10.09,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}rewind
+Dialogue: 0,0:00:10.09,0:00:10.52,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}almost
+Dialogue: 0,0:00:10.52,0:00:10.89,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}three
+Dialogue: 0,0:00:10.89,0:00:11.38,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}hundred
+Dialogue: 0,0:00:11.38,0:00:11.93,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}years.
+Dialogue: 0,0:00:11.97,0:00:12.67,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}{\c&H31C8FF&}Macedonia,
+Dialogue: 0,0:00:12.67,0:00:13.04,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}north
+Dialogue: 0,0:00:13.04,0:00:13.23,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}of
+Dialogue: 0,0:00:13.23,0:00:13.86,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}Greece.
+Dialogue: 0,0:00:13.90,0:00:14.02,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}A
+Dialogue: 0,0:00:14.02,0:00:14.50,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}general
+Dialogue: 0,0:00:14.50,0:00:14.85,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}named
+Dialogue: 0,0:00:14.85,0:00:15.33,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}{\c&H31C8FF&}Ptolemy
+Dialogue: 0,0:00:15.33,0:00:15.69,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}rides
+Dialogue: 0,0:00:15.69,0:00:16.11,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}beside
+Dialogue: 0,0:00:16.11,0:00:16.70,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}{\c&H31C8FF&}Alexander
+Dialogue: 0,0:00:16.70,0:00:16.94,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}the
+Dialogue: 0,0:00:16.94,0:00:17.48,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}Great.
+Dialogue: 0,0:00:17.52,0:00:18.08,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}{\c&H31C8FF&}Alexander
+Dialogue: 0,0:00:18.08,0:00:18.37,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}dies
+Dialogue: 0,0:00:18.37,0:00:18.76,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}young,
+Dialogue: 0,0:00:18.76,0:00:18.99,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}and
+Dialogue: 0,0:00:18.99,0:00:19.21,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}his
+Dialogue: 0,0:00:19.21,0:00:19.61,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}empire
+Dialogue: 0,0:00:19.61,0:00:19.89,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}gets
+Dialogue: 0,0:00:19.89,0:00:20.29,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}carved
+Dialogue: 0,0:00:20.29,0:00:20.46,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}up
+Dialogue: 0,0:00:20.46,0:00:20.74,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}like
+Dialogue: 0,0:00:20.74,0:00:20.85,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}a
+Dialogue: 0,0:00:20.85,0:00:21.31,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}{\c&H31C8FF&}cake.
+Dialogue: 0,0:00:21.35,0:00:21.79,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}{\c&H31C8FF&}Ptolemy
+Dialogue: 0,0:00:21.79,0:00:22.12,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}grabs
+Dialogue: 0,0:00:22.12,0:00:22.34,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}the
+Dialogue: 0,0:00:22.34,0:00:22.78,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}richest
+Dialogue: 0,0:00:22.78,0:00:23.29,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}slice.
+Dialogue: 0,0:00:23.33,0:00:24.10,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}{\c&H31C8FF&}Egypt.
+Dialogue: 0,0:00:24.14,0:00:24.36,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}His
+Dialogue: 0,0:00:24.36,0:00:24.76,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}family
+Dialogue: 0,0:00:24.76,0:00:25.09,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}rules
+Dialogue: 0,0:00:25.09,0:00:25.26,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}it
+Dialogue: 0,0:00:25.26,0:00:25.49,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}for
+Dialogue: 0,0:00:25.49,0:00:25.88,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}nearly
+Dialogue: 0,0:00:25.88,0:00:26.22,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}three
+Dialogue: 0,0:00:26.22,0:00:26.84,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}centuries,
+Dialogue: 0,0:00:26.84,0:00:27.12,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}from
+Dialogue: 0,0:00:27.12,0:00:27.79,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}{\c&H31C8FF&}Alexandria,
+Dialogue: 0,0:00:27.79,0:00:28.30,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}speaking
+Dialogue: 0,0:00:28.30,0:00:28.81,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}{\c&H31C8FF&}Greek.
+Dialogue: 0,0:00:28.85,0:00:29.19,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}Then
+Dialogue: 0,0:00:29.19,0:00:29.99,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}{\c&H31C8FF&}Cleopatra
+Dialogue: 0,0:00:30.03,0:00:30.25,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}the
+Dialogue: 0,0:00:30.25,0:00:30.68,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}{\c&H31C8FF&}Seventh
+Dialogue: 0,0:00:30.68,0:00:30.84,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}is
+Dialogue: 0,0:00:30.84,0:00:31.28,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}born.
+Dialogue: 0,0:00:31.32,0:00:31.50,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}And
+Dialogue: 0,0:00:31.50,0:00:31.68,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}she
+Dialogue: 0,0:00:31.68,0:00:31.90,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}does
+Dialogue: 0,0:00:31.90,0:00:32.34,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}something
+Dialogue: 0,0:00:32.34,0:00:32.47,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}no
+Dialogue: 0,0:00:32.47,0:00:32.83,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}{\c&H31C8FF&}Ptolemy
+Dialogue: 0,0:00:32.83,0:00:33.14,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}before
+Dialogue: 0,0:00:33.14,0:00:33.32,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}her
+Dialogue: 0,0:00:33.32,0:00:33.45,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}is
+Dialogue: 0,0:00:33.45,0:00:33.72,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}known
+Dialogue: 0,0:00:33.72,0:00:33.85,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}to
+Dialogue: 0,0:00:33.85,0:00:34.07,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}have
+Dialogue: 0,0:00:34.07,0:00:34.46,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}done.
+Dialogue: 0,0:00:34.50,0:00:34.75,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}She
+Dialogue: 0,0:00:34.75,0:00:35.18,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}learns
+Dialogue: 0,0:00:35.18,0:00:35.92,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}{\c&H31C8FF&}Egyptian.
+Dialogue: 0,0:00:35.96,0:00:36.18,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}She
+Dialogue: 0,0:00:36.18,0:00:36.62,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}dresses
+Dialogue: 0,0:00:36.62,0:00:36.79,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}as
+Dialogue: 0,0:00:36.79,0:00:36.90,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}a
+Dialogue: 0,0:00:36.90,0:00:37.51,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}{\c&H31C8FF&}pharaoh.
+Dialogue: 0,0:00:37.55,0:00:37.88,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}She's
+Dialogue: 0,0:00:37.88,0:00:38.27,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}hailed
+Dialogue: 0,0:00:38.27,0:00:38.43,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}as
+Dialogue: 0,0:00:38.43,0:00:38.65,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}the
+Dialogue: 0,0:00:38.65,0:00:38.87,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}new
+Dialogue: 0,0:00:38.87,0:00:39.32,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}{\c&H31C8FF&}Isis.
+Dialogue: 0,0:00:39.36,0:00:39.56,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}She
+Dialogue: 0,0:00:39.56,0:00:39.91,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}speaks
+Dialogue: 0,0:00:39.91,0:00:40.06,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}to
+Dialogue: 0,0:00:40.06,0:00:40.26,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}her
+Dialogue: 0,0:00:40.26,0:00:40.60,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}people
+Dialogue: 0,0:00:40.60,0:00:40.75,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}in
+Dialogue: 0,0:00:40.75,0:00:41.05,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}their
+Dialogue: 0,0:00:41.05,0:00:41.25,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}own
+Dialogue: 0,0:00:41.25,0:00:41.87,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}language.
+Dialogue: 0,0:00:41.91,0:00:42.32,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}Born
+Dialogue: 0,0:00:42.32,0:00:42.56,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}in
+Dialogue: 0,0:00:42.56,0:00:43.25,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}{\c&H31C8FF&}Egypt?
+Dialogue: 0,0:00:43.29,0:00:43.96,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}{\c&H31C8FF&}Yes.
+Dialogue: 0,0:00:44.00,0:00:44.46,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}Ruler
+Dialogue: 0,0:00:44.46,0:00:44.69,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}of
+Dialogue: 0,0:00:44.69,0:00:45.35,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}{\c&H31C8FF&}Egypt?
+Dialogue: 0,0:00:45.39,0:00:46.47,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}{\c&H31C8FF&}Absolutely.
+Dialogue: 0,0:00:46.51,0:00:46.72,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}But
+Dialogue: 0,0:00:46.72,0:00:46.93,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}her
+Dialogue: 0,0:00:46.93,0:00:47.24,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}royal
+Dialogue: 0,0:00:47.24,0:00:47.94,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}{\c&H31C8FF&}bloodline?
+Dialogue: 0,0:00:47.98,0:00:48.76,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}{\c&H31C8FF&}Macedonian
+Dialogue: 0,0:00:48.76,0:00:49.38,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}{\c&H31C8FF&}Greek.
+Dialogue: 0,0:00:49.42,0:00:49.65,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}She
+Dialogue: 0,0:00:49.65,0:00:50.17,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}embraced
+Dialogue: 0,0:00:50.17,0:00:50.63,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}{\c&H31C8FF&}Egypt
+Dialogue: 0,0:00:50.67,0:00:50.85,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}so
+Dialogue: 0,0:00:50.85,0:00:51.57,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}completely…
+Dialogue: 0,0:00:51.57,0:00:52.05,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}history
+Dialogue: 0,0:00:52.05,0:00:52.35,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}made
+Dialogue: 0,0:00:52.35,0:00:52.58,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}her
+Dialogue: 0,0:00:52.58,0:00:52.82,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}its
+Dialogue: 0,0:00:52.82,0:00:53.12,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}most
+Dialogue: 0,0:00:53.12,0:00:53.54,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}iconic
+Dialogue: 0,0:00:53.54,0:00:54.20,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}{\c&H31C8FF&}pharaoh.
+Dialogue: 0,0:00:54.24,0:00:54.42,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}So
+Dialogue: 0,0:00:54.42,0:00:54.78,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}which
+Dialogue: 0,0:00:54.78,0:00:55.03,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}one
+Dialogue: 0,0:00:55.03,0:00:55.27,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}was
+Dialogue: 0,0:00:55.27,0:00:55.51,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}the
+Dialogue: 0,0:00:55.51,0:00:55.81,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}{\c&H31C8FF&}real
+Dialogue: 0,0:00:55.81,0:00:56.60,W,,0,0,0,,{\fscx122\fscy122\t(0,90,\fscx100\fscy100)}{\c&H31C8FF&}Cleopatra?
+Dialogue: 1,0:00:00.00,0:00:09.30,T,,0,0,0,,{\fad(120,200)}WAS CLEOPATRA EGYPTIAN?
+Dialogue: 1,0:00:54.20,0:01:00.00,T,,0,0,0,,{\fad(120,200)}WAS CLEOPATRA EGYPTIAN?
+Dialogue: 2,0:00:14.00,0:00:15.67,N,,0,0,0,,{\an5\pos(540,520)\fscx40\fscy40\t(0,140,\fscx100\fscy100)\fad(0,120)}PTOLEMY
+Dialogue: 2,0:00:15.87,0:00:17.50,N,,0,0,0,,{\an5\pos(330,430)\fscx40\fscy40\t(0,140,\fscx100\fscy100)\fad(0,120)}ALEXANDER THE GREAT
+Dialogue: 2,0:00:16.07,0:00:17.50,N,,0,0,0,,{\an5\pos(760,520)\fscx40\fscy40\t(0,140,\fscx100\fscy100)\fad(0,120)}PTOLEMY
+Dialogue: 2,0:00:17.67,0:00:18.87,N,,0,0,0,,{\an5\pos(540,470)\fscx40\fscy40\t(0,140,\fscx100\fscy100)\fad(0,120)}323 BC · DIES AGED 32
+Dialogue: 2,0:00:21.33,0:00:23.30,N,,0,0,0,,{\an5\pos(540,470)\fscx40\fscy40\t(0,140,\fscx100\fscy100)\fad(0,120)}EGYPT = THE RICHEST SLICE
+Dialogue: 2,0:00:24.83,0:00:26.77,N,,0,0,0,,{\an5\pos(540,470)\fscx40\fscy40\t(0,140,\fscx100\fscy100)\fad(0,120)}ALEXANDRIA
+Dialogue: 2,0:00:26.87,0:00:28.73,N,,0,0,0,,{\an5\pos(540,470)\fscx40\fscy40\t(0,140,\fscx100\fscy100)\fad(0,120)}THE PTOLEMIES · ~300 YEARS
+Dialogue: 2,0:00:29.00,0:00:31.23,N,,0,0,0,,{\an5\pos(540,470)\fscx40\fscy40\t(0,140,\fscx100\fscy100)\fad(0,120)}CLEOPATRA VII · 69 BC
+Dialogue: 2,0:00:37.60,0:00:39.27,N,,0,0,0,,{\an5\pos(540,470)\fscx40\fscy40\t(0,140,\fscx100\fscy100)\fad(0,120)}"THE NEW ISIS"
+Dialogue: 2,0:00:54.20,0:01:00.00,N,,0,0,0,,{\an5\pos(300,470)\fscx40\fscy40\t(0,140,\fscx100\fscy100)\fad(0,120)}GREEK BLOODLINE
+Dialogue: 2,0:00:54.67,0:01:00.00,N,,0,0,0,,{\an5\pos(780,470)\fscx40\fscy40\t(0,140,\fscx100\fscy100)\fad(0,120)}EGYPTIAN CROWN
+Dialogue: 2,0:00:09.53,0:00:09.60,S,,0,0,0,,{\an5\pos(540,800)\fs120\c&HFFFFFF&}◀◀ 51 BC
+Dialogue: 2,0:00:09.60,0:00:09.67,S,,0,0,0,,{\an5\pos(540,800)\fs120\c&HFFFFFF&}◀◀ 51 BC
+Dialogue: 2,0:00:09.67,0:00:09.73,S,,0,0,0,,{\an5\pos(540,800)\fs120\c&HFFFFFF&}◀◀ 51 BC
+Dialogue: 2,0:00:09.73,0:00:09.80,S,,0,0,0,,{\an5\pos(540,800)\fs120\c&HFFFFFF&}◀◀ 52 BC
+Dialogue: 2,0:00:09.80,0:00:09.87,S,,0,0,0,,{\an5\pos(540,800)\fs120\c&HFFFFFF&}◀◀ 54 BC
+Dialogue: 2,0:00:09.87,0:00:09.93,S,,0,0,0,,{\an5\pos(540,800)\fs120\c&HFFFFFF&}◀◀ 58 BC
+Dialogue: 2,0:00:09.93,0:00:10.00,S,,0,0,0,,{\an5\pos(540,800)\fs120\c&HFFFFFF&}◀◀ 63 BC
+Dialogue: 2,0:00:10.00,0:00:10.07,S,,0,0,0,,{\an5\pos(540,800)\fs120\c&HFFFFFF&}◀◀ 68 BC
+Dialogue: 2,0:00:10.07,0:00:10.13,S,,0,0,0,,{\an5\pos(540,800)\fs120\c&HFFFFFF&}◀◀ 74 BC
+Dialogue: 2,0:00:10.13,0:00:10.20,S,,0,0,0,,{\an5\pos(540,800)\fs120\c&HFFFFFF&}◀◀ 80 BC
+Dialogue: 2,0:00:10.20,0:00:10.27,S,,0,0,0,,{\an5\pos(540,800)\fs120\c&HFFFFFF&}◀◀ 87 BC
+Dialogue: 2,0:00:10.27,0:00:10.33,S,,0,0,0,,{\an5\pos(540,800)\fs120\c&HFFFFFF&}◀◀ 95 BC
+Dialogue: 2,0:00:10.33,0:00:10.40,S,,0,0,0,,{\an5\pos(540,800)\fs120\c&HFFFFFF&}◀◀ 103 BC
+Dialogue: 2,0:00:10.40,0:00:10.47,S,,0,0,0,,{\an5\pos(540,800)\fs120\c&HFFFFFF&}◀◀ 112 BC
+Dialogue: 2,0:00:10.47,0:00:10.53,S,,0,0,0,,{\an5\pos(540,800)\fs120\c&HFFFFFF&}◀◀ 121 BC
+Dialogue: 2,0:00:10.53,0:00:10.60,S,,0,0,0,,{\an5\pos(540,800)\fs120\c&HFFFFFF&}◀◀ 130 BC
+Dialogue: 2,0:00:10.60,0:00:10.67,S,,0,0,0,,{\an5\pos(540,800)\fs120\c&HFFFFFF&}◀◀ 140 BC
+Dialogue: 2,0:00:10.67,0:00:10.73,S,,0,0,0,,{\an5\pos(540,800)\fs120\c&HFFFFFF&}◀◀ 151 BC
+Dialogue: 2,0:00:10.73,0:00:10.80,S,,0,0,0,,{\an5\pos(540,800)\fs120\c&HFFFFFF&}◀◀ 162 BC
+Dialogue: 2,0:00:10.80,0:00:10.87,S,,0,0,0,,{\an5\pos(540,800)\fs120\c&HFFFFFF&}◀◀ 173 BC
+Dialogue: 2,0:00:10.87,0:00:10.93,S,,0,0,0,,{\an5\pos(540,800)\fs120\c&HFFFFFF&}◀◀ 185 BC
+Dialogue: 2,0:00:10.93,0:00:11.00,S,,0,0,0,,{\an5\pos(540,800)\fs120\c&HFFFFFF&}◀◀ 197 BC
+Dialogue: 2,0:00:11.00,0:00:11.07,S,,0,0,0,,{\an5\pos(540,800)\fs120\c&HFFFFFF&}◀◀ 209 BC
+Dialogue: 2,0:00:11.07,0:00:11.13,S,,0,0,0,,{\an5\pos(540,800)\fs120\c&HFFFFFF&}◀◀ 222 BC
+Dialogue: 2,0:00:11.13,0:00:11.20,S,,0,0,0,,{\an5\pos(540,800)\fs120\c&HFFFFFF&}◀◀ 235 BC
+Dialogue: 2,0:00:11.20,0:00:11.27,S,,0,0,0,,{\an5\pos(540,800)\fs120\c&HFFFFFF&}◀◀ 249 BC
+Dialogue: 2,0:00:11.27,0:00:11.33,S,,0,0,0,,{\an5\pos(540,800)\fs120\c&HFFFFFF&}◀◀ 263 BC
+Dialogue: 2,0:00:11.33,0:00:11.40,S,,0,0,0,,{\an5\pos(540,800)\fs120\c&HFFFFFF&}◀◀ 277 BC
+Dialogue: 2,0:00:11.40,0:00:11.47,S,,0,0,0,,{\an5\pos(540,800)\fs120\c&HFFFFFF&}◀◀ 292 BC
+Dialogue: 2,0:00:11.47,0:00:11.53,S,,0,0,0,,{\an5\pos(540,800)\fs120\c&HFFFFFF&}◀◀ 307 BC
+Dialogue: 2,0:00:11.53,0:00:11.60,S,,0,0,0,,{\an5\pos(540,800)\fs120\c&HFFFFFF&}◀◀ 323 BC
+Dialogue: 2,0:00:11.60,0:00:11.67,S,,0,0,0,,{\an5\pos(540,800)\fs120\c&HFFFFFF&}◀◀ 323 BC
+Dialogue: 2,0:00:11.67,0:00:11.73,S,,0,0,0,,{\an5\pos(540,800)\fs120\c&HFFFFFF&}◀◀ 323 BC
+Dialogue: 2,0:00:11.73,0:00:11.80,S,,0,0,0,,{\an5\pos(540,800)\fs120\c&HFFFFFF&}◀◀ 323 BC
+Dialogue: 2,0:00:11.80,0:00:11.87,S,,0,0,0,,{\an5\pos(540,800)\fs120\c&HFFFFFF&}◀◀ 323 BC
+Dialogue: 2,0:00:11.87,0:00:13.83,S,,0,0,0,,{\an5\pos(540,520)\fs96\c&HFFFFFF&\fad(0,150)}323 BC
+Dialogue: 3,0:00:43.30,0:00:43.90,S,,0,0,0,,{\an5\pos(540,760)\frz-5\c&H7FE07A&\fscx260\fscy260\alpha&HFF&\t(0,110,\fscx100\fscy100\alpha&H00&)\fad(0,150)}{\fnDejaVu Sans Bold}✓{\fnBricolage Grotesque ExtraBold} BORN IN EGYPT
+Dialogue: 3,0:00:45.40,0:00:46.40,S,,0,0,0,,{\an5\pos(540,760)\frz5\c&H7FE07A&\fscx260\fscy260\alpha&HFF&\t(0,110,\fscx100\fscy100\alpha&H00&)\fad(0,150)}{\fnDejaVu Sans Bold}✓{\fnBricolage Grotesque ExtraBold} RULER OF EGYPT
+Dialogue: 3,0:00:48.00,0:00:49.37,S,,0,0,0,,{\an5\pos(540,640)\frz-7\c&H31C8FF&\fscx260\fscy260\alpha&HFF&\t(0,110,\fscx100\fscy100\alpha&H00&)\fad(0,150)}MACEDONIAN\NGREEK
+Dialogue: 3,0:00:53.07,0:00:54.17,S,,0,0,0,,{\an5\pos(540,520)\frz0\c&H31C8FF&\fscx260\fscy260\alpha&HFF&\t(0,110,\fscx100\fscy100\alpha&H00&)\fad(0,150)}MOST ICONIC PHARAOH

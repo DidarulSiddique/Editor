@@ -1,0 +1,18 @@
+<!doctype html><html><body style="margin:0"><canvas id="c" width="2400" height="2200"></canvas>
+<script type="module">
+import * as T from './toon.js';
+const c = document.getElementById('c'), g = c.getContext('2d');
+g.fillStyle = '#e9dcc2'; g.fillRect(0, 0, c.width, c.height);
+const list = (window.location.hash.slice(1) || 'cleoEgypt,cleoGreek,cleoIsis,alexander,ptolemy,hoplite:shield,priest,egyptA,egyptB,greekA,greekB,ptolemyKing').split(',');
+list.forEach((k, i) => {
+  const [who, L0] = k.split(':'); const L = L0 === 'bow' ? 'belly' : L0; const bowk = L0 === 'bow'; const col = i % 6, row = Math.floor(i / 6);
+  g.setTransform(0.66, 0, 0, 0.66, col * 400, row * 1100 + 20);
+  const p = new T.Pen(g);
+  if (who === 'horse') T.horse(p, 0.3, '#2b2226', '#b8322f', '#111', true); else if (who === 'horse2') T.horse(p, 0.7);
+  else if (who === 'cradle') T.cradle(p, 0.2); else if (who === 'bust') T.bust(p, 2); else if (who === 'bubbleG') T.bubble(p, 'greek', 1); else if (who === 'bubbleH') T.bubble(p, 'glyph', 1);
+  else if (who === 'scroll') T.scroll(p, 1); else if (who === 'flame') T.fxFlame(p, 0.3); else if (who === 'spark') T.fxSpark(p, 0.5);
+  else T.romanFront(p, who, { expr: ['neutral','grin','stern','relief'][i%4], L: L || 'hang', seed: 3 + i, bow: bowk ? 1 : 0, blink: bowk ? 1 : 0, R: bowk ? 'belly' : (L || 'hang') });
+  g.setTransform(1, 0, 0, 1, 0, 0); g.fillStyle = '#000'; g.font = '28px sans-serif'; g.fillText(k, col * 400 + 20, row * 1100 + 1080);
+});
+window.ready = 1;
+</script></body></html>
