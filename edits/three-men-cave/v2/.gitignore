@@ -1,0 +1,11 @@
+frames/
+stills/
+out/
+node_modules
+*.mp3
+*.wav
+*.jpg
+web/lib/
+web/toonbase.js
+web/toon.js
+render.log
