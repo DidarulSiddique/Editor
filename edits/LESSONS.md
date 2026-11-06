@@ -3,6 +3,29 @@
 The user's ratings and the rules they taught. `/make-edit` reads this first;
 these rules override its defaults. Newest first.
 
+## 2026-11-06 — THE QUALITY BAR for every animation (user: "every animation should be like this… it's going absolutely viral")
+Two references from @ricksclip: "The fastest gun in the west had one rule: never draw first" (60 s) and
+"He poured cooking oil into the sea" (68 s). Bean-head 2D cards in painted 3D worlds (the cartoon-short look).
+What they do that our "Three Men in the Cave" (and earlier explainers) did not:
+- **Hook = a paradox in the first sentence** (a rule or action that seems wrong: "never draw first",
+  "poured oil into the sea"), shown in the first 1–2 s. Not "Three men were travelling…".
+- **Second person** ("Imagine you're standing in the street…", "So you grab for your gun…") puts the viewer in it.
+- **Escalate the mystery, then ask it out loud** (~20 s: "How is that possible?") — a mid-video re-hook.
+- **Explain with an everyday analogy** cutaway ("the last time your phone slid off a table", "ever blown on a bowl of soup?").
+- **Payoff is a big visual**, not a moral line (the gunman face-down in the dirt; the wave crashing onto the pirates).
+  No comment CTA at the end; the payoff is the ending.
+- **A new shot every ~1.5–2.5 s** (≈30 shots per minute): close-ups on objects (bullet, holster, oil pot, phone),
+  low angles, POV through a barrel/porthole, macro cutaways; holds no longer than ~4 s.
+- **Bright, saturated daylight worlds** (deep blue sky, warm sand, turquoise sea); night/storm scenes still read
+  vivid blue, never muddy brown. Dense set dressing (shopfronts with signs, crates, lanterns, cannonballs).
+- **Expressive acting**: sweat drops, eyes popping, fire/speed trails on fast moves, characters falling, reacting.
+- **Captions one word at a time**, white heavy font with dark outline, centred at ~60% height.
+- **Mouths**: no flicker. Our talk() swapped the whole face (eyes too) every 4 frames → "jittery". Animate the mouth
+  only, at a calm rate, and only while that character's line is playing.
+- **Rule:** before any animated short, write the script on this pattern (paradox hook → you-are-there → escalation →
+  "how is that possible?" → analogy → visual payoff), plan ≥25 shots per minute, light it bright, and check stills
+  side by side with these references before the full render.
+
 ## 2026-10-15 — Player Edit template: "terrible, looks AI, no zooms/transitions/3D text"
 - I built the template from a summary of 16 references instead of copying the
   strongest one's actual moves. Result: flat 2D cards, hard cuts, generic type.

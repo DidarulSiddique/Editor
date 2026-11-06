@@ -11,6 +11,13 @@ Built on github.com/mromidev/claude-animated-shorts (MIT): toon.ts, look values 
 Before starting, also read `edits/LESSONS.md` (the user's ratings and rules) and follow the GATE steps
 of `/make-edit` (storyboard and credit spend need the user's OK).
 
+## Quality bar (user-set, 2026-11-06)
+Match the @ricksclip references ("never draw first" gunslinger, "storm oil" pirate ship) — see the top entry of
+`edits/LESSONS.md`: paradox hook in sentence one, second person, "how is that possible?" re-hook, everyday-analogy
+cutaway, big visual payoff ending, a new shot every ~1.5–2.5 s, bright saturated worlds, expressive acting with FX,
+one-word captions, mouth-only lip flap (never swap whole expressions to talk). Compare stills side by side with the
+references before the full render.
+
 ## Files
 - `engine/` — renderer: `main.js` (world helpers, cards, ink pass, lens blur, grade), `paint.js` (painted
   textures), `roman.js` (cast drawing on top of the Pen library), `motion.js` (motion helpers), `index.html`.
