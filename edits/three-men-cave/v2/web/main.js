@@ -92,7 +92,7 @@ const DECK = 0; // ground height (cards stand on it)
 const waterU = { deep: { value: new THREE.Color() }, shal: { value: new THREE.Color() }, glint: { value: new THREE.Color() } }; // unused (kept for applyLight)
 const world = new THREE.Group(); scene.add(world);
 const sandM = toon({ map: P.tex(P.dirt(7)), color: '#f0d29a' }); sandM.map.repeat.set(40, 40);
-const rockM = toon({ color: '#c08f60', flatShading: true });
+const rockM = toon({ color: '#b39a80' });
 const caveM = toon({ color: '#b8916a' });
 const caveFloor = toon({ map: P.tex(P.dirt(7)), color: '#a98458' }); caveFloor.map.repeat.set(3, 3);
 const mudM = toon({ map: P.tex(P.plaster(8)), color: '#d8b483' });
@@ -159,6 +159,42 @@ const pen = new THREE.Group(); pen.position.set(80, 0, 90); world.add(pen);
   for (let z = -D2; z <= D2; z += 1.5) for (const x of [-W2, W2]) add(new THREE.CylinderGeometry(0.07, 0.08, 1.2, 6), M.wood, x, 0.6, z, pen);
   for (const z of [-D2, D2]) { add(tbox(W2 * 2, 0.08, 0.08, 1), M.wood, 0, 1.0, z, pen); add(tbox(W2 * 2, 0.08, 0.08, 1), M.wood, 0, 0.6, z, pen); }
   for (const x of [-W2, W2]) { add(tbox(0.08, 0.08, D2 * 2, 1), M.wood, x, 1.0, 0, pen); add(tbox(0.08, 0.08, D2 * 2, 1), M.wood, x, 0.6, 0, pen); } }
+// ---- set dressing (dense, like the references) ----
+const clayM = toon({ color: '#c0703e' }), clay2 = toon({ color: '#d98c4e' }), wickerM = toon({ color: '#c9a35e' }), hayM = toon({ color: '#e8c25a' });
+const leafM = toon({ color: '#4f8f3a' }), clothM = toon({ color: '#c8443a' }), cloth2 = toon({ color: '#3f6fb0' }), tentM = toon({ color: '#e9dcc0' }), woodD = toon({ color: '#6a4a2e' });
+const jarGeo = (h = 0.7, r = 0.28) => new THREE.LatheGeometry([[0, 0], [r * 0.7, 0], [r, h * 0.35], [r * 0.95, h * 0.62], [r * 0.45, h * 0.86], [r * 0.5, h], [r * 0.4, h]].map(([x, y]) => new THREE.Vector2(x, y)), 14);
+const jar = (parent, x, z, h = 0.7, r = 0.28, m = clayM) => add(jarGeo(h, r), m, x, 0, z, parent);
+const basket = (parent, x, z, r = 0.3) => { add(new THREE.CylinderGeometry(r, r * 0.8, r * 0.9, 12, 1, true), wickerM, x, r * 0.45, z, parent); add(new THREE.SphereGeometry(r * 0.75, 10, 6), toon({ color: '#d84a3a' }), x, r * 0.85, z, parent).scale.y = 0.45; };
+const plant = (parent, x, z, s = 1) => { add(new THREE.CylinderGeometry(0.22 * s, 0.17 * s, 0.4 * s, 10), clay2, x, 0.2 * s, z, parent); const b = add(new THREE.SphereGeometry(0.42 * s, 10, 8), leafM, x, 0.62 * s, z, parent); b.scale.y = 1.2; };
+const hay = (parent, x, z, ry = 0) => { const h = add(tbox(1.1, 0.55, 0.65, 1), hayM, x, 0.28, z, parent); h.rotation.y = ry; };
+const firewood = (parent, x, z) => { for (let i = 0; i < 7; i++) { const l = add(new THREE.CylinderGeometry(0.06, 0.06, 0.9, 6), woodD, x + (i % 4) * 0.13 - 0.2, 0.08 + Math.floor(i / 4) * 0.12, z, parent); l.rotation.z = Math.PI / 2; l.rotation.y = 0.2; } };
+const tent = (x, z, ry = 0, s = 1) => { const g = new THREE.Group(); g.position.set(x, 0, z); g.rotation.y = ry; g.scale.setScalar(s); world.add(g); const t = add(new THREE.ConeGeometry(2.4, 2.6, 4, 1, true), tentM, 0, 1.3, 0, g); t.rotation.y = Math.PI / 4; add(new THREE.CylinderGeometry(0.05, 0.05, 3.0, 6), woodD, 0, 1.5, 0, g); add(box(1.0, 1.4, 0.05), clothM, 0, 0.7, 1.68, g, { cast: false }); return g; };
+// house: jars, baskets, firewood, rug, plants, a little palm
+jar(house1, -3.4, -0.2, 0.9, 0.32); jar(house1, -2.9, 0.1, 0.65, 0.24, clay2); jar(house1, -3.8, 0.3, 0.55, 0.22, clay2);
+basket(house1, 3.4, 0.3); basket(house1, 3.0, 0.7, 0.24); firewood(house1, -1.8, -0.2); plant(house1, 3.9, -0.3, 1.1); plant(house1, -4.2, -0.4, 0.9);
+{ const rug = add(new THREE.PlaneGeometry(1.6, 1.0), cloth2, 1.6, 0.035, 2.6, house1, { cast: false }); rug.rotation.x = -Math.PI / 2; }
+{ const pl = palm(84.5, -2.5, 5.5, 0.12); }
+// courtyard: plants, jars, a hanging cloth awning
+plant(court, -2.6, 0.6, 1.2); plant(court, 2.8, 0.4, 1.0); jar(court, 3.6, -1.2, 0.9, 0.3); jar(court, -3.6, -1.0, 0.7, 0.26, clay2); basket(court, -1.9, -4.8, 0.35);
+{ const aw = add(new THREE.PlaneGeometry(3.2, 1.6), clothM, 0, 3.3, -1.0, court, { cast: true }); aw.rotation.x = -1.2; }
+// pen: trough, hay, a well, tents beyond
+add(tbox(2.4, 0.4, 0.6, 1), woodD, -6.5, 0.2, 3.6, pen); add(tbox(2.2, 0.08, 0.45, 1), toon({ color: '#5aa0d8' }), -6.5, 0.38, 3.6, pen);
+hay(pen, 6.5, 3.8, 0.2); hay(pen, 7.2, 2.6, -0.3); hay(pen, 6.8, 3.2, 0.1);
+{ const well = new THREE.Group(); well.position.set(-10.8, 0, 7.5); pen.add(well);
+  add(new THREE.CylinderGeometry(0.9, 0.95, 0.9, 16, 1, true), toon({ color: '#c9a77a', side: THREE.DoubleSide }), 0, 0.45, 0, well);
+  for (const s2 of [-1, 1]) add(new THREE.CylinderGeometry(0.07, 0.07, 2.2, 6), woodD, s2 * 0.8, 1.1, 0, well);
+  add(new THREE.CylinderGeometry(0.06, 0.06, 1.8, 6), woodD, 0, 2.15, 0, well).rotation.z = Math.PI / 2;
+  const rf = add(new THREE.ConeGeometry(1.3, 0.7, 4), clothM, 0, 2.6, 0, well); rf.rotation.y = Math.PI / 4; }
+tent(66, 82, 0.4); tent(94, 80, -0.3, 1.2); tent(98, 100, 0.2, 0.9);
+// desert by the cave: shrubs, a dead tree, small rocks along the path
+{ const r = P.rng(55);
+  for (let i = 0; i < 40; i++) { const x = (r() - 0.5) * 60, z = 4 + r() * 40; if (Math.abs(x) < 3 && z < 16) continue; const b2 = add(new THREE.SphereGeometry(0.25 + r() * 0.35, 8, 6), leafM, x, 0.15, z, world); b2.scale.y = 0.6; }
+  const tr = new THREE.Group(); tr.position.set(-7, 0, 9); world.add(tr); add(new THREE.CylinderGeometry(0.12, 0.2, 2.6, 6), woodD, 0, 1.3, 0, tr);
+  for (let k = 0; k < 4; k++) { const br = add(new THREE.CylinderGeometry(0.04, 0.08, 1.2, 5), woodD, Math.cos(k * 1.7) * 0.4, 2.2 + k * 0.15, Math.sin(k * 1.7) * 0.4, tr); br.rotation.z = Math.cos(k * 1.7) * 0.9; br.rotation.x = Math.sin(k * 1.7) * 0.9; }
+}
+// cave interior: rubble along the walls
+{ const r = P.rng(61); for (let i = 0; i < 18; i++) { const sx = i % 2 ? 1 : -1, m = add(new THREE.DodecahedronGeometry(0.25 + r() * 0.45, 0), caveM, sx * (3.6 + r() * 0.6), 0.15, -1.5 - r() * 7.5, world); m.rotation.set(r() * 3, r() * 3, r() * 3); } }
+
 // stars (night sky)
 const starsG = new THREE.BufferGeometry(); { const r = P.rng(77), v = []; for (let i = 0; i < 900; i++) { const a = r() * Math.PI * 2, e = 0.08 + r() * 1.3; v.push(Math.cos(a) * Math.cos(e) * 1000, Math.sin(e) * 1000, Math.sin(a) * Math.cos(e) * 1000); } starsG.setAttribute('position', new THREE.Float32BufferAttribute(v, 3)); }
 const stars = new THREE.Points(starsG, new THREE.PointsMaterial({ color: '#ffffff', size: 2.2, sizeAttenuation: false, fog: false, transparent: true, opacity: 0.85 }));
@@ -207,7 +243,14 @@ class Card {
   draw(key, fn) {
     if (key === this.key) return; this.key = key;
     const g = this.g; g.setTransform(1, 0, 0, 1, 0, 0); g.clearRect(0, 0, CW, CH); g.setTransform(CW / 600, 0, 0, CH / 1000, 0, 0);
-    const p = new T.Pen(g); fn(p); this.t.needsUpdate = true;
+    const p = new T.Pen(g); fn(p); this.t.needsUpdate = true; this.bb = null;
+  }
+  /** bounding box of the drawn pixels, canvas px [x0, y0, x1, y1] (computed lazily, only for the safe-frame check) */
+  bbox() {
+    if (this.bb) return this.bb;
+    const d = this.g.getImageData(0, 0, CW, CH).data; let x0 = CW, y0 = CH, x1 = -1, y1 = -1;
+    for (let y = 0; y < CH; y += 4) for (let x = 0; x < CW; x += 4) if (d[(y * CW + x) * 4 + 3] > 40) { if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y; }
+    return (this.bb = x1 < 0 ? null : [x0, y0, x1, y1]);
   }
 }
 const cards = []; const getCard = (i) => cards[i] || (cards[i] = new Card());
@@ -289,6 +332,7 @@ function worldState(S, f) {
 
 function drawActors(list, cam) {
   cards.forEach((c) => { c.mesh.visible = c.blob.visible = false; });
+  cards.forEach((c) => { c.check = false; });
   list.forEach((a, i) => {
     const c = getCard(i);
     c.draw(a.key, a.draw);
@@ -297,7 +341,7 @@ function drawActors(list, cam) {
     c.mesh.rotation.set(0, Math.atan2(cam.position.x - a.x, cam.position.z - a.z) + (a.yaw || 0), a.roll || 0);
     c.mat.color.set(a.tint || '#ffffff'); c.mat.opacity = a.alpha ?? 1;
     c.mesh.castShadow = a.shadow !== false;
-    c.mesh.renderOrder = a.order || 2;
+    c.mesh.renderOrder = a.order || 2; c.check = !!a.check; c.ckey = a.key;
     if (a.blob !== false && a.y < DECK + 0.5) { c.blob.visible = true; c.blob.position.set(a.x, (a.ground ?? DECK) + 0.02, a.z); c.blob.scale.set(0.95 * s, 0.6 * s, 1); }
   });
 }
@@ -348,6 +392,31 @@ window.renderFrame = (f) => {
   dofU.focus.value = D.focus; dofU.cinf.value = D.cinf; dofU.near.value = D.near ?? 1;
   renderer.setRenderTarget(null); renderer.render(dofScene, fsCam);
   return true;
+};
+// Safe frame: phones trim ~100 px off each side (aspect fill), iPads ~240 px off top and bottom.
+// Every character must sit fully inside x 110..970, y 250..1670 (bottom may run out on close-ups: shot.cu).
+const SAFE = { x0: 110, x1: 970, y0: 250, y1: 1670 };
+window.safeCheck = (f) => {
+  const S = shotAt(f), C = camAt(f);
+  camera.position.set(...C.pos); camera.up.set(0, 1, 0); camera.lookAt(...C.look); camera.rotateZ(rx(C.roll || 0));
+  camera.fov = C.fov; camera.updateProjectionMatrix(); camera.updateMatrixWorld();
+  drawActors([...actorsAt(f, T), ...fxAt(f, T)], camera);
+  const bad = [];
+  for (const c of cards) {
+    if (!c.mesh.visible || !c.check) continue;
+    const bb = c.bbox(); if (!bb) continue;
+    c.mesh.updateMatrixWorld();
+    let X0 = 1e9, Y0 = 1e9, X1 = -1e9, Y1 = -1e9;
+    for (const [u, v] of [[bb[0], bb[1]], [bb[2], bb[1]], [bb[0], bb[3]], [bb[2], bb[3]]]) {
+      const lx = -CM * 0.3 + (u / CW) * CM * 0.6, ly = CM - CM * 0.025 - (v / CH) * CM;
+      tmpV.set(lx, ly, 0).applyMatrix4(c.mesh.matrixWorld).project(camera);
+      const px = (tmpV.x + 1) / 2 * W, py = (1 - tmpV.y) / 2 * H; X0 = Math.min(X0, px); X1 = Math.max(X1, px); Y0 = Math.min(Y0, py); Y1 = Math.max(Y1, py);
+    }
+    if (X1 < 0 || X0 > W || Y1 < 0 || Y0 > H) continue; // fully off screen: not seen at all
+    const over = X0 < SAFE.x0 || X1 > SAFE.x1 || Y0 < SAFE.y0 || (!S.cu && Y1 > SAFE.y1);
+    if (over) bad.push({ shot: S.id, key: c.ckey.slice(0, 6), box: [X0, Y0, X1, Y1].map(Math.round) });
+  }
+  return bad;
 };
 window.TOTAL = TOTAL;
 window.ready = true;

@@ -355,3 +355,9 @@ export const fxTears = (p, t) => { for (const s of [-1, 1]) for (let i = 0; i < 
 export const fxSweat = (p) => p.poly([[300, 380], [340, 470], [300, 520], [260, 470]], "#9fd8ff", 10);
 /** shine/sparkle lines (for the light, the gold) */
 export const fxShine = (p, t, col = "#fff3b0") => { for (let i = 0; i < 8; i++) { const a = i / 8 * Math.PI * 2 + t, r0 = 90, r1 = 170 + 40 * Math.sin(t * 5 + i); p.stroke([[300 + Math.cos(a) * r0, 500 + Math.sin(a) * r0], [300 + Math.cos(a) * r1, 500 + Math.sin(a) * r1]], 14, col); } };
+/** speed lines trailing a fast object (drawn to the left of centre) */
+export const fxSpeed = (p, t) => { for (let i = 0; i < 6; i++) { const y = 360 + i * 60, l = 160 + ((i * 53 + t * 400) % 140); p.stroke([[300 - 60 - l, y], [300 - 60, y]], 10 - i % 3 * 2, "#ffffff"); } };
+/** floating dust mote */
+export const fxMote = (p) => p.ell(300, 500, 26, 26, "#fff6d8", 0);
+/** small bird (flapping V) */
+export const fxBird = (p, ph) => { const w = Math.sin(ph * Math.PI * 2) * 60; p.stroke([[160, 500 - w], [300, 540], [440, 500 - w]], 22, INK); };

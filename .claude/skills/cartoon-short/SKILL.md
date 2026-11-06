@@ -17,6 +17,8 @@ Match the @ricksclip references ("never draw first" gunslinger, "storm oil" pira
 cutaway, big visual payoff ending, a new shot every ~1.5–2.5 s, bright saturated worlds, expressive acting with FX,
 one-word captions, mouth-only lip flap (never swap whole expressions to talk). Compare stills side by side with the
 references before the full render.
+**Safe frame:** every character fully inside x 110–970, y 250–1670 (phone side crop + iPad top/bottom crop);
+run a safe-frame check over all frames before rendering (see `edits/three-men-cave/v2/check.mjs` and LESSONS.md).
 
 ## Files
 - `engine/` — renderer: `main.js` (world helpers, cards, ink pass, lens blur, grade), `paint.js` (painted

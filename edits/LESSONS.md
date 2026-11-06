@@ -3,6 +3,18 @@
 The user's ratings and the rules they taught. `/make-edit` reads this first;
 these rules override its defaults. Newest first.
 
+## 2026-11-06 — Cave v2: "can't see the full picture on phone and iPad"
+- Players fill the screen with a 9:16 video: phones trim ~100 px off each side, iPads ~240 px off top and bottom.
+  Most shots had faces/bodies at the frame edges, so they got cut.
+- **Rule:** keep every character fully inside the safe frame x 110–970, y 250–1670 (1080×1920). Only declared
+  close-ups (`cu`) may run off the bottom. In 9:16 a bean-head character is nearly as wide as the frame at close
+  range: "close-ups" must be medium shots (camera distance × tan(fov/2) ≥ ~1.1 m for one character, ≥ ~2.3 m for
+  three standing together), groups stand close and staggered in depth, and single-subject shots show only that subject.
+- **Tool:** `edits/three-men-cave/v2/check.mjs` projects each character's drawn pixels through the camera for every
+  frame and lists safe-frame violations per shot — run it before every render (target: only entrances/exits).
+- Animation: use the kit's `idle()` on every character, `camFromKeys` with ease-out starts, hops/squash on reactions,
+  bob on walks; dress every set densely.
+
 ## 2026-11-06 — THE QUALITY BAR for every animation (user: "every animation should be like this… it's going absolutely viral")
 Two references from @ricksclip: "The fastest gun in the west had one rule: never draw first" (60 s) and
 "He poured cooking oil into the sea" (68 s). Bean-head 2D cards in painted 3D worlds (the cartoon-short look).
