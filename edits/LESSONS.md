@@ -16,6 +16,18 @@ these rules override its defaults. Newest first.
   dynasty), never "no Egyptian blood" (her mother is uncertain); "no Ptolemy before her is *known* to have" learned Egyptian (Plutarch).
 - Credits: vidIQ music 25 credits; narration with local Kokoro (Lewis) because the balance couldn't cover both.
 
+### Cleopatra v2 — "slow down the speaking a bit, more micro animations, she looks too small on the throne"
+- Slower voice without a re-animation: regenerate per sentence at Kokoro speed 0.86 (0.92 barely changed the trimmed
+  length), then map new frames → old story frames piecewise-linearly between caption-chunk anchors (`retime.py`,
+  `toOld()` at the top of renderFrame). Music follows with `rubberband=tempo=old/new`. 60 s → 66 s.
+- **Retime bug:** fractional old frames (84.4) fell between one shot's `b` and the next shot's `a`, so `shotAt` fell
+  through to the last shot — a one-frame flash of the ending at 42 cuts. **Rule:** shot lookup is `[a, b+1)`, and after
+  any retime check *every* frame at each cut (a sampled contact sheet hit one by luck).
+- "Too small on the throne" = the throne's size relative to her *and* wide reveals that end 25 m back. Fix both: scale
+  the seated queen (1.3×), lower the throne back, and end the pull-backs ~15 m from the throne.
+- Micro-animation pass that reads on a phone: eye darts (saccades), breathing squash, courtiers glancing/whispering,
+  dust motes in the light, brazier embers, banner flutter, birds in every sky, slight handheld camera drift.
+
 ## 2026-11-06 — Cave v2: "can't see the full picture on phone and iPad"
 - Players fill the screen with a 9:16 video: phones trim ~100 px off each side, iPads ~240 px off top and bottom.
   Most shots had faces/bodies at the frame edges, so they got cut.
