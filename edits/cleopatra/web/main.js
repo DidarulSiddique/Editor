@@ -118,12 +118,14 @@ ground(0, 0, 500, 500, sandM);
 ground(0, -7.5, 17, 31, T2(P2.floorTiles(), 4.25, 7.75)).position.y = 0.01;
 ground(0, -7, 2.4, 26, T2(P2.runner(), 1, 3)).position.y = 0.02;
 for (const [w, y, d, z] of [[9, 0.2, 6.4, -19], [7.6, 0.6, 5.2, -19.6], [6.2, 1.0, 4.2, -20.1]]) { add(box(w, 0.4, d), stoneM, 0, y, z, HALL); add(box(w + 0.02, 0.08, 0.08), goldM, 0, y + 0.2, z + d / 2, HALL, { cast: false }); }
-// throne: seat hides the queen's legs, tall gold back
-const THRONE = { x: 0, z: -19.9, seatTop: 1.95 };
-add(box(1.9, 0.75, 1.2), goldM, 0, 1.575, -19.9, HALL); add(box(1.95, 0.12, 1.25), blueM, 0, 1.98, -19.9, HALL);
-add(box(2.1, 2.6, 0.3), goldM, 0, 2.5, -20.65, HALL); add(box(1.5, 1.9, 0.05), blueM, 0, 2.7, -20.48, HALL, { cast: false });
-for (const s of [-1, 1]) { add(box(0.25, 0.5, 1.2), goldD, s * 1.0, 2.2, -19.9, HALL); add(new THREE.SphereGeometry(0.22, 12, 8), goldM, s * 1.0, 2.5, -19.35, HALL); }
-add(new THREE.SphereGeometry(0.4, 16, 10), redM, 0, 4.05, -20.6, HALL); for (const s of [-1, 1]) { const w = add(new THREE.SphereGeometry(1, 12, 8), goldM, s * 0.95, 4.0, -20.62, HALL); w.scale.set(0.75, 0.16, 0.05); w.rotation.z = -s * 0.12; }
+// throne (v3): shallow seat so the seated queen card stands just in front of it (z -19.75) with her shins and sandals
+// visible; armrests within reach of her hands (x ±0.62); a gold footstool (Egyptian royal thrones had one)
+const THRONE = { x: 0, z: -20.0, seatTop: 1.95 };
+add(box(1.4, 0.75, 0.45), goldM, 0, 1.575, -20.025, HALL); add(box(1.45, 0.12, 0.5), blueM, 0, 1.98, -20.025, HALL);
+add(box(1.75, 2.6, 0.3), goldM, 0, 2.5, -20.4, HALL); add(box(1.2, 1.9, 0.05), blueM, 0, 2.7, -20.23, HALL, { cast: false });
+for (const s of [-1, 1]) { add(box(0.2, 0.42, 0.45), goldD, s * 0.62, 2.25, -20.025, HALL); add(new THREE.SphereGeometry(0.16, 12, 8), goldM, s * 0.62, 2.5, -19.96, HALL); }
+add(box(1.0, 0.26, 0.5), goldD, 0, 1.33, -19.45, HALL); add(box(1.02, 0.05, 0.52), blueM, 0, 1.465, -19.45, HALL, { cast: false });
+add(new THREE.SphereGeometry(0.4, 16, 10), redM, 0, 4.05, -20.35, HALL); for (const s of [-1, 1]) { const w = add(new THREE.SphereGeometry(1, 12, 8), goldM, s * 0.95, 4.0, -20.37, HALL); w.scale.set(0.75, 0.16, 0.05); w.rotation.z = -s * 0.12; }
 // papyrus columns
 const colPaint = T2(P2.columnPaint(3), 2, 1), capM = toon({ color: '#3a9a6a' }), capBand = toon({ color: '#e8b531' });
 const capGeo = new THREE.LatheGeometry([[0.62, 0], [0.7, 0.25], [0.95, 0.7], [1.2, 1.1], [1.25, 1.2], [0, 1.2]].map(([x, y]) => new THREE.Vector2(x, y)), 20);
@@ -455,7 +457,7 @@ function drawActors(list, cam) {
     c.draw(a.key, a.draw);
     c.mesh.visible = true; c.mesh.position.set(a.x, a.y, a.z);
     const s = a.s || 1; c.mesh.scale.set(s * (a.flip ? -1 : 1) * (a.sx ?? 1), s * (a.sy ?? 1), s);
-    c.mesh.rotation.set(0, Math.atan2(cam.position.x - a.x, cam.position.z - a.z) + (a.yaw || 0), a.roll || 0);
+    c.mesh.rotation.set(0, (a.face ?? Math.atan2(cam.position.x - a.x, cam.position.z - a.z)) + (a.yaw || 0), a.roll || 0); // face: fixed heading (the seated queen stays parallel to her throne)
     c.mat.color.set(a.tint || '#ffffff'); c.mat.opacity = a.alpha ?? 1;
     c.mesh.castShadow = a.shadow !== false;
     c.mesh.renderOrder = a.order || 2; c.check = !!a.check; c.ckey = a.key;

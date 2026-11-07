@@ -100,8 +100,16 @@ export const romanFront = (p, key, opts = {}) => {
     p.gradFill(cp, O.cape, mul(O.cape, [0.6, 0.6, 0.7]), light); p.inkRing(cp, ow * 0.8, thick);
   }
   // ---- legs ----
-  const dress = !!O.dress;
-  for (const side of [-1, 1]) {
+  const dress = !!O.dress, sit = opts.sit || 0;
+  if (sit) for (const side of [-1, 1]) { // seated, seen from the front: knees at the seat edge, shins hanging, sandals on the footstool
+    const kx = cx + side * 21 * u, ky = torsoBot + 0.02 * HH, fx = cx + side * 25 * u, fy = sit - 4 * u;
+    p.stroke(curve([kx, ky], [kx + side * 2 * u, (ky + fy) / 2], [fx, fy]), 6.2 * u, legCol);
+    const sandal = "#5a3b2a";
+    p.stroke([[fx - side * 3 * u, fy], [fx + side * 13 * u, fy + 0.5 * u]], 7.5 * u + 3, INK);
+    p.stroke([[fx - side * 3 * u, fy], [fx + side * 13 * u, fy + 0.5 * u]], 7.5 * u, sandal);
+    p.stroke([[fx - 3 * u, fy - 0.06 * HH], [fx + 3 * u, fy - 0.06 * HH]], 1.6 * u, "#e8b531"); // gold anklet
+  }
+  else for (const side of [-1, 1]) {
     const up = Math.max(0, Math.sin(Math.PI * 2 * (step + (side > 0 ? 0.5 : 0)))) * 30 * (step ? 1 : 0);
     const hx = cx + side * 16 * u, fx = cx + side * 22 * u, fy = sole - 4 * u - up;
     p.stroke(curve([hx, hipY], [(hx + fx) / 2 + side * 2 * u, (hipY + fy) / 2], [fx, fy]), 5.8 * u, legCol);
@@ -121,7 +129,7 @@ export const romanFront = (p, key, opts = {}) => {
       case "spear": return { pts: [s, [X(6), s[1] + 0.42 * HH], [X(10), s[1] + 0.2 * HH]], front: false };
       case "point": return { pts: [s, [X(28), s[1] - 0.02 * HH], [X(62), s[1] - 0.1 * HH]], front: false, finger: true };
       case "up": return { pts: [s, [X(14), s[1] - 0.3 * HH], [X(22), s[1] - 0.75 * HH]], front: false };
-      case "wave": return { pts: [s, [X(16), s[1] - 0.2 * HH], [X(30 + 10 * Math.sin(opts.wv || 0)), s[1] - 0.62 * HH]], front: false };
+      case "wave": { const wx = opts.wvx ?? 30; return { pts: [s, [X(wx * 0.53), s[1] - 0.2 * HH], [X(wx + 10 * Math.sin(opts.wv || 0)), s[1] - 0.62 * HH]], front: false }; }
       case "hip": return { pts: [s, [X(22), s[1] + 0.3 * HH], [tcx + side * T.a * 0.95, torsoBot - 0.3 * HH]], front: false };
       case "belly": return { pts: [s, [X(8), s[1] + 0.45 * HH], [tcx + side * 0.25 * T.a, torsoBot - 0.35 * HH]], front: true };
       case "temple": return { pts: [s, [X(26), s[1] + 0.05 * HH], [cx + side * (H.a + 16 * u), hc - 0.1 * HH]], front: false, swirl: true };
@@ -130,6 +138,10 @@ export const romanFront = (p, key, opts = {}) => {
       case "cross": return { pts: [s, [X(2), s[1] + 0.38 * HH], [tcx - side * 0.45 * T.a, s[1] + 0.32 * HH]], front: true };
       case "reach": { const lf = (opts.lift || 0) * 0.62 * HH; return { pts: [s, [X(42), s[1] - 0.12 * HH - lf * 0.6], [X(82), s[1] - 0.5 * HH - lf]], front: false }; }
       case "cheek": return { pts: [s, [X(16), s[1] + 0.05 * HH], [cx + side * (H.a + 2 * u), hc + 0.25 * H.b]], front: false };
+      case "rest": { // seated: hands in the lap (restK 0) sliding out onto the throne's armrests (restK 1)
+        const [rx, ry] = opts.rest || [210, 480], k = opts.restK ?? 1, L2 = (a2, b2) => [a2[0] + (b2[0] - a2[0]) * k, a2[1] + (b2[1] - a2[1]) * k];
+        const e = L2([X(8), s[1] + 0.44 * HH], [cx + side * (rx - 46 * u), ry + 0.12 * HH]), h = L2([tcx + side * 0.22 * T.a, torsoBot - 0.2 * HH], [cx + side * rx, ry]);
+        return { pts: [s, e, h], front: k < 0.5 }; }
       case "thumb": return { pts: [s, [X(20), s[1] + 0.12 * HH], [X(44), s[1] - 0.12 * HH]], front: false, thumb: true };
       default: return { pts: [s, [X(4), s[1] + 0.48 * HH], [X(3), chin + 1.04 * HH]], front: false };
     }
@@ -162,8 +174,9 @@ export const romanFront = (p, key, opts = {}) => {
   }
   // torso
   if (dress) {
-    const D = { a: 0.5 * W * 0.98, b: 0.5 * ((sole - 0.35 * HH) - (chin - 0.2 * HH)), nTop: 2.0, nBot: 3.0, egg: 0.35, asym: 0, rot: 0, noise: 0.006, seed: seed + 9 };
-    const dp = blobPts(cx, sole - 0.35 * HH - D.b, D);
+    const hem = sit ? torsoBot + 0.24 * HH : sole - 0.35 * HH;
+    const D = { a: 0.5 * W * (sit ? 1.02 : 0.98), b: 0.5 * (hem - (chin - 0.2 * HH)), nTop: 2.0, nBot: sit ? 4.2 : 3.0, egg: sit ? 0.42 : 0.35, asym: 0, rot: 0, noise: 0.006, seed: seed + 9 };
+    const dp = blobPts(cx, hem - D.b, D);
     p.gradFill(dp, O.dress, mul(O.dress, SH_CLOTH), light); p.inkRing(dp, ow, thick);
   }
   // skirt / pteruges below the torso

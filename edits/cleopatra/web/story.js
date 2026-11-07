@@ -47,7 +47,8 @@ const q = (x, n = 2) => Math.round(x * 10 ** n) / 10 ** n;
 
 // ---------- set coordinates (mirror main.js) ----------
 const BX = 1000, TZ = -150, AX = 2000, SX = 3000, STOA_Z = 18, NURS = [AX - 40, 70], LIB = [AX + 40, 70], PY = [SX + 16, -34], PH = [AX - 35, -150];
-const THR = [0, 1.05, -19.9];                     // Cleopatra seated on the throne (seat hides her legs); drawn at QS scale
+const THR = [0, 1.05, -19.7];   // v3: card in front of the shallow seat, seated pose (legs + arms on the armrests)
+const SIT = { sit: 838, L: 'rest', R: 'rest', rest: [212, 486] }; // design units at QS: soles on the footstool (y 1.49), hands on the armrests                     // Cleopatra seated on the throne (seat hides her legs); drawn at QS scale
 const QS = 1.3;                                   // v2: she was too small on the throne -> 1.3x (Egyptian art's hierarchy of scale)
 const CAKE_TOP = 1.03, CAKE = [BX, CAKE_TOP, TZ];
 const BRAZ = [[-2.5, 0, -12.4], [2.5, 0, -12.4], [-2.6, 1.2, -18.4], [2.6, 1.2, -18.4], [-2.5, 0, -4], [2.5, 0, -4]];
@@ -221,7 +222,9 @@ export const actorsAt = (f, T) => {
     const idleO = m === 1 ? { look: side * 0.9, headTilt: side * 4 } : m === 2 ? { expr: (Math.floor(f / 4) + c.seed) % 3 ? 'neutral_o' : 'neutral', look: -side * 0.8, headTilt: -side * 5 } : m === 3 ? { L: 'cross', R: 'cross' } : m === 4 ? { L: 'belly', R: 'belly', expr: 'grin' } : {};
     man(c.who, c.seed, { expr: b > 0.3 ? 'relief' : (exprFn ? exprFn(c, i) : 'neutral'), L: b > 0.2 ? 'belly' : 'hang', R: b > 0.2 ? 'belly' : 'hang', look: side * 0.5, ...(b > 0.2 ? {} : idleO), bow: b, blink: b > 0.3 ? 1 : blinkAt(f, c.seed) }, c.pos, { check: false }); });
   const statues = () => { for (const sx of [-1, 1]) out.push(R(T, 'egyptA', { seed: 50, expr: 'stern', blink: 0, L: 'cross', R: 'cross' }, [sx * 3.4, 1.2, -21.6], { tint: '#f2b640', s: 2.3, check: false, blob: false })); };
-  const queen = (o, look = 'cleoEgypt', pos = THR, extra = {}) => man(look, 21, { expr: 'neutral', ...o }, pos, { s: pos === THR ? QS : 1.12, ...extra });
+  // seated arms follow the framing: hands in the lap in close shots, on the armrests once the frame is wide enough for them
+  const restK = () => { const C = camAt(f), d = Math.hypot(C.pos[0] - THR[0], C.pos[1] - 2.5, C.pos[2] - THR[2]), hw = d * Math.tan(C.fov * Math.PI / 360) * 9 / 16; return q(smooth(ramp(hw, 0.82, 1.02)), 2); };
+  const queen = (o, look = 'cleoEgypt', pos = THR, extra = {}) => man(look, 21, { expr: 'neutral', ...(pos === THR ? { ...SIT, restK: restK() } : {}), ...o }, pos, { s: pos === THR ? QS : 1.12, ...(pos === THR ? { face: 0 } : {}), ...extra });
   switch (S.id) {
     case 'eye': queen({ expr: f > 22 ? 'smug' : 'calm', look: q(lerp(-0.4, 0.15, smooth(ramp(f, 4, 26))), 2), blink: f > 30 && f < 34 ? 1 : 0 }, 'cleoEgypt', THR, { check: false }); break;
     case 'hall': queen({ expr: 'smug' }); court((c) => smooth(ramp(f, 48 + c.row * 4, 60 + c.row * 4))); statues(); break;
@@ -309,7 +312,7 @@ export const actorsAt = (f, T) => {
       court((c) => smooth(ramp(c.pos[2] - z, 3.2, 0.4)));
       break;
     }
-    case 'throne': queen({ expr: f > 1585 ? 'grin' : 'relief', look: f > 1585 ? 0.15 : 0 }); court((c) => smooth(ramp(f, 1530 + (2 - c.row) * 6, 1544 + (2 - c.row) * 6))); statues(); break;
+    case 'throne': queen({ expr: f > 1585 ? 'grin' : 'relief', look: f > 1585 ? 0.15 : 0, ...(f > 1588 ? { R: 'wave', wv: q(f * 0.3, 1) } : {}) }); court((c) => smooth(ramp(f, 1530 + (2 - c.row) * 6, 1544 + (2 - c.row) * 6))); statues(); break;
     case 'split': {
       const turn = f > 1708;
       man('cleoGreek', 22, { expr: turn ? 'grin' : 'stern', facing: turn ? 0 : 1, look: turn ? 0 : 0.8, L: turn ? 'hip' : 'hang', R: turn ? 'hip' : 'hang' }, [SX - 0.95, 0, -6], turn && f < 1720 ? { hop: hop(f, 1709, 0.1) } : {});
