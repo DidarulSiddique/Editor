@@ -28,6 +28,18 @@ these rules override its defaults. Newest first.
 - Micro-animation pass that reads on a phone: eye darts (saccades), breathing squash, courtiers glancing/whispering,
   dust motes in the light, brazier embers, banner flutter, birds in every sky, slight handheld camera drift.
 
+### Cleopatra v3 — "better hook, give her legs and arms on the throne, the speaking is a little flat"
+- **Hook:** lead with the contradiction in five words ("Egypt's most famous pharaoh… wasn't Egyptian.") and hedge
+  it into a curiosity gap ("At least, not the way you think.") so it stays accurate and the video pays it off.
+- **Seated characters need a real sit pose**, not a standing card hidden behind the seat (reads as a torso in a box).
+  Card in front of a *shallow* seat, fixed heading (`face: 0`, no billboard turn into the seat), shins + sandals on a
+  footstool, hands on armrests. Arms that reach armrests break the safe frame in close-ups: blend the pose by framing
+  (hands in lap when the visible half-width at the card is < ~0.8 m, armrests when > ~1 m).
+- **Voice:** Kokoro v0.19 Lewis (grade D+) reads flat. Kokoro v1.0 (`kokoro-multi-lang-v1_0`, 54 voices) has better
+  prosody; `bm_fable` keeps a British male narrator with more melody. Add per-line speed (faster lists, slower
+  reveals), pauses before reveals, and "!" where the voice should lift. Keep the script in one `lines.py`.
+- Pitch-variance metrics are unreliable on low gravelly voices (YIN loses voicing); pick by the published voice grades.
+
 ## 2026-11-06 — Cave v2: "can't see the full picture on phone and iPad"
 - Players fill the screen with a 9:16 video: phones trim ~100 px off each side, iPads ~240 px off top and bottom.
   Most shots had faces/bodies at the frame edges, so they got cut.
