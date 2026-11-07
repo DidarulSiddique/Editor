@@ -1,25 +1,22 @@
 #!/usr/bin/env python3
-"""Narration v2: Kokoro (Lewis) at a slower speed ("slow down just a bit"). Each sentence is generated on its own
+"""Narration v3: Kokoro v1.0 bm_fable with per-line pacing (lines.py); v2 was Lewis at a slower speed. Each sentence is generated on its own
 (Kokoro works sentence by sentence anyway), so every caption chunk boundary is exact. Two sentences carry two
 caption chunks; they are split at their longest internal pause. -> voice.wav (48 kHz) + segs.txt
 usage: python3 build_voice.py [speed]"""
 import os, sys, subprocess, wave, numpy as np, sherpa_onnx
-speed = float(sys.argv[1]) if len(sys.argv) > 1 else 0.92
-LINES = ["The most famous Egyptian queen in history… came from a Greek royal family.", "Picture her.", "Golden collar.", "Cobra crown.",
- "All of Egypt bowing.", "Now rewind almost three hundred years.", "Macedonia, north of Greece.", "A general named Ptolemy rides beside Alexander the Great.",
- "Alexander dies young, and his empire gets carved up like a cake.", "Ptolemy grabs the richest slice.", "Egypt.",
- "His family rules it for nearly three centuries, from Alexandria, speaking Greek.", "Then Cleopatra the Seventh", "is born.",
- "And she does something no Ptolemy before her is known to have done.", "She learns Egyptian.", "She dresses as a pharaoh.",
- "She's hailed as the new Isis.", "She speaks to her people in their own language.", "Born in Egypt?", "Yes.", "Ruler of Egypt?", "Absolutely.",
- "But her royal bloodline?", "Macedonian Greek.", "She embraced Egypt", "so completely… history made her its most iconic pharaoh.",
- "So which one was the real Cleopatra?"]
-JOIN = {12, 25}            # line k is spoken together with line k+1 (one sentence; split at its pause)
-M = os.path.expanduser("~/.cache/edit-kit/tts/kokoro-en-v0_19")
+speed = float(sys.argv[1]) if len(sys.argv) > 1 else 1.05
+VOICE = sys.argv[2] if len(sys.argv) > 2 else "bm_fable"
+from lines import LINES, JOIN, SPEED, PAUSE
+# v3: Kokoro v1.0 (54 voices, better prosody); bm_fable = British male like Lewis but more expressive (v2's Lewis read flat)
+M = os.path.expanduser("~/.cache/edit-kit/tts/kokoro-multi-lang-v1_0")
+SIDS = {"bm_fable": 25, "bm_george": 26, "bm_lewis": 27, "am_fenrir": 14, "am_michael": 16, "am_puck": 18, "af_heart": 3}
+SID, LEX = SIDS[VOICE], ("lexicon-gb-en.txt" if VOICE.startswith("b") else "lexicon-us-en.txt")
 tts = sherpa_onnx.OfflineTts(sherpa_onnx.OfflineTtsConfig(model=sherpa_onnx.OfflineTtsModelConfig(kokoro=sherpa_onnx.OfflineTtsKokoroModelConfig(
-    model=f"{M}/model.onnx", voices=f"{M}/voices.bin", tokens=f"{M}/tokens.txt", data_dir=f"{M}/espeak-ng-data"), num_threads=4), max_num_sentences=1))
+    model=f"{M}/model.onnx", voices=f"{M}/voices.bin", tokens=f"{M}/tokens.txt", data_dir=f"{M}/espeak-ng-data", dict_dir=f"{M}/dict",
+    lexicon=f"{M}/{LEX}"), num_threads=4), max_num_sentences=1))
 
-def say(text):
-    a = tts.generate(text.replace("…", "..."), sid=10, speed=speed); return np.array(a.samples, np.float32), a.sample_rate
+def say(text, k):
+    a = tts.generate(text.replace("…", "..."), sid=SID, speed=speed * SPEED.get(k, 1.0)); return np.array(a.samples, np.float32), a.sample_rate
 def db(x, sr, hop=0.01):
     fr = int(hop * sr); return np.array([20 * np.log10(np.sqrt(np.mean(x[i:i + fr] ** 2)) + 1e-9) for i in range(0, len(x) - fr, fr)])
 def trim(x, sr, th=-45):
@@ -35,8 +32,9 @@ while k < len(LINES):
 LEAD, GAP = 0.4, 0.24
 out, t, segs, sr = [], LEAD, [], None
 for k, text in units:
-    x, sr = say(text); x = trim(x, sr)
+    x, sr = say(text, k); x = trim(x, sr)
     if not out: out.append(np.zeros(int(LEAD * sr), np.float32))
+    if PAUSE.get(k): out.append(np.zeros(int(PAUSE[k] * sr), np.float32)); t += PAUSE[k]
     if k in JOIN:  # split at the longest pause in the middle 70%
         d = db(x, sr); n = len(d); lo, hi = int(n * 0.15), int(n * 0.85); quiet = d < -40; best, bi, i = 0, None, lo
         while i < hi:
@@ -57,6 +55,6 @@ wwrite("voice_slow_raw.wav", y, sr)
 subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", "voice_slow_raw.wav", "-ar", "48000", "voice.wav"], check=True)
 assert len(segs) == len(LINES), len(segs)
 open("segs.txt", "w").write("".join(f"{a:.2f} {b:.2f}\n" for a, b in segs))
-old = [tuple(map(float, l.split())) for l in open("segs_v1.txt")]
-print("voice.wav %.2f s (v1 %.2f), speech %.2f s (v1 %.2f)" % (len(y) / sr, old[-1][1], sum(b - a for a, b in segs), sum(b - a for a, b in old)))
+old = [tuple(map(float, l.split())) for l in open("segs_v2.txt")]
+print("voice.wav %.2f s (v2 %.2f), speech %.2f s (v2 %.2f)" % (len(y) / sr, old[-1][1], sum(b - a for a, b in segs), sum(b - a for a, b in old)))
 print(" ".join("%.2f/%.2f" % (b - a, ob - oa) for (a, b), (oa, ob) in zip(segs, old)))

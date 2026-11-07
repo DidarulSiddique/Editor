@@ -344,7 +344,7 @@ export const fxAt = (f, T) => {
   const spark = (key, t, c, s) => out.push(FXc(key + q(t, 2), (p) => T.fxSpark(p, t), c, s));
   switch (S.id) {
     case 'eye': if (f > 14) spark('sp', ramp(f, 14, 34), [0, 3.42, -19.6], 0.2); break;
-    case 'spin': if (f > 94 && f < 116) { const t = ramp(f, 94, 112); out.push(FXc('burst' + q(t, 2), (p) => { p.g.translate(50, 250); T.fxBurst(p, t, '#ffe9a0', 16, 60, 260); }, [0, 2.95, -20.3], 1.7, { order: 1 })); spark('spk', ramp(f, 97, 113), [0.1, 2.9, -19.6], 0.5); } break;
+    case 'spin': if (f > 94 && f < 116) { const t = ramp(f, 94, 112); out.push(FXc('burst' + q(t, 2), (p) => { p.g.translate(50, 250); T.fxBurst(p, t, '#ffe9a0', 16, 60, 260); }, [0, 2.95, -20.0], 1.7, { order: 1 })); spark('spk', ramp(f, 97, 113), [0.1, 2.9, -19.6], 0.5); } break;
     case 'coin': if (f > 128) shine('cs', (f - 128) / 10, [-0.35, 0.3, -11.7], 0.22, '#fff3b0'); break;
     case 'collar': if (f > 176) shine('cl', (f - 176) / 12, [0.22, 2.6, -19.45], 0.2, '#fff3b0'); break;
     case 'cobra': if (f > 208) shine('cb', (f - 208) / 12, [0.0, 3.32, -19.45], 0.17, '#fff3b0'); break;

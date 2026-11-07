@@ -1,15 +1,8 @@
 #!/usr/bin/env python3
 """Captions for the Cleopatra short: one word at a time (gold on the key words), a title box,
 name tags and stamps — all inside the phone/iPad safe frame.  usage: python3 subs.py > subs.ass"""
-LINES = ["The most famous Egyptian queen in history… came from a Greek royal family.", "Picture her.", "Golden collar.", "Cobra crown.",
- "All of Egypt bowing.", "Now rewind almost three hundred years.", "Macedonia, north of Greece.", "A general named Ptolemy rides beside Alexander the Great.",
- "Alexander dies young, and his empire gets carved up like a cake.", "Ptolemy grabs the richest slice.", "Egypt.",
- "His family rules it for nearly three centuries, from Alexandria, speaking Greek.", "Then Cleopatra the Seventh", "is born.",
- "And she does something no Ptolemy before her is known to have done.", "She learns Egyptian.", "She dresses as a pharaoh.",
- "She's hailed as the new Isis.", "She speaks to her people in their own language.", "Born in Egypt?", "Yes.", "Ruler of Egypt?", "Absolutely.",
- "But her royal bloodline?", "Macedonian Greek.", "She embraced Egypt", "so completely… history made her its most iconic pharaoh.",
- "So which one was the real Cleopatra?"]
-GOLD = {"egyptian", "greek", "egypt", "macedonia", "macedonian", "ptolemy", "alexander", "cleopatra", "isis", "pharaoh", "real", "cake",
+from lines import LINES
+GOLD = {"egyptian", "wasn't", "greek", "egypt", "macedonia", "macedonian", "ptolemy", "alexander", "cleopatra", "isis", "pharaoh", "real", "cake",
         "seventh", "alexandria", "bloodline", "yes", "absolutely", "egyptian.", "greek."}
 segs = [tuple(map(float, l.split())) for l in open("segs.txt")]
 assert len(segs) == len(LINES), (len(segs), len(LINES))
