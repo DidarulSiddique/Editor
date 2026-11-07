@@ -3,6 +3,7 @@ import * as T from './toon.js';
 import * as P from './paint.js';
 import * as P2 from './paint2.js';
 import { SHOTS, TOTAL, shotAt, camAt, dofAt, LIGHTS, lightFor, actorsAt, worldAt, fxAt } from './story.js';
+import { toOld, TOTAL_NEW } from './retime.js'; // v2: slower narration, the v1 timeline is re-mapped onto it
 
 const W = 1080, H = 1920;
 const canvas = document.getElementById('c');
@@ -120,9 +121,9 @@ for (const [w, y, d, z] of [[9, 0.2, 6.4, -19], [7.6, 0.6, 5.2, -19.6], [6.2, 1.
 // throne: seat hides the queen's legs, tall gold back
 const THRONE = { x: 0, z: -19.9, seatTop: 1.95 };
 add(box(1.9, 0.75, 1.2), goldM, 0, 1.575, -19.9, HALL); add(box(1.95, 0.12, 1.25), blueM, 0, 1.98, -19.9, HALL);
-add(box(2.1, 3.0, 0.3), goldM, 0, 2.7, -20.65, HALL); add(box(1.5, 2.2, 0.05), blueM, 0, 2.9, -20.48, HALL, { cast: false });
+add(box(2.1, 2.6, 0.3), goldM, 0, 2.5, -20.65, HALL); add(box(1.5, 1.9, 0.05), blueM, 0, 2.7, -20.48, HALL, { cast: false });
 for (const s of [-1, 1]) { add(box(0.25, 0.5, 1.2), goldD, s * 1.0, 2.2, -19.9, HALL); add(new THREE.SphereGeometry(0.22, 12, 8), goldM, s * 1.0, 2.5, -19.35, HALL); }
-add(new THREE.SphereGeometry(0.42, 16, 10), redM, 0, 4.45, -20.6, HALL); for (const s of [-1, 1]) { const w = add(new THREE.SphereGeometry(1, 12, 8), goldM, s * 0.95, 4.4, -20.62, HALL); w.scale.set(0.75, 0.16, 0.05); w.rotation.z = -s * 0.12; }
+add(new THREE.SphereGeometry(0.4, 16, 10), redM, 0, 4.05, -20.6, HALL); for (const s of [-1, 1]) { const w = add(new THREE.SphereGeometry(1, 12, 8), goldM, s * 0.95, 4.0, -20.62, HALL); w.scale.set(0.75, 0.16, 0.05); w.rotation.z = -s * 0.12; }
 // papyrus columns
 const colPaint = T2(P2.columnPaint(3), 2, 1), capM = toon({ color: '#3a9a6a' }), capBand = toon({ color: '#e8b531' });
 const capGeo = new THREE.LatheGeometry([[0.62, 0], [0.7, 0.25], [0.95, 0.7], [1.2, 1.1], [1.25, 1.2], [0, 1.2]].map(([x, y]) => new THREE.Vector2(x, y)), 20);
@@ -305,6 +306,9 @@ const clouds = []; const cloudG = new THREE.Group(); scene.add(cloudG);
     m.userData.ndSkip = true; m.renderOrder = -1; cloudG.add(m); clouds.push(m);
   } }
 
+// every banner plane flutters a little (collected once the world is built)
+const FLAGS = []; scene.traverse((o) => { if (o.isMesh && (o.material === vergM || o.material === vergRed || o.material === egyM)) { o.userData.ry0 = o.rotation.y; FLAGS.push(o); } });
+
 // ---------- helmet prop (3D) ----------
 const helmet = new THREE.Group(); scene.add(helmet); helmet.visible = false;
 {
@@ -439,6 +443,7 @@ function worldState(W, f) {
   const Co = W.coin; coin.visible = !!Co; if (Co) { coin.position.set(Co.x, Co.y, Co.z); coin.rotation.set(Co.rx || 0, Co.ry || 0, Co.rz || 0); coin.scale.setScalar(Co.s || 1); }
   ships.forEach((g, i) => { const x = ((f * 0.06 + i * 47) % 190) - 95; g.position.set(AX + x, 0, -75 - i * 16); g.rotation.y = i % 2 ? Math.PI : 0; if (i % 2) g.position.x = AX - x; g.rotation.z = Math.sin(f * 0.05 + i) * 0.03; });
   seaTex.offset.set(f * 0.0009, f * 0.0004);
+  FLAGS.forEach((m, i) => { m.rotation.y = m.userData.ry0 + 0.09 * Math.sin(f * 0.085 + i * 1.7); m.rotation.z = 0.025 * Math.sin(f * 0.11 + i); }); // banners flutter
   const Ld = W.land ?? 0; landStd.position.y = Ld; landStd.rotation.z = Ld > 0 ? 0.1 : 0;
 }
 
@@ -449,7 +454,7 @@ function drawActors(list, cam) {
     const c = getCard(i);
     c.draw(a.key, a.draw);
     c.mesh.visible = true; c.mesh.position.set(a.x, a.y, a.z);
-    const s = a.s || 1; c.mesh.scale.set(s * (a.flip ? -1 : 1) * (a.sx ?? 1), s, s);
+    const s = a.s || 1; c.mesh.scale.set(s * (a.flip ? -1 : 1) * (a.sx ?? 1), s * (a.sy ?? 1), s);
     c.mesh.rotation.set(0, Math.atan2(cam.position.x - a.x, cam.position.z - a.z) + (a.yaw || 0), a.roll || 0);
     c.mat.color.set(a.tint || '#ffffff'); c.mat.opacity = a.alpha ?? 1;
     c.mesh.castShadow = a.shadow !== false;
@@ -477,7 +482,8 @@ const swapForNd = (on) => {
   });
 };
 
-window.renderFrame = (f) => {
+window.renderFrame = (fNew) => {
+  const f = toOld(fNew);
   const S = shotAt(f), L = lightFor(S, f), C = camAt(f);
   applyLight(L, f);
   camera.position.set(...C.pos); camera.up.set(0, 1, 0); camera.lookAt(...C.look); camera.rotateZ(rx(C.roll || 0));
@@ -509,7 +515,8 @@ window.renderFrame = (f) => {
 // Safe frame: phones trim ~100 px off each side (aspect fill), iPads ~240 px off top and bottom.
 // Every character must sit fully inside x 110..970, y 250..1670 (bottom may run out on close-ups: shot.cu).
 const SAFE = { x0: 110, x1: 970, y0: 250, y1: 1670 };
-window.safeCheck = (f) => {
+window.safeCheck = (fNew) => {
+  const f = toOld(fNew);
   const S = shotAt(f), C = camAt(f);
   camera.position.set(...C.pos); camera.up.set(0, 1, 0); camera.lookAt(...C.look); camera.rotateZ(rx(C.roll || 0));
   camera.fov = C.fov; camera.updateProjectionMatrix(); camera.updateMatrixWorld();
@@ -532,5 +539,5 @@ window.safeCheck = (f) => {
   }
   return bad;
 };
-window.TOTAL = TOTAL;
+window.TOTAL = TOTAL_NEW;
 window.ready = true;

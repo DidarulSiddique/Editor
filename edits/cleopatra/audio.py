@@ -3,9 +3,12 @@
 cut and transition (whooshes, coin clang, knife chops, hooves, crowd, sparkles, stamps). -> mix_raw.wav"""
 import subprocess
 import numpy as np
-SR = 48000; FPS = 30; N = int(1800 / FPS * SR)
+import json
+RT = json.load(open("retime.json")); MAP = np.array(RT["map"])   # v1 frame -> v2 frame (slower narration)
+SR = 48000; FPS = 30; N = int(RT["total"] / FPS * SR); END = RT["total"] / FPS
+toNew = lambda f: float(np.interp(f, MAP[:, 0], MAP[:, 1]))
 rng = np.random.default_rng(7)
-F = lambda f: f / FPS
+F = lambda f: toNew(f) / FPS      # cue times are written on the v1 timeline
 t_all = np.arange(N) / SR
 
 def load(path, ch=1):
@@ -85,7 +88,7 @@ for f, d, up, g in [(36, 0.45, False, 0.3), (282, 2.4, False, 0.3), (352, 0.4, T
 add(F(14), sparkle(0.1)); add(F(98), boom(0.55, 60)); add(F(96), sparkle(0.12))
 add(F(126), clang(0.4)); add(F(126), boom(0.35, 70))
 add(F(176), sparkle(0.09)); add(F(208), sparkle(0.09)); add(F(240), crowd(1.4, 0.05))
-add(F(282), tape(F(357 - 282), 0.05)); add(F(358), boom(0.45, 50)); add(F(368), pop(0.2, 700))
+add(F(282), tape((F(357) - F(282)), 0.05)); add(F(358), boom(0.45, 50)); add(F(368), pop(0.2, 700))
 add(F(416), crowd(1.8, 0.05))
 for k in range(9): add(F(418) + k * 0.6, boom(0.18, 45))           # marching
 for k in range(56):                                                  # gallop: 4-beat clops
@@ -93,7 +96,7 @@ for k in range(56):                                                  # gallop: 4
 add(F(532), whoosh(0.8, False, 0.12)); add(F(540), grind(0.9, 0.22)); add(F(556), boom(0.3, 48))
 for c in [584, 598, 612, 626]: add(F(c), thwack(0.35)); add(F(c) - 0.1, whoosh(0.15, True, 0.12))
 add(F(652), slide(0.1, True)); add(F(662), crowd(1.0, 0.035)); add(F(664), sparkle(0.08))
-add(F(702), boom(0.55, 52)); add(F(724), waves(F(803 - 724), 0.05))
+add(F(702), boom(0.55, 52)); add(F(724), waves((F(803) - F(724)), 0.05))
 for i in range(6): add(F(810 + i * 7), pop(0.15, 820 + i * 40))
 add(F(863), chime(988, 0.09, 2.0)); add(F(875), chime(1318, 0.07, 2.0)); add(F(900), sparkle(0.1))
 for i in range(7): add(F(942 + i * 9.5), pop(0.13, 700))
@@ -106,11 +109,12 @@ add(F(1440), boom(0.6, 45)); add(F(1440), clang(0.15))
 add(F(1530), crowd(1.6, 0.04)); add(F(1575), sparkle(0.12)); add(F(1592), boom(0.4, 55))
 add(F(1626), boom(0.35, 50)); add(F(1652), pop(0.2, 700)); add(F(1709), sparkle(0.1)); add(F(1712), pop(0.18, 900))
 # fire crackle under every hall/tent shot
-for a, b in [(0, 357), (358, 415), (567, 699), (1077, 1124), (1318, 1437), (1482, 1625)]: add(F(a), crackle(F(b - a), 0.025))
+for a, b in [(0, 357), (358, 415), (567, 699), (1077, 1124), (1318, 1437), (1482, 1625)]: add(F(a), crackle((F(b) - F(a)), 0.025))
 
 # ---- voice + ducked music ----
 voice = load("voice.wav")[:, 0]; vo = np.zeros(N); vo[: min(N, len(voice))] = voice[:N]
-music = load("music.wav", 2); mu = np.zeros((N, 2)); mu[: min(N, len(music))] = music[:N]
+subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", "music.wav", "-af", f"rubberband=tempo={60.0 / END:.5f}", "music_slow.wav"], check=True)  # same stretch as the picture
+music = load("music_slow.wav", 2); mu = np.zeros((N, 2)); mu[: min(N, len(music))] = music[:N]
 # voice envelope (50 ms RMS, smoothed) -> duck depth
 def movavg(x, w):  # centred moving average via cumulative sum
     c = np.concatenate([[0.0], np.cumsum(x)]); i = np.arange(len(x)); a = np.clip(i - w // 2, 0, len(x)); b = np.clip(i + w - w // 2, 0, len(x))
@@ -119,7 +123,8 @@ e = np.sqrt(movavg(vo ** 2, int(0.05 * SR))); e = e / (e.max() + 1e-9)
 act = movavg(np.clip(e * 6, 0, 1), int(0.25 * SR))
 rv = np.sqrt(np.mean(vo[np.abs(vo) > 0.01] ** 2)); rm = np.sqrt(np.mean(mu ** 2))
 gm = (rv / rm) * (0.42 - 0.24 * act)                  # ~ -7.5 dB under the voice when talking, ~ -2.5 dB in gaps
-fade = np.minimum(1, t_all / 0.3) * np.minimum(1, (60 - t_all) / 1.2) * (1 - 0.3 * np.clip((t_all - 53.6) * 4, 0, 1) * np.clip((57.0 - t_all) * 4, 0, 1))  # clear the final question
+q0, q1 = F(1608), F(1710)   # the final question
+fade = np.minimum(1, t_all / 0.3) * np.minimum(1, (END - t_all) / 1.2) * (1 - 0.3 * np.clip((t_all - q0) * 4, 0, 1) * np.clip((q1 - t_all) * 4, 0, 1))
 mix = mu * (gm * fade)[:, None] + (vo * 1.0)[:, None] + np.stack([sfx, np.roll(sfx, 180)], 1) * rv * 3.2
 mix *= 0.9 / np.abs(mix).max()
 subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "f32le", "-ar", str(SR), "-ac", "2", "-i", "-", "mix_raw.wav"], input=mix.astype(np.float32).tobytes(), check=True)

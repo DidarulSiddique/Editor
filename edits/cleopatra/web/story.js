@@ -6,7 +6,7 @@ export const SHOTS = [
   { id: 'hall', a: 41, b: 84, light: 'hall', cu: true },
   { id: 'spin', a: 85, b: 117, light: 'hall', cu: true },
   { id: 'coin', a: 118, b: 143, light: 'hall' },
-  { id: 'picture', a: 144, b: 168, light: 'hall' },
+  { id: 'picture', a: 144, b: 168, light: 'hall', cu: true },
   { id: 'collar', a: 169, b: 201, light: 'hall', macro: true },
   { id: 'cobra', a: 202, b: 234, light: 'hall', macro: true },
   { id: 'bow', a: 235, b: 281, light: 'hall' },
@@ -47,7 +47,8 @@ const q = (x, n = 2) => Math.round(x * 10 ** n) / 10 ** n;
 
 // ---------- set coordinates (mirror main.js) ----------
 const BX = 1000, TZ = -150, AX = 2000, SX = 3000, STOA_Z = 18, NURS = [AX - 40, 70], LIB = [AX + 40, 70], PY = [SX + 16, -34], PH = [AX - 35, -150];
-const THR = [0, 1.32, -19.9];                     // Cleopatra seated on the throne (seat hides her legs)
+const THR = [0, 1.05, -19.9];                     // Cleopatra seated on the throne (seat hides her legs); drawn at QS scale
+const QS = 1.3;                                   // v2: she was too small on the throne -> 1.3x (Egyptian art's hierarchy of scale)
 const CAKE_TOP = 1.03, CAKE = [BX, CAKE_TOP, TZ];
 const BRAZ = [[-2.5, 0, -12.4], [2.5, 0, -12.4], [-2.6, 1.2, -18.4], [2.6, 1.2, -18.4], [-2.5, 0, -4], [2.5, 0, -4]];
 const HALL_LIGHTS = [[-2.5, 2.2, -12.4, 3.2], [2.5, 2.2, -12.4, 3.2], [0, 3.4, -18.0, 3.6], [0, 2.4, -4, 2.6]];
@@ -85,13 +86,13 @@ export const lightFor = (S, f) => {
 // ---------- cameras ----------
 const K = (f, pos, look, fov, ease, path) => ({ f, pos, look, fov, ease, path });
 const CAMS = {
-  eye: [K(0, [0.35, 2.95, -16.6], [0.0, 2.84, -19.9], 24), K(40, [0.04, 2.9, -17.0], [0.0, 2.84, -19.9], 23)],
-  hall: [K(41, [0.0, 2.95, -17.4], [0, 2.7, -19.9], 36), K(84, [0.0, 6.2, 6.0], [0, 2.8, -18], 44, 'easeOut', [[0.4, 3.4, -12], [0.2, 5.0, -3]])],
-  spin: [K(85, [0.6, 2.75, -15.4], [0, 2.55, -19.9], 36, null), K(117, [0.3, 2.7, -15.9], [0, 2.55, -19.9], 34, 'easeOut')],
+  eye: [K(0, [0.45, 3.12, -15.6], [0.0, 3.0, -19.9], 24), K(40, [0.05, 3.07, -16.15], [0.0, 3.0, -19.9], 23)],
+  hall: [K(41, [0.0, 3.15, -16.6], [0, 2.9, -19.9], 36), K(84, [0.0, 6.2, 6.0], [0, 2.8, -18], 44, 'easeOut', [[0.4, 3.4, -12], [0.2, 5.0, -3]])],
+  spin: [K(85, [0.6, 2.95, -15.4], [0, 2.75, -19.9], 36, null), K(117, [0.3, 2.9, -15.9], [0, 2.75, -19.9], 34, 'easeOut')],
   coin: [K(118, [0.0, 3.3, -8.6], [0, 0.1, -12.0], 36), K(143, [0.0, 2.9, -9.0], [0, 0.1, -12.0], 34, 'easeOut')],
-  picture: [K(144, [1.4, 1.0, -13.0], [0, 2.7, -19.9], 40), K(168, [0.7, 0.95, -12.8], [0, 2.7, -19.9], 39)],
-  collar: [K(169, [0.4, 2.55, -17.9], [0.0, 2.5, -19.9], 26), K(201, [0.12, 2.52, -18.1], [0.0, 2.5, -19.9], 25)],
-  cobra: [K(202, [-0.3, 3.05, -17.9], [0.0, 2.95, -19.9], 26), K(234, [-0.06, 3.0, -18.1], [0.0, 2.95, -19.9], 24)],
+  picture: [K(144, [1.4, 1.0, -13.4], [0, 2.85, -19.9], 40), K(168, [0.7, 0.95, -13.2], [0, 2.85, -19.9], 39)],
+  collar: [K(169, [0.5, 2.66, -17.3], [0.0, 2.6, -19.9], 26), K(201, [0.15, 2.63, -17.55], [0.0, 2.6, -19.9], 25)],
+  cobra: [K(202, [-0.38, 3.28, -17.3], [0.0, 3.17, -19.9], 26), K(234, [-0.08, 3.24, -17.55], [0.0, 3.17, -19.9], 24)],
   bow: [K(235, [0.0, 0.45, -3.2], [0, 2.3, -19], 46), K(281, [0.0, 0.6, -5.4], [0, 2.3, -19], 44)],
   rewind: [K(282, [0.0, 3.0, -9.0], [0, 2.4, -19.9], 44), K(357, [0.0, 34, 60], [0, 2, -12], 60, 'easeIn', [[0, 5, 0], [0, 12, 22]])],
   macedonia: [K(358, [BX - 0.3, 4.9, TZ + 2.4], [BX - 0.7, CAKE_TOP, TZ - 0.5], 40), K(415, [BX - 0.75, 3.45, TZ + 0.75], [BX - 0.75, CAKE_TOP, TZ - 0.7], 40, 'easeOut')],
@@ -104,18 +105,18 @@ const CAMS = {
   alex: [K(724, [AX - 10, 72, -250], [PH[0], 52, PH[1]], 46), K(803, [AX + 4, 7.5, 62], [AX, 3.2, STOA_Z], 50, 'smooth', [[AX - 50, 62, -180], [AX - 20, 40, -90], [AX + 6, 22, 10]])],
   kings: [K(804, [AX - 2.9, 1.5, STOA_Z + 11.9], [AX + 0.2, 1.4, STOA_Z + 3.5], 42), K(862, [AX - 2.4, 1.65, STOA_Z + 11.2], [AX + 0.2, 1.4, STOA_Z + 3.5], 41)],
   born: [K(863, [NURS[0] - 0.2, 1.3, NURS[1] + 3.5], [NURS[0], 0.7, NURS[1] + 0.2], 40), K(937, [NURS[0] - 0.1, 1.15, NURS[1] + 3.0], [NURS[0], 0.65, NURS[1] + 0.2], 40)],
-  busts: [K(938, [AX - 17.5, 1.75, STOA_Z + 7.4], [AX - 7, 1.45, STOA_Z + 4.5], 40), K(1008, [AX + 1.5, 1.8, STOA_Z + 7.6], [AX + 12, 1.45, STOA_Z + 4.5], 40, 'smooth'), K(1032, [AX + 15.4, 1.45, STOA_Z + 9.7], [AX + 15.5, 1.0, STOA_Z + 5.2], 40, 'easeOut')],
+  busts: [K(938, [AX - 17.5, 1.75, STOA_Z + 7.4], [AX - 7, 1.45, STOA_Z + 4.5], 40), K(1008, [AX + 1.5, 1.8, STOA_Z + 7.6], [AX + 12, 1.45, STOA_Z + 4.5], 40, 'smooth'), K(1032, [AX + 15.4, 1.45, STOA_Z + 9.1], [AX + 15.5, 1.0, STOA_Z + 4.6], 40, 'easeOut')],
   learn: [K(1033, [LIB[0] + 0.8, 1.5, LIB[1] + 6.7], [LIB[0] + 0.75, 1.15, LIB[1] + 1.2], 46), K(1076, [LIB[0] + 0.75, 1.5, LIB[1] + 6.4], [LIB[0] + 0.75, 1.15, LIB[1] + 1.2], 45, 'easeOut')],
   dress: [K(1077, [0, 1.5, -11.9], [0, 1.25, -15.5], 40), K(1124, [0, 1.5, -11.9], [0, 1.25, -15.5], 40)],
   isis: [K(1125, [PY[0] + 0.3, 0.9, PY[1] + 10.2], [PY[0], 1.8, PY[1] + 3.0], 46), K(1178, [PY[0] + 0.2, 1.5, PY[1] + 9.6], [PY[0], 1.8, PY[1] + 3.0], 44, 'easeOut')],
   speech: [K(1179, [PY[0] + 0.8, 1.5, PY[1] + 13.4], [PY[0], 6.0, PY[1]], 50), K(1214, [PY[0] + 0.3, 1.8, PY[1] + 12.6], [PY[0], 6.3, PY[1]], 48)],
-  speech2: [K(1215, [PY[0] + 0.5, 9.1, PY[1] + 6.6], [PY[0] + 0.12, 9.05, PY[1] + 2.0], 40), K(1255, [PY[0] + 0.35, 9.1, PY[1] + 6.2], [PY[0] + 0.12, 9.05, PY[1] + 2.0], 39)],
+  speech2: [K(1215, [PY[0] + 0.5, 9.4, PY[1] + 7.0], [PY[0] + 0.15, 9.35, PY[1] + 2.0], 40), K(1255, [PY[0] + 0.35, 9.4, PY[1] + 6.6], [PY[0] + 0.15, 9.35, PY[1] + 2.0], 39)],
   born2: [K(1256, [AX + 40, 80, 150], [AX, 0, 30], 46), K(1317, [AX + 22, 46, 110], [AX, 4, 30], 44, 'easeOut')],
-  ruler: [K(1318, [-1.2, 2.3, -14.6], [0, 2.55, -19.9], 38), K(1392, [-0.5, 2.4, -15.4], [0, 2.6, -19.9], 35)],
-  blood: [K(1393, [0.25, 2.95, -16.5], [0, 2.84, -19.9], 30), K(1420, [0.05, 2.93, -16.8], [0, 2.84, -19.9], 29), K(1437, [0.0, 3.2, -17.0], [0, 10.4, -16.4], 44, 'easeIn')],
+  ruler: [K(1318, [-1.2, 2.5, -14.6], [0, 2.8, -19.9], 38), K(1392, [-0.5, 2.6, -15.4], [0, 2.85, -19.9], 35)],
+  blood: [K(1393, [0.3, 3.12, -15.5], [0, 3.0, -19.9], 30), K(1420, [0.06, 3.1, -15.9], [0, 3.0, -19.9], 29), K(1437, [0.0, 3.3, -16.2], [0, 10.4, -15.6], 44, 'easeIn')],
   maced: [K(1438, [BX + 0.9, 1.0, 6.4], [BX + 0.5, 1.35, 0], 44), K(1481, [BX + 0.4, 2.2, 7.6], [BX + 0.6, 2.3, -4], 50, 'easeOut')],
   aisle: [K(1482, [0.35, 1.65, -5.0], [0, 1.3, -11], 40), K(1518, [0.35, 1.65, -3.0], [0, 1.3, -9], 40, 'linear')],
-  throne: [K(1519, [1.6, 2.3, -15.4], [0, 2.6, -19.9], 36), K(1625, [0.0, 8.6, 5.0], [0, 3.0, -19.5], 46, 'smooth', [[2.4, 3.8, -11], [1.2, 6.4, -3]])],
+  throne: [K(1519, [1.6, 2.5, -15.4], [0, 2.8, -19.9], 36), K(1625, [0.0, 8.6, 5.0], [0, 3.0, -19.5], 46, 'smooth', [[2.4, 3.8, -11], [1.2, 6.4, -3]])],
   split: [K(1626, [SX, 0.35, 3.0], [SX, 1.7, -6], 48), K(1700, [SX, 1.6, 2.2], [SX, 1.35, -6], 46, 'easeOut'), K(1799, [SX, 1.55, 0.9], [SX, 1.3, -6], 48)],
 };
 const KICKS = [{ f: 126, a: 0.06 }, { f: 588, a: 0.03 }, { f: 602, a: 0.03 }, { f: 616, a: 0.03 }, { f: 630, a: 0.04 }, { f: 703, a: 0.07 }, { f: 1299, a: 0.03 }, { f: 1362, a: 0.03 }, { f: 1440, a: 0.05 }];
@@ -124,8 +125,8 @@ export const camAt = (f) => {
   const S = shotAt(f);
   let c;
   if (S.id === 'dress') { // full 360 orbit around her while she changes
-    const t = EZ.smooth(ramp(f, 1077, 1122)), a = t * Math.PI * 2, r = 2.55;
-    c = { pos: [Math.sin(a) * r, 1.25 + 0.2 * Math.sin(t * Math.PI), -14.8 + Math.cos(a) * r], look: [0, 1.0, -14.8], fov: 60, roll: 6 * Math.sin(t * Math.PI) };
+    const t = EZ.smooth(ramp(f, 1077, 1122)), a = t * Math.PI * 2, r = 2.8;
+    c = { pos: [Math.sin(a) * r, 1.35 + 0.2 * Math.sin(t * Math.PI), -14.8 + Math.cos(a) * r], look: [0, 1.12, -14.8], fov: 60, roll: 6 * Math.sin(t * Math.PI) };
   } else c = camFromKeys(CAMS[S.id], f, { creep: 0.0004, kicks: KICKS });
   c.flash = 0;
   const flashAt = (a, n, k) => { if (f >= a && f < a + n) c.flash = Math.max(c.flash, (1 - (f - a) / n) * k); };
@@ -134,6 +135,9 @@ export const camAt = (f) => {
   if (S.id === 'blood') c.flash = Math.max(c.flash, 0.7 * smooth(ramp(f, 1430, 1437)));
   if (S.id === 'riders') { c.look = [c.look[0], c.look[1] + Math.sin(f * 0.9) * 0.02, c.look[2]]; }
   const set = { hall: [0, 0, -10], tent: [BX, 0, TZ], sunset: [BX, 0, 0], egypt: [PY[0], 0, PY[1]], day: [AX, 0, STOA_Z], night: [NURS[0], 0, NURS[1]], lib: [LIB[0], 0, LIB[1]], split: [SX, 0, -6] };
+  // handheld drift: a slow, small wander of the aim point (scaled by distance) so no frame is ever locked off
+  { const d = Math.hypot(c.look[0] - c.pos[0], c.look[1] - c.pos[1], c.look[2] - c.pos[2]) * 0.0045;
+    c.look = [c.look[0] + d * Math.sin(f * 0.047 + 1.3), c.look[1] + d * 0.8 * Math.sin(f * 0.061), c.look[2] + d * Math.sin(f * 0.039 + 2.1)]; }
   c.shadowAt = set[S.light];
   if (S.id === 'egypt') c.shadowAt = [SX + 30, 0, -60];
   if (S.id === 'alex' || S.id === 'born2') c.shadowAt = [AX, 0, 0];
@@ -143,7 +147,7 @@ export const camAt = (f) => {
 // ---------- lens ----------
 const dist = (a, b) => Math.hypot(a[0] - b[0], a[1] - b[1], a[2] - b[2]);
 const FOCUS = {
-  eye: [0, 2.84, -19.9], spin: [0, 2.6, -19.9], coin: [0, 0.1, -12], picture: [0, 2.6, -19.9], collar: [0, 2.5, -19.9], cobra: [0, 2.95, -19.9],
+  eye: [0, 3.0, -19.9], spin: [0, 2.8, -19.9], coin: [0, 0.1, -12], picture: [0, 2.8, -19.9], collar: [0, 2.6, -19.9], cobra: [0, 3.17, -19.9],
   macedonia: [BX - 0.7, CAKE_TOP, TZ - 0.75], battle: [BX, 1.5, 1.5], dies: [BX + 2.2, 1.6, 1.0], grab: [BX - 0.4, 1.5, TZ + 2.6], egypt: [SX + 30.6, 1.5, -59.4],
   born: [NURS[0], 0.8, NURS[1] + 0.2], learn: [LIB[0] + 0.75, 1.3, LIB[1] + 1.2], dress: [0, 1.3, -14.8], isis: [PY[0], 1.6, PY[1] + 3.0], speech2: [PY[0], 9.1, PY[1] + 2.0],
   ruler: [0, 2.6, -19.9], blood: [0, 2.9, -19.9], maced: [BX + 0.5, 1.5, 1.0], aisle: null, kings: null, split: [SX, 1.3, -6],
@@ -187,7 +191,12 @@ export const worldAt = (f) => {
 
 // ---------- actors ----------
 const blinkAt = (f, seed) => { const per = 38 + (seed * 17) % 31, ph = (f + seed * 13) % per; return ph < 2 ? 0.5 : ph < 4 ? 1 : 0; };
-const LIFE = (f, seed, o) => { const I = idle(f, seed); return { tilt: q(I.tilt, 1), headTilt: q(I.headTilt, 1), bob: q(I.bob + (o.step ? Math.abs(Math.sin(o.step * Math.PI * 2)) * 0.012 : 0), 3), ...o }; };
+// micro-animation (v2): eye darts every 1.5-2.7 s (3-frame glide), on top of the idle sway/bob and blinks
+const hash = (n) => { const x = Math.sin(n * 12.9898) * 43758.5453; return x - Math.floor(x); };
+const saccade = (f, seed) => { const per = 46 + (seed * 29) % 37, g = f + seed * 17, k = Math.floor(g / per), ph = g - k * per;
+  return lerp((hash(k - 1 + seed * 101) - 0.5) * 0.5, (hash(k + seed * 101) - 0.5) * 0.5, clamp(ph / 3)); };
+const LIFE = (f, seed, o) => { const I = idle(f, seed); return { tilt: q(I.tilt, 1), headTilt: q(I.headTilt, 1), bob: q(I.bob + (o.step ? Math.abs(Math.sin(o.step * Math.PI * 2)) * 0.012 : 0), 3), ...o,
+  look: q((o.look ?? 0) + (o.fixLook ? 0 : saccade(f, seed)), 2) }; };
 const R = (T, who, o, pos, extra = {}) => ({ key: who + JSON.stringify(o), draw: (p) => T.romanFront(p, who, o), x: pos[0], y: pos[1], z: pos[2], check: true, ...extra });
 const CARD = (key, draw, pos, s, extra = {}) => ({ key, draw, x: pos[0], y: pos[1], z: pos[2], s, ...extra });
 const TINT = { hall: '#fff8f0', tent: '#fff4e8', sunset: '#ffe8d0', day: '#ffffff', night: '#dfe4ff', lib: '#fff6ea', egypt: '#fffaf0', split: '#fff4e2' };
@@ -205,10 +214,14 @@ const cleoAisleZ = (f) => lerp(-12.6, -8.4, ramp(f, 1482, 1518));
 
 export const actorsAt = (f, T) => {
   const S = shotAt(f), out = [], tint = TINT[S.light] || '#ffffff';
-  const man = (who, seed, o, pos, extra = {}) => { const H = extra.hop || { dy: 0, sq: 1 }; out.push(R(T, who, LIFE(f, seed, { seed, blink: blinkAt(f, seed), ...o }), [pos[0], pos[1] + H.dy, pos[2]], { tint, s: (extra.s || 1) * H.sq, ...extra, hop: undefined })); };
-  const court = (bowFn, exprFn) => COURT.forEach((c, i) => { const b = bowFn ? q(bowFn(c, i), 1) : 0; man(c.who, c.seed, { expr: b > 0.3 ? 'relief' : (exprFn ? exprFn(c, i) : 'neutral'), bow: b, blink: b > 0.3 ? 1 : blinkAt(f, c.seed), L: b > 0.2 ? 'belly' : 'hang', R: b > 0.2 ? 'belly' : 'hang', look: c.pos[0] > 0 ? -0.5 : 0.5 }, c.pos, { check: false }); });
+  const man = (who, seed, o, pos, extra = {}) => { const H = extra.hop || { dy: 0, sq: 1 }; out.push(R(T, who, LIFE(f, seed, { seed, blink: blinkAt(f, seed), ...o }), [pos[0], pos[1] + H.dy, pos[2]], { tint, ...extra, s: (extra.s || 1) * H.sq, sy: q(1 + 0.014 * Math.sin(f * 0.11 + seed * 1.7), 3), hop: undefined })); };
+  // courtiers live between bows: glance at a neighbour, whisper, fold or rest their hands (cycle per seed)
+  const mood = (seed) => { const per = 64 + (seed * 13) % 30, k = Math.floor((f + seed * 37) / per); return Math.floor(hash(k + seed * 7) * 5); };
+  const court = (bowFn, exprFn) => COURT.forEach((c, i) => { const b = bowFn ? q(bowFn(c, i), 1) : 0, m = mood(c.seed), side = c.pos[0] > 0 ? -1 : 1;
+    const idleO = m === 1 ? { look: side * 0.9, headTilt: side * 4 } : m === 2 ? { expr: (Math.floor(f / 4) + c.seed) % 3 ? 'neutral_o' : 'neutral', look: -side * 0.8, headTilt: -side * 5 } : m === 3 ? { L: 'cross', R: 'cross' } : m === 4 ? { L: 'belly', R: 'belly', expr: 'grin' } : {};
+    man(c.who, c.seed, { expr: b > 0.3 ? 'relief' : (exprFn ? exprFn(c, i) : 'neutral'), L: b > 0.2 ? 'belly' : 'hang', R: b > 0.2 ? 'belly' : 'hang', look: side * 0.5, ...(b > 0.2 ? {} : idleO), bow: b, blink: b > 0.3 ? 1 : blinkAt(f, c.seed) }, c.pos, { check: false }); });
   const statues = () => { for (const sx of [-1, 1]) out.push(R(T, 'egyptA', { seed: 50, expr: 'stern', blink: 0, L: 'cross', R: 'cross' }, [sx * 3.4, 1.2, -21.6], { tint: '#f2b640', s: 2.3, check: false, blob: false })); };
-  const queen = (o, look = 'cleoEgypt', pos = THR, extra = {}) => man(look, 21, { expr: 'neutral', ...o }, pos, extra);
+  const queen = (o, look = 'cleoEgypt', pos = THR, extra = {}) => man(look, 21, { expr: 'neutral', ...o }, pos, { s: pos === THR ? QS : 1.12, ...extra });
   switch (S.id) {
     case 'eye': queen({ expr: f > 22 ? 'smug' : 'calm', look: q(lerp(-0.4, 0.15, smooth(ramp(f, 4, 26))), 2), blink: f > 30 && f < 34 ? 1 : 0 }, 'cleoEgypt', THR, { check: false }); break;
     case 'hall': queen({ expr: 'smug' }); court((c) => smooth(ramp(f, 48 + c.row * 4, 60 + c.row * 4))); statues(); break;
@@ -221,7 +234,7 @@ export const actorsAt = (f, T) => {
     case 'macedonia': break;
     case 'battle': {
       for (let r = 0; r < 2; r++) for (let i = 0; i < 7; i++) { const x = BX - 4.2 + i * 1.4 + r * 0.7, z = -2.2 - r * 1.5; man('hoplite', 60 + r * 7 + i, { expr: 'stern', L: 'shield', R: 'spear', step: q((f * 0.045 + i * 0.13 + r * 0.5) % 1), look: 0 }, [x, 0, z], { check: false }); }
-      man('ptolemy', 11, { expr: f > 440 ? 'grin' : 'stern', look: f > 440 ? 0.3 : -0.6, L: 'hip', R: 'hip' }, [BX + 0.1, 0, 1.5], f > 440 && f < 452 ? { hop: hop(f, 441, 0.08) } : {});
+      man('ptolemy', 11, { expr: f > 440 ? 'grin' : 'stern', look: f > 440 ? 0.3 : -0.6, L: 'hip', R: f > 454 ? 'thumb' : 'hip' }, [BX + 0.1, 0, 1.5], f > 440 && f < 452 ? { hop: hop(f, 441, 0.08) } : {});
       break;
     }
     case 'riders': {
@@ -261,7 +274,7 @@ export const actorsAt = (f, T) => {
     }
     case 'busts': {
       for (let i = 0; i < 7; i++) out.push(CARD('bust' + i, (p) => T.bust(p, i, true), [AX - 13.5 + i * 4.5, 1.26, STOA_Z + 4.5], 0.62, { tint, check: false, blob: false }));
-      man('cleoTeen', 22, { expr: f > 1015 ? 'smug' : 'calm', look: -0.3, L: 'belly', R: 'belly' }, [AX + 15.5, 0, STOA_Z + 5.2], { s: 0.92 });
+      if (f >= 1002) { const w = EZ.easeOut(ramp(f, 1002, 1018)); man('cleoTeen', 22, { expr: f > 1015 ? 'smug' : 'calm', look: -0.3, L: 'belly', R: 'belly', step: w < 1 ? q((f * 0.05) % 1) : 0 }, [AX + 15.5 + (1 - w) * 2.2, 0, STOA_Z + 4.6], { s: 0.92 }); } // walks into the gallery's end
       break;
     }
     case 'learn': {
@@ -310,18 +323,28 @@ export const actorsAt = (f, T) => {
 // ---------- 2D effects ----------
 const FX = (key, draw, pos, s, extra = {}) => ({ key, draw, x: pos[0], y: pos[1], z: pos[2], s, blob: false, shadow: false, order: 5, ...extra });
 const FXc = (key, draw, c, s, extra = {}) => FX(key, draw, [c[0], c[1] - 1.069 * s, c[2]], s, extra); // centred on design (300,500)
+const SKY_BIRDS = { battle: [BX - 6, 11, -26], riders: [BX + 2, 10, -24], dies: [BX + 4, 9, -18], maced: [BX - 3, 12, -24], kings: [AX - 3, 9.5, STOA_Z - 8],
+  busts: [AX - 2, 10, STOA_Z - 6], egypt: [SX + 26, 12, -90], isis: [PY[0] - 2, 15, PY[1] - 8], speech: [PY[0] + 3, 17, PY[1] - 8], split: [SX - 4, 8.5, -32] };
 export const fxAt = (f, T) => {
   const S = shotAt(f), out = [];
+  // hall: dust motes drifting through the light, embers rising off the braziers
+  if (S.light === 'hall') {
+    for (let i = 0; i < 16; i++) { const u = ((f * 0.0025 + hash(i) ) % 1); out.push(FX('mote', (p) => T.fxMote(p), [-3 + hash(i + 3) * 6 + Math.sin(f * 0.013 + i) * 0.3, 0.6 + u * 4.2, -19 + hash(i + 7) * 15], 0.045, { tint: '#ffe6b0', order: 4 })); }
+    for (const [x, y, z] of BRAZ) for (let k = 0; k < 2; k++) { const u = (f * 0.03 + k * 0.5 + x) % 1; out.push(FX('ember', (p) => T.fxMote(p), [x + Math.sin(f * 0.2 + k * 3) * 0.12, y + 1.6 + u * 1.6, z + 0.05], 0.035 * (1 - u), { tint: '#ff9a3a', order: 4 })); }
+  }
+  // birds wheeling in the outdoor skies
+  if (SKY_BIRDS[S.id]) { const [bx, by, bz] = SKY_BIRDS[S.id]; for (let i = 0; i < 5; i++) { const ph = q((f * 0.07 + i * 0.21) % 1, 1), a = f * 0.012 + i * 1.3;
+    out.push(FX('bird' + ph, (p) => T.fxBird(p, ph), [bx + Math.cos(a) * (3 + i), by + (i % 3) * 0.8 + Math.sin(f * 0.05 + i) * 0.3, bz + Math.sin(a) * 2], 0.5, { order: 1 })); } }
   if (S.light === 'hall') for (const [x, y, z] of BRAZ) { const t = q((f * 0.04 + x) % 1, 2); out.push(FX('flame' + t, (p) => T.fxFlame(p, t * 6.283), [x, y + 1.42, z + 0.02], 0.42, { order: 3 })); }
   if (S.light === 'tent') for (const [x, z] of [[-4, -3], [4, -3]]) { const t = q((f * 0.04 + x) % 1, 2); out.push(FX('flame' + t, (p) => T.fxFlame(p, t * 6.283), [BX + x, 1.45, TZ + z + 0.02], 0.42, { order: 3 })); }
   const shine = (key, t, c, s, col) => out.push(FXc(key + q(t, 1), (p) => T.fxShine(p, t, col), c, s));
   const spark = (key, t, c, s) => out.push(FXc(key + q(t, 2), (p) => T.fxSpark(p, t), c, s));
   switch (S.id) {
-    case 'eye': if (f > 14) spark('sp', ramp(f, 14, 34), [0, 3.12, -19.75], 0.16); break;
-    case 'spin': if (f > 94 && f < 116) { const t = ramp(f, 94, 112); out.push(FXc('burst' + q(t, 2), (p) => { p.g.translate(50, 250); T.fxBurst(p, t, '#ffe9a0', 16, 60, 260); }, [0, 2.75, -20.3], 1.6, { order: 1 })); spark('spk', ramp(f, 97, 113), [0.1, 2.9, -19.6], 0.5); } break;
+    case 'eye': if (f > 14) spark('sp', ramp(f, 14, 34), [0, 3.42, -19.6], 0.2); break;
+    case 'spin': if (f > 94 && f < 116) { const t = ramp(f, 94, 112); out.push(FXc('burst' + q(t, 2), (p) => { p.g.translate(50, 250); T.fxBurst(p, t, '#ffe9a0', 16, 60, 260); }, [0, 2.95, -20.3], 1.7, { order: 1 })); spark('spk', ramp(f, 97, 113), [0.1, 2.9, -19.6], 0.5); } break;
     case 'coin': if (f > 128) shine('cs', (f - 128) / 10, [-0.35, 0.3, -11.7], 0.22, '#fff3b0'); break;
-    case 'collar': if (f > 176) shine('cl', (f - 176) / 12, [0.18, 2.58, -19.6], 0.16, '#fff3b0'); break;
-    case 'cobra': if (f > 208) shine('cb', (f - 208) / 12, [0.0, 3.1, -19.6], 0.13, '#fff3b0'); break;
+    case 'collar': if (f > 176) shine('cl', (f - 176) / 12, [0.22, 2.6, -19.45], 0.2, '#fff3b0'); break;
+    case 'cobra': if (f > 208) shine('cb', (f - 208) / 12, [0.0, 3.32, -19.45], 0.17, '#fff3b0'); break;
     case 'macedonia': { const t = EZ.back(ramp(f, 368, 380)); if (t > 0.01) out.push(FX('pin', (p) => T.fxPin(p), [BX + MAPPT.maced[0], CAKE_TOP, TZ + MAPPT.maced[1]], 0.3 * t, { order: 4 })); break; }
     case 'battle': for (let i = 0; i < 5; i++) { const k = q(((f * 0.02) + i * 0.2) % 1, 2); out.push(FXc('bd' + k, (p) => T.fxDust(p, k, '#f0c896'), [BX - 4 + i * 2, 0.3, -1.6], 0.8)); } break;
     case 'riders': { const x0 = lerp(BX - 6.4, BX + 5.0, ramp(f, 471, 525)); for (let i = 0; i < 4; i++) { const k = q(((f * 0.05) + i * 0.25) % 1, 2); out.push(FXc('rd' + k, (p) => T.fxDust(p, k, '#f0c896'), [x0 - 1.4 - k * 2.4, 0.35, 3.9 + (i % 2) * 0.9], 0.75)); } break; }
@@ -333,13 +356,13 @@ export const fxAt = (f, T) => {
     case 'kings': for (let i = 0; i < 6; i++) { const f0 = 810 + i * 7, t = q(ramp(f, f0, f0 + 8), 2); if (f >= f0) out.push(FXc('kb' + i + t, (p) => T.bubble(p, 'greek', t, i % 2 ? 1 : -1), [AX - 1.9 + i * 1.3 + (i % 2 ? 0.45 : -0.45), 2.55, STOA_Z + 7.6 - i * 1.7], 0.42)); } break;
     case 'born': if (f > 900) spark('bs', ramp(f, 900, 926), [NURS[0] - 0.2, 1.0, NURS[1] + 0.35], 0.5); break;
     case 'busts': for (let i = 0; i < 7; i++) { const f0 = 944 + i * 8, t = q(ramp(f, f0, f0 + 7), 2); if (f >= f0) out.push(FXc('bq' + i + t, (p) => T.bubble(p, 'q', t, -1), [AX - 13.5 + i * 4.5 + 0.35, 2.6, STOA_Z + 4.6], 0.5)); }
-      if (f > 1010) out.push(FX('tscr', (p) => T.scroll(p, clamp((f - 1010) / 10)), [AX + 15.5, 0.42, STOA_Z + 5.35], 0.4, { order: 4 })); break;
+      if (f > 1016) out.push(FX('tscr', (p) => T.scroll(p, clamp((f - 1016) / 8)), [AX + 15.5, 0.42, STOA_Z + 4.75], 0.4, { order: 4 })); break;
     case 'learn': if (f > 1040) { const t = q(ramp(f, 1040, 1048), 2); out.push(FXc('lb' + t, (p) => T.bubble(p, 'glyph', t, -1), [LIB[0] + 0.65, 2.35, LIB[1] + 1.2], 0.55)); } break;
     case 'dress': if (f > 1094 && f < 1116) { const t = ramp(f, 1094, 1112); spark('ds', t, [0, 1.5, -14.6], 0.7); out.push(FXc('db' + q(t, 2), (p) => { p.g.translate(50, 250); T.fxBurst(p, t, '#ffe9a0', 16, 60, 260); }, [0, 1.4, -15.1], 1.5, { order: 1 })); } break;
     case 'isis': { const t = q(((f - 1125) / 50) % 1, 2); out.push(FXc('ib' + t, (p) => { p.g.translate(50, 250); p.g.translate(250, 250); p.g.rotate(t * 0.6); p.g.translate(-250, -250); T.fxBurst(p, 1, '#ffe08a', 18, 80, 300); }, [PY[0], 2.4, PY[1] + 2.4], 2.2, { order: 1 })); if (f > 1130) spark('is', ramp(f, 1130, 1150), [PY[0], 2.45, PY[1] + 3.2], 0.45); break; }
-    case 'speech': case 'speech2': { const t = q(ramp(f, S.id === 'speech' ? 1186 : 1218, S.id === 'speech' ? 1194 : 1226), 2); out.push(FXc('hb' + S.id + t, (p) => T.bubble(p, 'glyph', t, -1), S.id === 'speech' ? [PY[0] + 1.6, 10.6, PY[1] + 2.1] : [PY[0] + 0.62, 10.2, PY[1] + 2.1], S.id === 'speech' ? 1.2 : 0.55)); break; }
+    case 'speech': case 'speech2': { const t = q(ramp(f, S.id === 'speech' ? 1186 : 1218, S.id === 'speech' ? 1194 : 1226), 2); out.push(FXc('hb' + S.id + t, (p) => T.bubble(p, 'glyph', t, -1), S.id === 'speech' ? [PY[0] + 1.6, 10.6, PY[1] + 2.1] : [PY[0] + 0.5, 10.5, PY[1] + 2.1], S.id === 'speech' ? 1.2 : 0.5)); break; }
     case 'born2': { const t = EZ.back(ramp(f, 1262, 1276)); if (t > 0.01) out.push(FX('pin2', (p) => T.fxPin(p, '#2f8fb0'), [AX, 0, 30], 9 * t, { order: 4 })); break; }
-    case 'ruler': if (f > 1364) shine('rs', (f - 1364) / 12, [0, 3.15, -19.6], 0.22, '#fff3b0'); break;
+    case 'ruler': if (f > 1364) shine('rs', (f - 1364) / 12, [0, 3.37, -19.45], 0.26, '#fff3b0'); break;
     case 'throne': if (f > 1575) for (let i = 0; i < 5; i++) spark('ts' + i, ((f - 1575) / 24 + i * 0.2) % 1, [(i - 2) * 1.6, 3.4 + (i % 2) * 1.5, -18.5 + (i % 3)], 0.5); break;
     case 'split': if (f > 1652) { const t = q(ramp(f, 1652, 1662), 2); out.push(FXc('sq' + t, (p) => T.bubble(p, 'q', t, 0), [SX, 2.85, -6], 0.75)); } break;
   }

@@ -4,7 +4,7 @@ name tags and stamps — all inside the phone/iPad safe frame.  usage: python3 s
 LINES = ["The most famous Egyptian queen in history… came from a Greek royal family.", "Picture her.", "Golden collar.", "Cobra crown.",
  "All of Egypt bowing.", "Now rewind almost three hundred years.", "Macedonia, north of Greece.", "A general named Ptolemy rides beside Alexander the Great.",
  "Alexander dies young, and his empire gets carved up like a cake.", "Ptolemy grabs the richest slice.", "Egypt.",
- "His family rules it for nearly three centuries, from Alexandria, speaking Greek.", "Then Cleopatra", "the Seventh is born.",
+ "His family rules it for nearly three centuries, from Alexandria, speaking Greek.", "Then Cleopatra the Seventh", "is born.",
  "And she does something no Ptolemy before her is known to have done.", "She learns Egyptian.", "She dresses as a pharaoh.",
  "She's hailed as the new Isis.", "She speaks to her people in their own language.", "Born in Egypt?", "Yes.", "Ruler of Egypt?", "Absolutely.",
  "But her royal bloodline?", "Macedonian Greek.", "She embraced Egypt", "so completely… history made her its most iconic pharaoh.",
@@ -14,7 +14,13 @@ GOLD = {"egyptian", "greek", "egypt", "macedonia", "macedonian", "ptolemy", "ale
 segs = [tuple(map(float, l.split())) for l in open("segs.txt")]
 assert len(segs) == len(LINES), (len(segs), len(LINES))
 ts = lambda t: f"{int(t // 3600)}:{int(t % 3600 // 60):02d}:{t % 60:05.2f}"
-F = lambda f: f / 30
+import json
+RT = json.load(open("retime.json")); MAP = RT["map"]; END = RT["total"] / 30
+def toNew(f):  # v1 frame -> v2 frame (slower narration); tags/stamps below are written on the v1 timeline
+    for (o0, n0), (o1, n1) in zip(MAP, MAP[1:]):
+        if f <= o1: return n0 + (n1 - n0) * (f - o0) / (o1 - o0)
+    return MAP[-1][1]
+F = lambda f: toNew(f) / 30
 print("""[Script Info]
 ScriptType: v4.00+
 PlayResX: 1080
@@ -41,7 +47,7 @@ for (a, b), text in zip(segs, LINES):
         pop = "{\\fscx122\\fscy122\\t(0,90,\\fscx100\\fscy100)}"
         print(f"Dialogue: 0,{ts(s0)},{ts(s1)},W,,0,0,0,,{pop}{col}{w}")
 # title box (the question the video answers) — first act, then back for the payoff
-for a, b in [(0.0, 9.3), (54.2, 60.0)]:
+for a, b in [(0.0, F(279)), (F(1626), END)]:
     print(f"Dialogue: 1,{ts(a)},{ts(b)},T,,0,0,0,,{{\\fad(120,200)}}WAS CLEOPATRA EGYPTIAN?")
 # name tags / place labels: yellow boxes, popping in
 def tag(f0, f1, x, y, text, layer=2):
