@@ -4,7 +4,8 @@ name tags and stamps — all inside the phone/iPad safe frame.  usage: python3 s
 from lines import LINES
 GOLD = {"egyptian", "wasn't", "greek", "egypt", "macedonia", "macedonian", "ptolemy", "alexander", "cleopatra", "isis", "pharaoh", "real", "cake",
         "seventh", "alexandria", "bloodline", "yes", "absolutely", "egyptian.", "greek."}
-segs = [tuple(map(float, l.split())) for l in open("segs.txt")]
+import os
+segs = [tuple(map(float, l.split())) for l in open("segs_caps.txt" if os.path.exists("segs_caps.txt") else "segs.txt")]  # v3.1: actual voice timing
 assert len(segs) == len(LINES), (len(segs), len(LINES))
 ts = lambda t: f"{int(t // 3600)}:{int(t % 3600 // 60):02d}:{t % 60:05.2f}"
 import json

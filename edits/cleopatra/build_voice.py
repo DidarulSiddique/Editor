@@ -6,7 +6,7 @@ usage: python3 build_voice.py [speed]"""
 import os, sys, subprocess, wave, numpy as np, sherpa_onnx
 speed = float(sys.argv[1]) if len(sys.argv) > 1 else 1.05
 VOICE = sys.argv[2] if len(sys.argv) > 2 else "bm_fable"
-from lines import LINES, JOIN, SPEED, PAUSE
+from lines import LINES, JOIN, SPEED, PAUSE, SAY
 # v3: Kokoro v1.0 (54 voices, better prosody); bm_fable = British male like Lewis but more expressive (v2's Lewis read flat)
 M = os.path.expanduser("~/.cache/edit-kit/tts/kokoro-multi-lang-v1_0")
 SIDS = {"bm_fable": 25, "bm_george": 26, "bm_lewis": 27, "am_fenrir": 14, "am_michael": 16, "am_puck": 18, "af_heart": 3}
@@ -28,7 +28,7 @@ def wwrite(path, y, sr):
 units, k = [], 0
 while k < len(LINES):
     if k in JOIN: units.append((k, LINES[k] + " " + LINES[k + 1])); k += 2
-    else: units.append((k, LINES[k])); k += 1
+    else: units.append((k, SAY.get(k, LINES[k]))); k += 1
 LEAD, GAP = 0.4, 0.24
 out, t, segs, sr = [], LEAD, [], None
 for k, text in units:

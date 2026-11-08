@@ -25,11 +25,11 @@ def noise(n): return rng.standard_normal(n)
 def hp(x):  # crude high-pass: x minus its low-pass
     return x - lp(x, 0.05)
 
-sfx = np.zeros(N)
-def add(t, s, g=1.0):
-    i = int(t * SR)
+sfx = np.zeros(N); amb = np.zeros(N)   # amb: beds (fire crackle) that duck under the voice like the music
+def add(t, s, g=1.0, to=None):
+    to = sfx if to is None else to; i = int(t * SR)
     if i >= N: return
-    j = min(N, i + len(s)); sfx[i:j] += s[: j - i] * g
+    j = min(N, i + len(s)); to[i:j] += s[: j - i] * g
 
 def whoosh(d=0.5, up=True, g=0.25):
     n = int(d * SR); x = noise(n); k = 8
@@ -94,7 +94,7 @@ for k in range(9): add(F(418) + k * 0.6, boom(0.18, 45))           # marching
 for k in range(56):                                                  # gallop: 4-beat clops
     base = F(471) + (k // 4) * 0.26; add(base + (k % 4) * 0.045, hoof(0.12 if k % 4 else 0.16))
 add(F(532), whoosh(0.8, False, 0.12)); add(F(540), grind(0.9, 0.22)); add(F(556), boom(0.3, 48))
-for c in [584, 598, 612, 626]: add(F(c), thwack(0.35)); add(F(c) - 0.1, whoosh(0.15, True, 0.12))
+for c in [584, 598, 612, 626]: g = 0.35 if c < 626 else 0.12; add(F(c), thwack(g)); add(F(c) - 0.1, whoosh(0.15, True, g / 3))   # v3.1: the 4th chop lands on "cake": softer, or the k is lost
 add(F(652), slide(0.1, True)); add(F(662), crowd(1.0, 0.035)); add(F(664), sparkle(0.08))
 add(F(702), boom(0.55, 52)); add(F(724), waves((F(803) - F(724)), 0.05))
 for i in range(6): add(F(810 + i * 7), pop(0.15, 820 + i * 40))
@@ -109,7 +109,7 @@ add(F(1440), boom(0.6, 45)); add(F(1440), clang(0.15))
 add(F(1530), crowd(1.6, 0.04)); add(F(1575), sparkle(0.12)); add(F(1592), boom(0.4, 55))
 add(F(1626), boom(0.35, 50)); add(F(1652), pop(0.2, 700)); add(F(1709), sparkle(0.1)); add(F(1712), pop(0.18, 900))
 # fire crackle under every hall/tent shot
-for a, b in [(0, 357), (358, 415), (567, 699), (1077, 1124), (1318, 1437), (1482, 1625)]: add(F(a), crackle((F(b) - F(a)), 0.025))
+for a, b in [(0, 357), (358, 415), (567, 699), (1077, 1124), (1318, 1437), (1482, 1625)]: add(F(a), crackle((F(b) - F(a)), 0.025), to=amb)
 
 # ---- voice + ducked music ----
 voice = load("voice.wav")[:, 0]; vo = np.zeros(N); vo[: min(N, len(voice))] = voice[:N]
@@ -122,9 +122,12 @@ def movavg(x, w):  # centred moving average via cumulative sum
 e = np.sqrt(movavg(vo ** 2, int(0.05 * SR))); e = e / (e.max() + 1e-9)
 act = movavg(np.clip(e * 6, 0, 1), int(0.25 * SR))
 rv = np.sqrt(np.mean(vo[np.abs(vo) > 0.01] ** 2)); rm = np.sqrt(np.mean(mu ** 2))
-gm = (rv / rm) * (0.42 - 0.24 * act)                  # ~ -7.5 dB under the voice when talking, ~ -2.5 dB in gaps
+gm = (rv / rm) * (0.42 - 0.29 * act)                  # ~ -10.5 dB under the voice when talking (v3.1: was -7.5; Michael's consonants are softer), ~ -2.5 dB in gaps
 q0, q1 = F(1608), F(1710)   # the final question
-fade = np.minimum(1, t_all / 0.3) * np.minimum(1, (END - t_all) / 1.2) * (1 - 0.3 * np.clip((t_all - q0) * 4, 0, 1) * np.clip((q1 - t_all) * 4, 0, 1))
+h0, h1 = 0.3, 3.65          # v3.1: the hook sentence ("…wasn't Egyptian.") sits clear of the bed, or "wasn't" reads as "was an"
+hook = 1 - 0.45 * np.clip((t_all - h0) * 4, 0, 1) * np.clip((h1 - t_all) * 3, 0, 1)
+fade = np.minimum(1, t_all / 0.3) * np.minimum(1, (END - t_all) / 1.2) * (1 - 0.3 * np.clip((t_all - q0) * 4, 0, 1) * np.clip((q1 - t_all) * 4, 0, 1)) * hook
+sfx += amb * (1 - 0.75 * act)   # v3.1: undocked crackle masked final consonants ("cake" -> "cave", "slice" -> "sluts")
 mix = mu * (gm * fade)[:, None] + (vo * 1.0)[:, None] + np.stack([sfx, np.roll(sfx, 180)], 1) * rv * 3.2
 mix *= 0.9 / np.abs(mix).max()
 subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "f32le", "-ar", str(SR), "-ac", "2", "-i", "-", "mix_raw.wav"], input=mix.astype(np.float32).tobytes(), check=True)

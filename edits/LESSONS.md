@@ -40,6 +40,18 @@ these rules override its defaults. Newest first.
   reveals), pauses before reveals, and "!" where the voice should lift. Keep the script in one `lines.py`.
 - Pitch-variance metrics are unreliable on low gravelly voices (YIN loses voicing); pick by the published voice grades.
 
+### Cleopatra v3.1 — "the 3rd voice is the best" (am_michael from the 4-voice audition)
+- **Swap a narrator without re-rendering:** `fit_voice.py` generates each line in the new voice, solves Kokoro speed per
+  line to fill the old voice's caption slot, closes the last ≤4% with rubberband and pads the rest. `segs.txt` (animation)
+  is untouched; `segs_caps.txt` holds the new voice's real timing for the captions. Michael lands at speed ~0.8–0.9.
+- Never split a joined sentence at its *longest* pause ("…" pauses beat sentence boundaries) or crop a line to a slot —
+  that cut "so completely… history made her its most" out of the payoff. Place units whole; cut captions at the pause
+  nearest the character-proportional spot.
+- **ASR the final mix, not just the voice.** American "wasn't Egyptian" flaps the t → "was an Egyptian" under music
+  (fixed with a TTS-only spelling "wasn't…", `SAY` in lines.py); an unducked fire-crackle bed and a chop SFX on "cake"
+  masked final consonants ("slice" → "sluts"). Ambience beds duck under the voice like music; no hits on key words;
+  music ~-10.5 dB under the voice. Test with several window offsets — a window starting on a word's onset misreads.
+
 ## 2026-11-06 — Cave v2: "can't see the full picture on phone and iPad"
 - Players fill the screen with a 9:16 video: phones trim ~100 px off each side, iPads ~240 px off top and bottom.
   Most shots had faces/bodies at the frame edges, so they got cut.
