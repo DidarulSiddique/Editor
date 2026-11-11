@@ -3,6 +3,27 @@
 The user's ratings and the rules they taught. `/make-edit` reads this first;
 these rules override its defaults. Newest first.
 
+## 2026-11-11 — Cleopatra v4 rebuild against 9 @ricksclip-style references (`edits/cleopatra-v4/`)
+- **Measure the references, don't eyeball them.** At a 0.25 scene threshold the 9 references have 1–2 hard cuts each; v3 had 31.
+  Their shot changes are 10–30-frame camera flights, push-ins and 4–6-frame dissolves, and their median frame-to-frame
+  change is ~4.7 vs v3's 2.7 (the camera and cast never stop). **Rule:** no hard cuts in this style. Every shot carries a
+  transition in (`tin`: D dissolve 7f, W whip with motion blur 8f, F zoom-through 9f), rendered by drawing the outgoing shot
+  (forced via `setForce`) into a second target and compositing (`renderShot` + `compScene` in main.js).
+- **Script shape that matches them:** one protagonist doing something that sounds wrong ("The queen of Egypt had to learn
+  Egyptian… like a foreign language"), "You see,", second person ("Imagine you're a farmer on the Nile"), "How is that
+  possible?", a backstory with a hook of its own ("It starts with a stolen body"), an everyday analogy (the landlord who never
+  learns your name), and a visual payoff (a scribe gilding her image 400 years later). The last line repeats the hook so it loops.
+- **vidIQ narration:** one call for the whole script (credits are charged per 1,000 characters *per call*). Chris read the
+  1,235 characters in 75.5 s with a 2.4 s lead-in and 0.5–0.9 s pauses. `tighten.py` trims the lead-in, caps pauses at 0.34 s
+  and adds 3% tempo → 65.1 s, which is Shorts pacing.
+- **Word timings without Hugging Face:** sherpa-onnx models download from GitHub releases. The whisper models give no
+  timestamps, but zipformer-small-en gives token times. Its tokens start with a space, not "▁", so `words.py` aligns ASR words to
+  the script with difflib.
+- **9:16 framing:** a chase reads best head-on (camera ahead of the horses, looking back). Side tracking only fits ~6 m of road
+  and loses the chasers. A big relief or statue lit warm at night blows out to flat yellow: keep its point lights ≤ ~2.5 and
+  bloom ≤ 1.5, and frame the payoff on a face.
+- Speed: 4 Playwright workers render ~22 frames/min (~5 s per frame each), so a 66 s short takes ~90 min. Start it in the background early.
+
 ## 2026-11-06 — Cleopatra mini-documentary (references: bell-in-the-grave, "Why Perfect Railroads Don't Work", pirate storm oil)
 - Built in `edits/cleopatra/` on the cave engine: 4 sets 1 km apart (throne hall, Macedonian battlefield + generals' tent,
   Alexandria with the Pharos, a Greece|Egypt split world), 32 shots in 60 s, a 360° orbit for the costume change,
