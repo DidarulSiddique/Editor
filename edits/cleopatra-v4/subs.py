@@ -2,7 +2,7 @@
 """Captions in the references' style: one word at a time (a short function word rides with the next word),
 white heavy type, thin dark outline, soft shadow, centred at ~70% height.  usage: python3 subs.py > subs.ass"""
 import json
-W = json.load(open("work/words.json")); END = 2016 / 30
+W = json.load(open("work/words.json")); END = 1960 / 30
 ts = lambda t: f"{int(t // 3600)}:{int(t % 3600 // 60):02d}:{t % 60:05.2f}"
 print("""[Script Info]
 ScriptType: v4.00+

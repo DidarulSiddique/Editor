@@ -3,6 +3,21 @@
 The user's ratings and the rules they taught. `/make-edit` reads this first;
 these rules override its defaults. Newest first.
 
+## 2026-11-12 — Cleopatra v4d: "use this voiceover instead, speed it up if needed" (user's own ElevenLabs "Jon" read)
+- The supplied read was 75.7 s for a picture timed to a 67.2 s voice. It also stopped at "…in gold." and left out the closing line.
+  **Rule:** run ASR on a supplied voiceover against the script before anything else, and report missing or changed lines.
+  Don't ask about them; fit what was given.
+- Fitting a new voice to a rendered picture without re-rendering (`fit.py`):
+  - Cap pauses at 0.30 s.
+  - Anchor the first word of every shot. Let each anchor land between −0.10 s and +0.28 s of the old word; the picture may lead
+    the word a little.
+  - Choose the landings by least squares so the tempo stays as even as possible.
+  - Stretch the whole file once per (quantised) tempo with rubberband, then cut and crossfade (12 ms) at the anchors.
+  - Result here: tempo 1.03–1.27× (mean 1.12×), every shot's word within 0.4 s of its cut, ASR clean, no clicks at the joins.
+  - Locking every shot exactly would have needed 0.93–1.53×, which sounds rushed in places. Don't.
+- A shot built for a line that no longer exists gets cut to a short wordless button: the loop flip went from 122 to 66 frames.
+  Re-render only that shot (66 frames ≈ 4 min on 4 workers).
+
 ## 2026-11-12 — Cleopatra v4c: "can't see full frame on iPad and phone — keep 9:16, just frame correctly"
 - The per-character safe-frame check was not enough. It skipped extras (`check: false`) and close-ups (`cu`/`macro`), and it
   ignored props, bubbles and sets, so v4b still lost content to the crops (phones trim ~100 px per side, iPads ~240 px top and bottom).

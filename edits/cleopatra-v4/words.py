@@ -1,5 +1,5 @@
 """Word timings: zipformer ASR token timestamps aligned onto the script's words -> work/words.json
-usage: python3 words.py voice.wav script.txt <model_dir>"""
+usage: python3 words.py voice.wav script.txt <model_dir> [out.json]"""
 import sys, json, re, difflib, numpy as np, soundfile as sf, sherpa_onnx
 wav, script, md = sys.argv[1:4]
 r = sherpa_onnx.OfflineRecognizer.from_transducer(encoder=md + "/encoder-epoch-99-avg-1.onnx", decoder=md + "/decoder-epoch-99-avg-1.onnx",
@@ -39,6 +39,6 @@ for i in range(len(out)):  # unmatched script words: interpolate between neighbo
         p = next((out[j][1] for j in range(i - 1, -1, -1) if out[j]), 0.0); n = next((out[j][0] for j in range(i + 1, len(out)) if out[j]), p + 0.3)
         out[i] = (p, max(p + 0.1, n))
 words = [{"w": w, "t0": round(t[0], 3), "t1": round(t[1], 3)} for w, t in zip(sw, out)]
-json.dump(words, open("work/words.json", "w"), indent=0)
+json.dump(words, open(sys.argv[4] if len(sys.argv) > 4 else "work/words.json", "w"), indent=0)
 print(" ".join(w["w"] for w in asr)); print(len(sw), "script words;", sum(1 for t, *_ in sm.get_opcodes() if t != "equal"), "non-equal ops")
 for w in words: print(f'{w["t0"]:6.2f} {w["w"]}', end=" |")

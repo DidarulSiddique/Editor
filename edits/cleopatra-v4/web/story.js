@@ -1,9 +1,10 @@
 // Cleopatra v4 — "The most famous Egyptian queen in history… was not Egyptian."  67.2 s, 30 fps, 9:16.
-// voice.wav = vidIQ "Chris" (tighten.py). v4b: new hook + closing line spliced around the v4a middle, which moved exactly
+// v4d: voice.wav = the user's ElevenLabs "Jon" read, fitted onto these shot times by fit.py (no closing line, so the loop
+// shot is a short wordless flip, 66 frames).  Earlier: vidIQ "Chris" (tighten.py). v4b: new hook + closing line spliced around the v4a middle, which moved exactly
 // +64 frames (SHIFT) so its rendered frames are reused (middle shots keep their v4a seconds and add SHIFT).
 // Transitions follow the @ricksclip references: no hard cuts — dissolves (D), whip pans (W), zoom-throughs (F).
 import { M as EZ, camFromKeys, idle } from './motion.js';
-export const FPS = 30, TOTAL = 2016, SHIFT = 64;
+export const FPS = 30, TOTAL = 1960, SHIFT = 64;
 const s2f = (s) => Math.round(s * 30);
 // [id, start s, light, transition in, flags]
 const PLAN = [
@@ -122,10 +123,10 @@ const CAMS = {
   crowd: [K(A('crowd'), [PY[0] + 0.6, 2.3, PY[1] + 16.5], [PY[0], 4.4, PY[1] + 2], 56), K(B('crowd') + 9, [PY[0] + 0.2, 2.7, PY[1] + 14.5], [PY[0], 5.0, PY[1] + 2], 52, 'easeOut')],
   scribe: [K(A('scribe'), [TX - 1.5, 1.4, -12], [TX + 0.5, 4.6, -27], 50), K(B('scribe') + 9, [TX + 0.6, 3.0, -19.5], [TX + 1.3, 4.2, -27], 44, 'smooth')],
   gold: [K(A('gold'), [TX + 3.4, 4.9, -20.6], [TX + 1.0, 5.0, -27.3], 48), K(off('gold', 26), [TX + 2.8, 5.0, -19.6], [TX + 0.6, 5.0, -27.3], 50), K(B('gold') + 9, [TX, 9, 26], [TX, 4.5, -24], 56, 'easeIn', [[TX + 0.5, 5.2, -12], [TX, 6.5, 6]])],
-  loop: [K(A('loop'), [0.6, 1.8, -15.0], [0, 2.85, -19.9], 38), K(off('loop', 70), [0.3, 2.9, -16.2], [0, 2.95, -19.9], 30, 'smooth'), K(B('loop'), [1.2, 0.9, -13.6], [0, 3.0, -19.9], 42, 'smooth')],
+  loop: [K(A('loop'), [0.6, 1.8, -15.0], [0, 2.85, -19.9], 38), K(off('loop', 26), [0.3, 2.9, -16.2], [0, 2.95, -19.9], 30, 'smooth'), K(B('loop'), [1.2, 0.9, -13.6], [0, 3.0, -19.9], 42, 'smooth')],
 };
 const CHASE_X = (f) => ROAD + 4 + (f - A('chase')) * 0.32;
-const KICKS = [{ f: A('flip') + 9, a: 0.05 }, { f: A('loop') + 83, a: 0.04 }, { f: A('hijack') + 30, a: 0.05 }, { f: A('crown') + 20, a: 0.04 }, { f: A('gold') + 6, a: 0.03 }];
+const KICKS = [{ f: A('flip') + 9, a: 0.05 }, { f: A('loop') + 25, a: 0.04 }, { f: A('hijack') + 30, a: 0.05 }, { f: A('crown') + 20, a: 0.04 }, { f: A('gold') + 6, a: 0.03 }];
 EZ.linear = (t) => clamp(t);
 export const camAt = (f) => {
   const S = shotAt(f); let c;
@@ -136,7 +137,7 @@ export const camAt = (f) => {
   else c = camFromKeys(CAMS[S.id], f, { creep: 0.0005, kicks: KICKS });
   c.flash = 0;
   const flashAt = (a, n, k) => { if (f >= a && f < a + n) c.flash = Math.max(c.flash, (1 - (f - a) / n) * k); };
-  flashAt(A('flip') + 8, 6, 0.6); flashAt(A('smug') + 34, 5, 0.45); flashAt(A('loop') + 82, 6, 0.55); flashAt(A('crown') + 18, 6, 0.6); flashAt(A('dress') + 20, 6, 0.6); flashAt(A('learns') + 12, 5, 0.35); flashAt(A('gold') + 8, 7, 0.55); flashAt(A('isis') + 14, 5, 0.4);
+  flashAt(A('flip') + 8, 6, 0.6); flashAt(A('smug') + 34, 5, 0.45); flashAt(A('loop') + 24, 6, 0.55); flashAt(A('crown') + 18, 6, 0.6); flashAt(A('dress') + 20, 6, 0.6); flashAt(A('learns') + 12, 5, 0.35); flashAt(A('gold') + 8, 7, 0.55); flashAt(A('isis') + 14, 5, 0.4);
   // handheld drift on every shot (references never lock off)
   { const d = Math.hypot(c.look[0] - c.pos[0], c.look[1] - c.pos[1], c.look[2] - c.pos[2]) * 0.005;
     c.look = [c.look[0] + d * Math.sin(f * 0.047 + 1.3), c.look[1] + d * 0.8 * Math.sin(f * 0.061), c.look[2] + d * Math.sin(f * 0.039 + 2.1)]; }
@@ -238,9 +239,9 @@ export const actorsAt = (f, T) => {
       const sashes = ['#6b2f7a', '#3f6fb0', '#b8322f', '#2f8a5a', '#c48a22', '#6b2f7a'];
       seated({ tunic: '#f1ead8', dress: '#ece2cc', skin: ['#e2b48c', '#e8bf98', '#d9a57a'][i % 3], greekHair: ['#3a2414', '#4a2c1a', '#2a1d14', '#8a8a8a'][i % 4], crown: 'diadem', sash: sashes[i], beard: i % 2 ? '#3a2414' : undefined }, 80 + i, { expr: ['smug', 'grin', 'stern', 'laugh', 'smug', 'grin'][i], look: 0.1 }, { sx: k < 6 ? 1 : sp.sx });
       court(); statues(); break; }
-    case 'loop': { const k = f - A('loop'), sp = spinAt(f, A('loop') + 80, 10);
-      seated(sp.swapped ? 'cleoGreek' : 'cleoEgypt', 21, { expr: sp.swapped ? 'smug' : (k > 30 ? 'grin' : 'calm'), look: sp.swapped ? -0.3 : 0.1, blink: sp.swapped && k > 100 && k < 106 ? 1 : blinkAt(f, 21) }, { sx: sp.sx });
-      court(() => smooth(ramp(k, 10, 26))); statues(); break; }
+    case 'loop': { const k = f - A('loop'), sp = spinAt(f, A('loop') + 22, 10);
+      seated(sp.swapped ? 'cleoGreek' : 'cleoEgypt', 21, { expr: sp.swapped ? 'smug' : (k > 8 ? 'grin' : 'calm'), look: sp.swapped ? -0.3 : 0.1, blink: sp.swapped && k > 46 && k < 52 ? 1 : blinkAt(f, 21) }, { sx: sp.sx });
+      court(() => smooth(ramp(k, 6, 16))); statues(); break; }
     case 'desk': case 'card': {
       const k = 0;
       const expr = S.id === 'card' ? (f > A('card') + 28 ? 'pained' : 'squint') : S.id === 'loop' ? (k > 70 ? 'smug' : 'grin') : 'squint';
@@ -368,7 +369,7 @@ export const fxAt = (f, T) => {
     case 'flip': { const k = f - A('flip'); if (k > 2 && k < 26) { const t = ramp(k, 2, 22); out.push(FXc('fburst' + q(t, 2), (p) => { p.g.translate(50, 250); T.fxBurst(p, t, '#ffe9a0', 16, 60, 260); }, [0, 3.0, -20.0], 1.7, { order: 1 })); spark('fsp', ramp(k, 4, 22), [0.1, 3.3, -19.4], 0.5); } break; }
     case 'smug': { const k = f - A('smug'); if (k > 10 && k < 34) spark('ssp', ramp(k, 10, 32), [-0.25, 3.45, -19.4], 0.22); if (k > 28 && k < 50) { const t = ramp(k, 28, 46); out.push(FXc('sburst' + q(t, 2), (p) => { p.g.translate(50, 250); T.fxBurst(p, t, '#ffe9a0', 16, 60, 260); }, [0, 3.0, -20.0], 1.7, { order: 1 })); } break; }
     case 'dynasty': { const k = f - A('dynasty'); for (let n = 1; n <= 5; n++) { const d = k - (n * 12 - 4); if (d >= 0 && d < 10) spark('dsp' + n, d / 10, [0.1, 3.2, -19.4], 0.4); } break; }
-    case 'loop': { const k = f - A('loop'); if (k > 4) spark('lsp', ramp(k, 4, 24), [0.1, 3.35, -19.4], 0.3); if (k > 78 && k < 104) { const t = ramp(k, 78, 100); out.push(FXc('lburst' + q(t, 2), (p) => { p.g.translate(50, 250); T.fxBurst(p, t, '#ffe9a0', 16, 60, 260); }, [0, 3.0, -20.0], 1.7, { order: 1 })); spark('lsp2', ramp(k, 80, 100), [0.1, 3.3, -19.4], 0.5); } break; }
+    case 'loop': { const k = f - A('loop'); if (k > 4) spark('lsp', ramp(k, 4, 18), [0.1, 3.35, -19.4], 0.3); if (k > 20 && k < 46) { const t = ramp(k, 20, 42); out.push(FXc('lburst' + q(t, 2), (p) => { p.g.translate(50, 250); T.fxBurst(p, t, '#ffe9a0', 16, 60, 260); }, [0, 3.0, -20.0], 1.7, { order: 1 })); spark('lsp2', ramp(k, 22, 42), [0.1, 3.3, -19.4], 0.5); } break; }
     case 'desk': card('q', 1, [DESK[0] + 0.32, 1.42, DESK[2] + 0.42], 0.42); out.push(FXc('sw', (p) => T.fxSweat(p), [DESK[0] + 0.32, 1.95, DESK[2] + 0.05], 0.18)); break;
     case 'card': { const k = f - A('card'), fl = k < 14 ? 1 : k < 22 ? Math.abs(Math.cos((k - 14) / 8 * Math.PI)) : 1;
       card(k < 18 ? 'q' : 'x', fl, [DESK[0] + 0.32, 1.42, DESK[2] + 0.55], 0.42); break; }

@@ -3,7 +3,7 @@
 import subprocess
 import numpy as np
 import json
-SR = 48000; FPS = 30; TOTAL = 2016; N = int(TOTAL / FPS * SR); END = TOTAL / FPS
+SR = 48000; FPS = 30; TOTAL = 1960; N = int(TOTAL / FPS * SR); END = TOTAL / FPS
 rng = np.random.default_rng(7)
 F = lambda f: f / FPS
 t_all = np.arange(N) / SR
@@ -130,7 +130,7 @@ add(T('crowd'), crowd(1.8, 0.09)); add(T('crowd', 4), pop(0.16, 820))
 add(T('scribe'), crickets((A['loop'] - A['scribe']) / FPS, 0.01), to=amb)
 add(T('gold', 6), boom(0.4, 48)); add(T('gold', 6), chime(523, 0.07, 3.0)); add(T('gold', 10), chime(784, 0.06, 3.0)); add(T('gold', 14), chime(1046, 0.05, 3.0))
 for i in range(4): add(T('gold', 8 + i * 9), sparkle(0.09))
-add(T('loop', 6), sparkle(0.08)); add(T('loop', 80), boom(0.4, 58)); add(T('loop', 82), sparkle(0.13)); add(T('loop', 84), chime(1568, 0.08, 1.4))
+add(T('loop', 6), sparkle(0.08)); add(T('loop', 22), boom(0.4, 58)); add(T('loop', 24), sparkle(0.13)); add(T('loop', 26), chime(1568, 0.08, 1.4))
 for a, b in [('queen', 'busts'), ('dynasty', 'bustsQ'), ('enter', 'how'), ('crown', 'alex'), ('wedding', 'landlord'), ('dress', 'isis'), ('talk', 'crowd')]: add(T(a), crackle((A[b] - A[a]) / FPS, 0.02), to=amb)
 
 # ---- voice + ducked music (music stretched to the picture so its finale lands on the payoff) ----

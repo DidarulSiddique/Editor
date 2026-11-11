@@ -10,159 +10,153 @@ Style: W,Inter Black,92,&H00FFFFFF,&H00FFFFFF,&H00140C10,&H78000000,0,0,0,0,100,
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
-Dialogue: 0,0:00:00.00,0:00:00.36,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}The most
-Dialogue: 0,0:00:00.33,0:00:00.76,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}famous
-Dialogue: 0,0:00:00.73,0:00:01.24,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}Egyptian
-Dialogue: 0,0:00:01.21,0:00:01.48,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}queen
-Dialogue: 0,0:00:01.45,0:00:02.28,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}in history…
-Dialogue: 0,0:00:02.25,0:00:02.76,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}was not
-Dialogue: 0,0:00:02.73,0:00:03.48,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}Egyptian.
-Dialogue: 0,0:00:03.45,0:00:03.96,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}At least,
-Dialogue: 0,0:00:03.93,0:00:04.22,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}not the
-Dialogue: 0,0:00:04.19,0:00:04.56,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}way you
-Dialogue: 0,0:00:04.53,0:00:04.92,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}think.
-Dialogue: 0,0:00:04.89,0:00:05.28,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}You see,
-Dialogue: 0,0:00:05.25,0:00:05.84,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}her family
-Dialogue: 0,0:00:05.81,0:00:06.48,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}was Greek.
-Dialogue: 0,0:00:06.45,0:00:06.64,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}They
-Dialogue: 0,0:00:06.61,0:00:07.00,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}had ruled
-Dialogue: 0,0:00:06.97,0:00:07.36,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}Egypt
-Dialogue: 0,0:00:07.33,0:00:07.68,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}for two
-Dialogue: 0,0:00:07.65,0:00:07.80,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}hundred
-Dialogue: 0,0:00:07.77,0:00:08.40,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}and fifty
-Dialogue: 0,0:00:08.37,0:00:08.80,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}years,
-Dialogue: 0,0:00:08.77,0:00:09.28,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}and no
-Dialogue: 0,0:00:09.25,0:00:09.60,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}king
-Dialogue: 0,0:00:09.57,0:00:09.92,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}before
-Dialogue: 0,0:00:09.89,0:00:10.20,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}her is
-Dialogue: 0,0:00:10.17,0:00:10.40,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}known
-Dialogue: 0,0:00:10.37,0:00:10.68,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}to have
-Dialogue: 0,0:00:10.65,0:00:11.08,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}learned
-Dialogue: 0,0:00:11.05,0:00:11.66,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}Egyptian.
-Dialogue: 0,0:00:11.63,0:00:12.14,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}Imagine
-Dialogue: 0,0:00:12.11,0:00:12.30,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}you're
-Dialogue: 0,0:00:12.27,0:00:12.78,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}a farmer
-Dialogue: 0,0:00:12.75,0:00:12.98,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}on the
-Dialogue: 0,0:00:12.95,0:00:13.42,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}Nile.
-Dialogue: 0,0:00:13.39,0:00:13.86,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}You walk
-Dialogue: 0,0:00:13.83,0:00:14.06,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}into
-Dialogue: 0,0:00:14.03,0:00:14.54,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}the palace
-Dialogue: 0,0:00:14.51,0:00:14.98,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}to beg
-Dialogue: 0,0:00:14.95,0:00:15.54,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}for help…
-Dialogue: 0,0:00:15.51,0:00:15.90,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}and your
-Dialogue: 0,0:00:15.87,0:00:16.26,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}pharaoh
-Dialogue: 0,0:00:16.23,0:00:16.50,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}needs
-Dialogue: 0,0:00:16.47,0:00:17.18,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}a translator
-Dialogue: 0,0:00:17.15,0:00:17.38,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}just
-Dialogue: 0,0:00:17.35,0:00:18.14,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}to understand
-Dialogue: 0,0:00:18.11,0:00:18.38,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}you.
-Dialogue: 0,0:00:18.35,0:00:18.74,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}How is
-Dialogue: 0,0:00:18.71,0:00:18.94,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}that
-Dialogue: 0,0:00:18.91,0:00:19.58,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}possible?
-Dialogue: 0,0:00:19.55,0:00:20.18,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}It starts
-Dialogue: 0,0:00:20.15,0:00:20.30,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}with
-Dialogue: 0,0:00:20.27,0:00:21.02,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}a stolen
-Dialogue: 0,0:00:20.99,0:00:21.52,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}body.
-Dialogue: 0,0:00:21.49,0:00:21.60,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}When
-Dialogue: 0,0:00:21.57,0:00:22.16,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}Alexander
-Dialogue: 0,0:00:22.13,0:00:22.56,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}the Great
-Dialogue: 0,0:00:22.53,0:00:23.00,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}dies,
-Dialogue: 0,0:00:22.97,0:00:23.72,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}his general
-Dialogue: 0,0:00:23.69,0:00:24.40,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}Ptolemy
-Dialogue: 0,0:00:24.37,0:00:24.92,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}hijacks
-Dialogue: 0,0:00:24.89,0:00:25.48,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}the funeral
-Dialogue: 0,0:00:25.45,0:00:25.84,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}cart…
-Dialogue: 0,0:00:25.81,0:00:26.44,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}and drives
-Dialogue: 0,0:00:26.41,0:00:27.16,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}Alexander's
-Dialogue: 0,0:00:27.13,0:00:27.60,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}corpse
-Dialogue: 0,0:00:27.57,0:00:27.92,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}all the
-Dialogue: 0,0:00:27.89,0:00:28.24,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}way to
-Dialogue: 0,0:00:28.21,0:00:28.84,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}Egypt.
-Dialogue: 0,0:00:28.81,0:00:29.00,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}With
-Dialogue: 0,0:00:28.97,0:00:29.40,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}the most
-Dialogue: 0,0:00:29.37,0:00:29.88,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}famous
+Dialogue: 0,0:00:00.00,0:00:00.32,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}The most
+Dialogue: 0,0:00:00.29,0:00:00.72,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}famous
+Dialogue: 0,0:00:00.69,0:00:01.24,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}Egyptian
+Dialogue: 0,0:00:01.21,0:00:01.52,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}queen
+Dialogue: 0,0:00:01.49,0:00:02.24,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}in history…
+Dialogue: 0,0:00:02.21,0:00:02.72,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}was not
+Dialogue: 0,0:00:02.69,0:00:03.36,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}Egyptian.
+Dialogue: 0,0:00:03.33,0:00:03.92,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}At least,
+Dialogue: 0,0:00:03.89,0:00:04.24,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}not the
+Dialogue: 0,0:00:04.21,0:00:04.60,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}way you
+Dialogue: 0,0:00:04.57,0:00:04.96,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}think.
+Dialogue: 0,0:00:04.93,0:00:05.36,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}You see,
+Dialogue: 0,0:00:05.33,0:00:06.00,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}her family
+Dialogue: 0,0:00:05.97,0:00:06.68,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}was Greek.
+Dialogue: 0,0:00:06.65,0:00:06.84,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}They
+Dialogue: 0,0:00:06.81,0:00:07.20,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}had ruled
+Dialogue: 0,0:00:07.17,0:00:07.56,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}Egypt
+Dialogue: 0,0:00:07.53,0:00:07.92,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}for two
+Dialogue: 0,0:00:07.89,0:00:08.16,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}hundred
+Dialogue: 0,0:00:08.13,0:00:08.68,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}and fifty
+Dialogue: 0,0:00:08.65,0:00:09.08,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}years,
+Dialogue: 0,0:00:09.05,0:00:09.52,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}and no
+Dialogue: 0,0:00:09.49,0:00:09.80,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}king
+Dialogue: 0,0:00:09.77,0:00:10.12,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}before
+Dialogue: 0,0:00:10.09,0:00:10.48,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}her is
+Dialogue: 0,0:00:10.45,0:00:10.64,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}known
+Dialogue: 0,0:00:10.61,0:00:10.92,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}to have
+Dialogue: 0,0:00:10.89,0:00:11.20,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}learned
+Dialogue: 0,0:00:11.17,0:00:11.82,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}Egyptian.
+Dialogue: 0,0:00:11.79,0:00:12.22,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}Imagine
+Dialogue: 0,0:00:12.19,0:00:12.42,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}you're
+Dialogue: 0,0:00:12.39,0:00:12.90,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}a farmer
+Dialogue: 0,0:00:12.87,0:00:13.10,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}on the
+Dialogue: 0,0:00:13.07,0:00:13.58,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}Nile.
+Dialogue: 0,0:00:13.55,0:00:13.98,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}You walk
+Dialogue: 0,0:00:13.95,0:00:14.22,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}into
+Dialogue: 0,0:00:14.19,0:00:14.66,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}the palace
+Dialogue: 0,0:00:14.63,0:00:15.06,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}to beg
+Dialogue: 0,0:00:15.03,0:00:15.58,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}for help…
+Dialogue: 0,0:00:15.55,0:00:15.94,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}and your
+Dialogue: 0,0:00:15.91,0:00:16.34,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}pharaoh
+Dialogue: 0,0:00:16.31,0:00:16.58,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}needs
+Dialogue: 0,0:00:16.55,0:00:17.34,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}a translator
+Dialogue: 0,0:00:17.31,0:00:17.54,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}just
+Dialogue: 0,0:00:17.51,0:00:18.22,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}to understand
+Dialogue: 0,0:00:18.19,0:00:18.42,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}you.
+Dialogue: 0,0:00:18.39,0:00:18.78,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}How is
+Dialogue: 0,0:00:18.75,0:00:18.98,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}that
+Dialogue: 0,0:00:18.95,0:00:19.64,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}possible?
+Dialogue: 0,0:00:19.61,0:00:20.32,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}It starts
+Dialogue: 0,0:00:20.29,0:00:20.48,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}with
+Dialogue: 0,0:00:20.45,0:00:21.12,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}a stolen
+Dialogue: 0,0:00:21.09,0:00:21.52,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}body.
+Dialogue: 0,0:00:21.49,0:00:21.68,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}When
+Dialogue: 0,0:00:21.65,0:00:22.32,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}Alexander
+Dialogue: 0,0:00:22.29,0:00:22.76,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}the Great
+Dialogue: 0,0:00:22.73,0:00:23.20,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}dies,
+Dialogue: 0,0:00:23.17,0:00:23.80,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}his general
+Dialogue: 0,0:00:23.77,0:00:24.36,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}Ptolemy
+Dialogue: 0,0:00:24.33,0:00:24.88,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}hijacks
+Dialogue: 0,0:00:24.85,0:00:25.44,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}the funeral
+Dialogue: 0,0:00:25.41,0:00:25.80,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}cart…
+Dialogue: 0,0:00:25.77,0:00:26.40,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}and drives
+Dialogue: 0,0:00:26.37,0:00:27.08,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}Alexander's
+Dialogue: 0,0:00:27.05,0:00:27.52,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}corpse
+Dialogue: 0,0:00:27.49,0:00:27.88,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}all the
+Dialogue: 0,0:00:27.85,0:00:28.24,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}way to
+Dialogue: 0,0:00:28.21,0:00:28.88,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}Egypt.
+Dialogue: 0,0:00:28.85,0:00:29.04,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}With
+Dialogue: 0,0:00:29.01,0:00:29.44,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}the most
+Dialogue: 0,0:00:29.41,0:00:29.88,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}famous
 Dialogue: 0,0:00:29.85,0:00:30.24,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}corpse
 Dialogue: 0,0:00:30.21,0:00:30.48,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}in the
-Dialogue: 0,0:00:30.45,0:00:30.76,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}world
-Dialogue: 0,0:00:30.73,0:00:31.12,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}as his
-Dialogue: 0,0:00:31.09,0:00:31.60,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}trophy,
-Dialogue: 0,0:00:31.57,0:00:32.16,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}he makes
-Dialogue: 0,0:00:32.13,0:00:32.56,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}himself
-Dialogue: 0,0:00:32.53,0:00:33.17,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}king.
-Dialogue: 0,0:00:33.15,0:00:33.74,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}His family
+Dialogue: 0,0:00:30.45,0:00:30.80,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}world
+Dialogue: 0,0:00:30.77,0:00:31.16,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}as his
+Dialogue: 0,0:00:31.13,0:00:31.68,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}trophy,
+Dialogue: 0,0:00:31.65,0:00:32.20,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}he makes
+Dialogue: 0,0:00:32.17,0:00:32.64,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}himself
+Dialogue: 0,0:00:32.61,0:00:33.06,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}king.
+Dialogue: 0,0:00:33.03,0:00:33.74,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}His family
 Dialogue: 0,0:00:33.71,0:00:34.10,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}rules
-Dialogue: 0,0:00:34.07,0:00:34.22,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}from
-Dialogue: 0,0:00:34.19,0:00:35.18,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}Alexandria,
-Dialogue: 0,0:00:35.15,0:00:35.70,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}a Greek
-Dialogue: 0,0:00:35.67,0:00:36.14,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}city.
-Dialogue: 0,0:00:36.11,0:00:36.34,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}They
-Dialogue: 0,0:00:36.31,0:00:36.62,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}speak
-Dialogue: 0,0:00:36.59,0:00:36.94,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}Greek,
-Dialogue: 0,0:00:36.91,0:00:37.10,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}they
-Dialogue: 0,0:00:37.07,0:00:37.34,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}marry
-Dialogue: 0,0:00:37.31,0:00:37.50,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}their
-Dialogue: 0,0:00:37.47,0:00:38.34,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}own siblings,
-Dialogue: 0,0:00:38.31,0:00:38.78,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}and they
-Dialogue: 0,0:00:38.75,0:00:39.14,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}never
-Dialogue: 0,0:00:39.11,0:00:39.50,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}bother
-Dialogue: 0,0:00:39.47,0:00:39.62,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}with
-Dialogue: 0,0:00:39.59,0:00:40.22,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}Egyptian.
-Dialogue: 0,0:00:40.19,0:00:40.50,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}It's
-Dialogue: 0,0:00:40.47,0:00:40.62,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}like
-Dialogue: 0,0:00:40.59,0:00:41.18,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}a landlord
-Dialogue: 0,0:00:41.15,0:00:41.58,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}who owns
-Dialogue: 0,0:00:41.55,0:00:41.70,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}your
-Dialogue: 0,0:00:41.67,0:00:42.06,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}building
-Dialogue: 0,0:00:42.03,0:00:42.46,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}for two
-Dialogue: 0,0:00:42.43,0:00:42.74,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}hundred
-Dialogue: 0,0:00:42.71,0:00:43.30,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}and fifty
-Dialogue: 0,0:00:43.27,0:00:43.78,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}years…
-Dialogue: 0,0:00:43.75,0:00:44.34,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}and never
-Dialogue: 0,0:00:44.31,0:00:44.70,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}learns
-Dialogue: 0,0:00:44.67,0:00:44.86,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}your
-Dialogue: 0,0:00:44.83,0:00:45.26,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}name.
-Dialogue: 0,0:00:45.23,0:00:45.50,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}Then
-Dialogue: 0,0:00:45.47,0:00:46.10,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}Cleopatra
-Dialogue: 0,0:00:46.07,0:00:46.58,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}the Seventh
-Dialogue: 0,0:00:46.55,0:00:47.16,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}is born,
-Dialogue: 0,0:00:47.13,0:00:47.64,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}and she
-Dialogue: 0,0:00:47.61,0:00:47.92,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}does
-Dialogue: 0,0:00:47.89,0:00:48.60,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}the homework.
-Dialogue: 0,0:00:48.57,0:00:49.20,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}She learns
-Dialogue: 0,0:00:49.17,0:00:49.92,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}Egyptian.
-Dialogue: 0,0:00:49.89,0:00:50.64,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}She dresses
-Dialogue: 0,0:00:50.61,0:00:50.92,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}as a
-Dialogue: 0,0:00:50.89,0:00:51.48,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}pharaoh.
-Dialogue: 0,0:00:51.45,0:00:52.00,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}She calls
-Dialogue: 0,0:00:51.97,0:00:52.32,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}herself
-Dialogue: 0,0:00:52.29,0:00:52.72,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}the new
-Dialogue: 0,0:00:52.69,0:00:53.36,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}Isis.
-Dialogue: 0,0:00:53.33,0:00:53.76,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}And she
-Dialogue: 0,0:00:53.73,0:00:54.04,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}talks
-Dialogue: 0,0:00:54.01,0:00:54.36,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}to her
-Dialogue: 0,0:00:54.33,0:00:54.60,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}people
-Dialogue: 0,0:00:54.57,0:00:54.88,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}without
-Dialogue: 0,0:00:54.85,0:00:55.76,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}a translator.
-Dialogue: 0,0:00:55.73,0:00:56.20,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}Egypt
-Dialogue: 0,0:00:56.17,0:00:56.44,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}never
-Dialogue: 0,0:00:56.41,0:00:56.84,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}forgot
-Dialogue: 0,0:00:56.81,0:00:57.08,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}it.
-Dialogue: 0,0:00:57.05,0:00:57.28,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}Four
-Dialogue: 0,0:00:57.25,0:00:57.56,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}hundred
-Dialogue: 0,0:00:57.53,0:00:57.80,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}years
-Dialogue: 0,0:00:57.77,0:00:58.04,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}after
-Dialogue: 0,0:00:58.01,0:00:58.72,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}she died,
-Dialogue: 0,0:00:58.69,0:00:59.40,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}a scribe
-Dialogue: 0,0:00:59.37,0:00:59.64,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}at an
-Dialogue: 0,0:00:59.61,0:01:00.12,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}Egyptian
-Dialogue: 0,0:01:00.09,0:01:00.80,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}temple
-Dialogue: 0,0:01:00.77,0:01:01.16,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}was still
-Dialogue: 0,0:01:01.13,0:01:01.60,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}covering
-Dialogue: 0,0:01:01.57,0:01:02.36,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}her image…
-Dialogue: 0,0:01:02.33,0:01:03.40,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}in gold.
-Dialogue: 0,0:01:03.37,0:01:04.08,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}Not bad
-Dialogue: 0,0:01:04.05,0:01:04.32,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}for an
-Dialogue: 0,0:01:04.29,0:01:04.88,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}Egyptian
-Dialogue: 0,0:01:04.85,0:01:05.36,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}queen…
-Dialogue: 0,0:01:05.33,0:01:05.84,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}who was
-Dialogue: 0,0:01:05.81,0:01:07.05,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}not Egyptian.
+Dialogue: 0,0:00:34.07,0:00:34.26,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}from
+Dialogue: 0,0:00:34.23,0:00:35.14,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}Alexandria,
+Dialogue: 0,0:00:35.11,0:00:35.62,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}a Greek
+Dialogue: 0,0:00:35.59,0:00:36.06,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}city.
+Dialogue: 0,0:00:36.03,0:00:36.26,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}They
+Dialogue: 0,0:00:36.23,0:00:36.54,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}speak
+Dialogue: 0,0:00:36.51,0:00:36.98,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}Greek,
+Dialogue: 0,0:00:36.95,0:00:37.18,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}they
+Dialogue: 0,0:00:37.15,0:00:37.46,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}marry
+Dialogue: 0,0:00:37.43,0:00:37.62,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}their
+Dialogue: 0,0:00:37.59,0:00:38.38,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}own siblings,
+Dialogue: 0,0:00:38.35,0:00:38.78,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}and they
+Dialogue: 0,0:00:38.75,0:00:39.10,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}never
+Dialogue: 0,0:00:39.07,0:00:39.46,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}bother
+Dialogue: 0,0:00:39.43,0:00:39.58,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}with
+Dialogue: 0,0:00:39.55,0:00:40.26,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}Egyptian.
+Dialogue: 0,0:00:40.23,0:00:40.42,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}It's
+Dialogue: 0,0:00:40.39,0:00:40.54,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}like
+Dialogue: 0,0:00:40.51,0:00:41.14,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}a landlord
+Dialogue: 0,0:00:41.11,0:00:41.54,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}who owns
+Dialogue: 0,0:00:41.51,0:00:41.66,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}your
+Dialogue: 0,0:00:41.63,0:00:41.98,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}building
+Dialogue: 0,0:00:41.95,0:00:42.34,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}for two
+Dialogue: 0,0:00:42.31,0:00:42.62,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}hundred
+Dialogue: 0,0:00:42.59,0:00:43.22,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}and fifty
+Dialogue: 0,0:00:43.19,0:00:43.66,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}years…
+Dialogue: 0,0:00:43.63,0:00:44.18,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}and never
+Dialogue: 0,0:00:44.15,0:00:44.50,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}learns
+Dialogue: 0,0:00:44.47,0:00:44.70,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}your
+Dialogue: 0,0:00:44.67,0:00:45.10,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}name.
+Dialogue: 0,0:00:45.07,0:00:45.46,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}Then
+Dialogue: 0,0:00:45.43,0:00:46.18,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}Cleopatra
+Dialogue: 0,0:00:46.15,0:00:46.66,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}the Seventh
+Dialogue: 0,0:00:46.63,0:00:47.14,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}is born,
+Dialogue: 0,0:00:47.11,0:00:47.58,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}and she
+Dialogue: 0,0:00:47.55,0:00:47.82,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}does
+Dialogue: 0,0:00:47.79,0:00:48.58,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}the homework.
+Dialogue: 0,0:00:48.55,0:00:49.22,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}She learns
+Dialogue: 0,0:00:49.19,0:00:49.94,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}Egyptian.
+Dialogue: 0,0:00:49.91,0:00:50.62,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}She dresses
+Dialogue: 0,0:00:50.59,0:00:50.90,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}as a
+Dialogue: 0,0:00:50.87,0:00:51.38,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}pharaoh.
+Dialogue: 0,0:00:51.35,0:00:51.86,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}She calls
+Dialogue: 0,0:00:51.83,0:00:52.26,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}herself
+Dialogue: 0,0:00:52.23,0:00:52.70,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}the new
+Dialogue: 0,0:00:52.67,0:00:53.30,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}Isis.
+Dialogue: 0,0:00:53.27,0:00:53.66,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}And she
+Dialogue: 0,0:00:53.63,0:00:53.94,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}talks
+Dialogue: 0,0:00:53.91,0:00:54.26,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}to her
+Dialogue: 0,0:00:54.23,0:00:54.54,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}people
+Dialogue: 0,0:00:54.51,0:00:54.94,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}without
+Dialogue: 0,0:00:54.91,0:00:55.74,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}a translator.
+Dialogue: 0,0:00:55.71,0:00:56.34,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}Egypt
+Dialogue: 0,0:00:56.31,0:00:56.66,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}never
+Dialogue: 0,0:00:56.63,0:00:57.10,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}forgot
+Dialogue: 0,0:00:57.07,0:00:57.34,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}it.
+Dialogue: 0,0:00:57.31,0:00:57.70,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}Four
+Dialogue: 0,0:00:57.67,0:00:58.06,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}hundred
+Dialogue: 0,0:00:58.03,0:00:58.38,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}years
+Dialogue: 0,0:00:58.35,0:00:58.62,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}after
+Dialogue: 0,0:00:58.59,0:00:59.22,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}she died,
+Dialogue: 0,0:00:59.19,0:00:59.74,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}a scribe
+Dialogue: 0,0:00:59.71,0:00:59.98,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}at an
+Dialogue: 0,0:00:59.95,0:01:00.46,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}Egyptian
+Dialogue: 0,0:01:00.43,0:01:00.82,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}temple
+Dialogue: 0,0:01:00.79,0:01:01.30,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}was still
+Dialogue: 0,0:01:01.27,0:01:01.74,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}covering
+Dialogue: 0,0:01:01.71,0:01:02.42,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}her image…
+Dialogue: 0,0:01:02.39,0:01:03.55,W,,0,0,0,,{\fscx112\fscy112\t(0,80,\fscx100\fscy100)}in gold.

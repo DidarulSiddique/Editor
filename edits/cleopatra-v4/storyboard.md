@@ -16,6 +16,14 @@ I measured this from the 9 references against `cleopatra-v3-share.mp4`.
 | Cast | Bean heads shaded top to bottom with thick ink, stick limbs, eyebrows, sweat drops and popping eyes on reactions | Flat fills, white "bowling-pin" robes |
 | Text | One word at a time, white heavy type with a thin dark outline at ~70% height, no title box or name tags | Title box, yellow tags, stamps |
 
+## v4d narration (current)
+The user supplied their own ElevenLabs read ("Jon", 75.7 s), and it replaces the vidIQ "Chris" voice.
+- **Fitting:** `fit.py` caps pauses at 0.30 s and speeds the voice up by 1.03–1.27× (mean 1.12×), so each shot's first word lands
+  within 0.4 s of its cut. The picture is unchanged.
+- **Ending:** the read stops at "…in gold." (no closing line), so `script.txt` drops line 10 and the loop shot becomes a 66-frame
+  wordless flip (Egyptian → Greek look, burst) ending on the opening framing. The video is now 65.3 s (1960 frames).
+- **Files:** the v4b voice, words and script are kept in `work/` (`voice_v4b.wav`, `words_v4b.json`, `script_v4b.txt`).
+
 ## Script (v4b, ≈67 s; the main point is that she was not Egyptian)
 
 1. The most famous Egyptian queen in history… was not Egyptian. At least, not the way you think.
