@@ -16,6 +16,9 @@ renderer.toneMapping = THREE.NoToneMapping;
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(40, W / H, 0.08, 1500);
+// v4c framing: players fill the screen with a 9:16 video (phones trim ~100 px per side, iPads ~240 px top and bottom), so every
+// shot is widened by FOVK; what used to fill the frame now sits inside x 140-940, y 240-1680 and survives both crops.
+const FOVK = 1.34, wide = (fov) => 2 * Math.atan(Math.tan(fov * Math.PI / 360) * FOVK) * 180 / Math.PI;
 const rx = (a) => a * Math.PI / 180;
 
 // ---------- materials ----------
@@ -501,7 +504,7 @@ function renderShot(f, S, target) {
   const L = lightFor(S, f), C = camAt(f);
   applyLight(L, f);
   camera.position.set(...C.pos); camera.up.set(0, 1, 0); camera.lookAt(...C.look); camera.rotateZ(rx(C.roll || 0));
-  camera.fov = C.fov; camera.updateProjectionMatrix(); camera.updateMatrixWorld();
+  camera.fov = wide(C.fov); camera.updateProjectionMatrix(); camera.updateMatrixWorld();
   const W_ = worldAt(f); worldState(W_, f);
   placeSun(L, new THREE.Vector3(...(C.shadowAt || C.look)));
   drawActors([...actorsAt(f, T), ...fxAt(f, T)], camera);
@@ -554,7 +557,7 @@ window.safeCheck = (fNew) => {
   const f = toOld(fNew);
   const S = shotAt(f), C = camAt(f);
   camera.position.set(...C.pos); camera.up.set(0, 1, 0); camera.lookAt(...C.look); camera.rotateZ(rx(C.roll || 0));
-  camera.fov = C.fov; camera.updateProjectionMatrix(); camera.updateMatrixWorld();
+  camera.fov = wide(C.fov); camera.updateProjectionMatrix(); camera.updateMatrixWorld();
   drawActors([...actorsAt(f, T), ...fxAt(f, T)], camera);
   const bad = [];
   if (S.macro) return bad;

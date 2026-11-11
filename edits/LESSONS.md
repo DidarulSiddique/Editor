@@ -3,6 +3,14 @@
 The user's ratings and the rules they taught. `/make-edit` reads this first;
 these rules override its defaults. Newest first.
 
+## 2026-11-12 — Cleopatra v4c: "can't see full frame on iPad and phone — keep 9:16, just frame correctly"
+- The per-character safe-frame check was not enough. It skipped extras (`check: false`) and close-ups (`cu`/`macro`), and it
+  ignored props, bubbles and sets, so v4b still lost content to the crops (phones trim ~100 px per side, iPads ~240 px top and bottom).
+- **Rule (global, every shot):** widen the camera by `FOVK = 1.34`. In `main.js`: `camera.fov = wide(C.fov)`, with
+  `tan(fov'/2) = 1.34·tan(fov/2)`. Everything the designed frame showed now lands inside x 140–940 and y 240–1680, which survives
+  both crops, and the extra margin shows more set instead of black. Compose shots as before; the factor does the rest.
+- Check stills with the crop box drawn on them (red rectangle x 100–980, y 240–1680) before every full render, not only `check.mjs`.
+
 ## 2026-11-11 — Cleopatra v4 rebuild against 9 @ricksclip-style references (`edits/cleopatra-v4/`)
 - **Measure the references, don't eyeball them.** At a 0.25 scene threshold the 9 references have 1–2 hard cuts each; v3 had 31.
   Their shot changes are 10–30-frame camera flights, push-ins and 4–6-frame dissolves, and their median frame-to-frame
