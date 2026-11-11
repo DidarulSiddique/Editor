@@ -16,25 +16,27 @@ I measured this from the 9 references against `cleopatra-v3-share.mp4`.
 | Cast | Bean heads shaded top to bottom with thick ink, stick limbs, eyebrows, sweat drops and popping eyes on reactions | Flat fills, white "bowling-pin" robes |
 | Text | One word at a time, white heavy type with a thin dark outline at ~70% height, no title box or name tags | Title box, yellow tags, stamps |
 
-## Script (≈190 words, ≈65 s)
+## Script (v4b, ≈67 s; the main point is that she was not Egyptian)
 
-It follows the house pattern: paradox hook → "you see" → you-are-there → "how is that possible?" → backstory →
-everyday analogy → turn → big visual payoff → loop line.
-
-1. The queen of Egypt had to learn Egyptian… like a foreign language.
-2. You see, her family had ruled Egypt for two hundred and fifty years, and no king before her is known to have learned it.
+1. The most famous Egyptian queen in history… was not Egyptian. At least, not the way you think.
+2. You see, her family was Greek. They had ruled Egypt for two hundred and fifty years, and no king before her is known to have learned Egyptian.
 3. Imagine you're a farmer on the Nile. You walk into the palace to beg for help… and your pharaoh needs a translator just to understand you.
 4. How is that possible?
-5. It starts with a stolen body.
-6. When Alexander the Great dies, his general Ptolemy hijacks the funeral cart… and drives Alexander's corpse all the way to Egypt.
-7. With the most famous corpse in the world as his trophy, he makes himself king.
-8. His family rules from Alexandria, a Greek city. They speak Greek, they marry their own siblings, and they never bother with Egyptian.
-9. It's like a landlord who owns your building for two hundred and fifty years… and never learns your name.
-10. Then Cleopatra the Seventh is born, and she does the homework.
-11. She learns Egyptian. She dresses as a pharaoh. She calls herself the new Isis. And she talks to her people without a translator.
-12. Egypt never forgot it.
-13. Four hundred years after she died, a scribe at an Egyptian temple was still covering her image… in gold.
-14. Not bad for a Greek queen who had to learn Egyptian… like a foreign language. *(this flows back into line 1)*
+5. It starts with a stolen body. When Alexander the Great dies, his general Ptolemy hijacks the funeral cart… and drives Alexander's corpse all the way to Egypt. With the most famous corpse in the world as his trophy, he makes himself king.
+6. His family rules from Alexandria, a Greek city. They speak Greek, they marry their own siblings, and they never bother with Egyptian.
+7. It's like a landlord who owns your building for two hundred and fifty years… and never learns your name.
+8. Then Cleopatra the Seventh is born, and she does the homework. She learns Egyptian. She dresses as a pharaoh. She calls herself the new Isis. And she talks to her people without a translator.
+9. Egypt never forgot it. Four hundred years after she died, a scribe at an Egyptian temple was still covering her image… in gold.
+10. Not bad for an Egyptian queen… who was not Egyptian. *(this loops into line 1)*
+
+**v4b opening shots.**
+- **Throne (0–2.2 s):** low-angle push in on the throne.
+- **"was not Egyptian" (2.2–3.4 s):** close-up identity flip from her Egyptian to her Greek look, with a burst.
+- **Smirk (3.4–4.8 s):** a smirk, then she flips back.
+- **"her family was Greek" (4.8–6.4 s):** the Greek busts.
+- **"ruled Egypt for 250 years" (6.4–8.7 s):** time-lapse of six Greek kings swapping on the throne.
+- **"no king before her…" (8.7–11.6 s):** the busts ask "?".
+- **Ending (63.1–67.2 s):** back on the throne. On "was not Egyptian" she flips to her Greek look, ending on the opening framing so the video loops.
 
 **Accuracy notes**
 - "No king before her is known to have learned it" comes from Plutarch (*Antony* 27).

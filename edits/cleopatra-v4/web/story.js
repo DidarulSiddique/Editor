@@ -1,13 +1,14 @@
-// Cleopatra v4 — "The queen of Egypt had to learn Egyptian… like a foreign language."  65.9 s, 30 fps, 9:16.
-// voice.wav = vidIQ "Chris", pauses tightened (tighten.py); shots land on the word timings in work/words.json.
+// Cleopatra v4 — "The most famous Egyptian queen in history… was not Egyptian."  67.2 s, 30 fps, 9:16.
+// voice.wav = vidIQ "Chris" (tighten.py). v4b: new hook + closing line spliced around the v4a middle, which moved exactly
+// +64 frames (SHIFT) so its rendered frames are reused (middle shots keep their v4a seconds and add SHIFT).
 // Transitions follow the @ricksclip references: no hard cuts — dissolves (D), whip pans (W), zoom-throughs (F).
 import { M as EZ, camFromKeys, idle } from './motion.js';
-export const FPS = 30, TOTAL = 1977;
+export const FPS = 30, TOTAL = 2016, SHIFT = 64;
 const s2f = (s) => Math.round(s * 30);
 // [id, start s, light, transition in, flags]
 const PLAN = [
-  ['queen', 0.0, 'hall', null, { cu: true }], ['desk', 0.85, 'lib', 'W', { cu: true }], ['card', 2.10, 'lib', 'F', { macro: true }],
-  ['busts', 3.70, 'day', 'D'], ['bustsQ', 7.10, 'day', 'W'],
+  ['queen', 0.0, 'hall', null, { cu: true }], ['flip', 2.25, 'hall', 'W', { cu: true }], ['smug', 3.40, 'hall', 'F', { cu: true }],
+  ['busts', 4.85, 'day', 'D'], ['dynasty', 6.40, 'hall', 'W', { cu: true }], ['bustsQ', 8.70, 'day', 'W'],
   ['farm', 9.50, 'farm', 'F', { cu: true }], ['enter', 11.35, 'hall', 'D'], ['translator', 13.35, 'hall', 'W', { cu: true }], ['shock', 15.0, 'hall', 'W', { macro: true }],
   ['how', 16.2, 'dusk', 'F'],
   ['stolen', 17.4, 'road', 'D'], ['coffin', 19.25, 'road', 'F', { macro: true }], ['hijack', 20.85, 'road', 'W'], ['chase', 23.8, 'road', 'W'],
@@ -16,9 +17,11 @@ const PLAN = [
   ['landlord', 38.05, 'apt', 'D'], ['name', 41.6, 'apt', 'W'],
   ['born', 43.1, 'night', 'D'], ['homework', 45.0, 'lib', 'F', { cu: true }], ['learns', 46.45, 'lib', 'W', { cu: true }],
   ['dress', 47.75, 'hall', 'F'], ['isis', 49.3, 'temple', 'F', { cu: true }], ['talk', 51.2, 'hall', 'D'],
-  ['crowd', 53.6, 'egypt', 'F'], ['scribe', 54.9, 'tnight', 'D'], ['gold', 58.6, 'tnight', 'F'], ['loop', 61.0, 'lib', 'D', { cu: true }],
+  ['crowd', 53.6, 'egypt', 'F'], ['scribe', 54.9, 'tnight', 'D'], ['gold', 58.6, 'tnight', 'F'], ['loop', 63.1333, 'hall', 'D', { cu: true }],
 ];
-export const SHOTS = PLAN.map(([id, s, light, tin, fl], i) => ({ id, a: s2f(s), b: (i + 1 < PLAN.length ? s2f(PLAN[i + 1][1]) : TOTAL) - 1, light, tin, ...(fl || {}) }));
+const MID = new Set(['farm', 'enter', 'translator', 'shock', 'how', 'stolen', 'coffin', 'hijack', 'chase', 'trophy', 'crown', 'alex', 'kings', 'wedding', 'banquet', 'landlord', 'name', 'born', 'homework', 'learns', 'dress', 'isis', 'talk', 'crowd', 'scribe', 'gold']);
+const startF = ([id, s]) => s2f(s) + (MID.has(id) ? SHIFT : 0);
+export const SHOTS = PLAN.map((p, i) => { const [id, , light, tin, fl] = p; return { id, a: startF(p), b: (i + 1 < PLAN.length ? startF(PLAN[i + 1]) : TOTAL) - 1, light, tin, ...(fl || {}) }; });
 let FORCE = null;
 export const setForce = (s) => { FORCE = s; };
 export const shotAt = (f) => FORCE || SHOTS.find((s) => f >= s.a && f < s.b + 1) || SHOTS[SHOTS.length - 1];
@@ -27,7 +30,7 @@ export const transAt = (f) => { const i = SHOTS.findIndex((s) => f >= s.a && f <
   const n = (S.id === 'stolen' || S.id === 'scribe') ? 12 : TLEN[S.tin], d = f - S.a; if (d >= n) return null;
   return { prev: SHOTS[i - 1], mode: TMODE[S.tin], t: (d + 1) / (n + 1), dir: i % 2 ? 1 : -1 }; };
 const SH = Object.fromEntries(SHOTS.map((s) => [s.id, s]));
-const A = (id) => SH[id].a, B = (id) => SH[id].b;
+const A = (id) => SH[id] ? SH[id].a : -1e6, B = (id) => SH[id] ? SH[id].b : -1e6; // desk/card (v4a hook) are unused now
 
 const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
 export const smooth = (t) => { t = clamp(t); return t * t * t * (t * (t * 6 - 15) + 10); };
@@ -90,6 +93,9 @@ const CAMS = {
   queen: [K(A('queen'), [1.2, 0.9, -13.6], [0, 3.0, -19.9], 42), K(B('queen') + 9, [0.35, 1.6, -15.2], [0, 2.9, -19.9], 36, 'easeOut')],
   desk: [K(A('desk'), [DESK[0] + 0.5, 2.6, DESK[2] + 3.4], [DESK[0], 1.25, DESK[2] + 0.6], 44), K(B('desk') + 9, [DESK[0] + 0.15, 1.85, DESK[2] + 2.9], [DESK[0], 1.35, DESK[2] + 0.4], 40, 'easeOut')],
   card: [K(A('card'), [DESK[0] + 0.05, 1.55, DESK[2] + 1.5], [DESK[0] + 0.32, 1.38, DESK[2] + 0.55], 34), K(B('card') + 9, [DESK[0] + 0.12, 1.5, DESK[2] + 1.75], [DESK[0] + 0.2, 1.4, DESK[2] + 0.4], 40, 'easeOut')],
+  flip: [K(A('flip'), [0.45, 3.1, -15.9], [0, 2.95, -19.9], 30), K(B('flip') + 9, [0.12, 3.05, -16.4], [0, 2.95, -19.9], 27, 'easeOut')],
+  smug: [K(A('smug'), [-0.5, 3.15, -16.6], [0, 3.05, -19.9], 26), K(B('smug') + 9, [-0.2, 3.12, -16.95], [0, 3.05, -19.9], 24)],
+  dynasty: [K(A('dynasty'), [0.0, 2.2, -11.4], [0, 2.55, -19.9], 44), K(B('dynasty') + 9, [0.0, 2.6, -14.2], [0, 2.75, -19.9], 38, 'smooth')],
   busts: [K(A('busts'), [AX - 15.5, 2.4, STOA_Z + 7.2], [AX - 13.5, 1.6, STOA_Z + 4.5], 40), K(B('busts') + 9, [AX + 4.0, 1.75, STOA_Z + 6.9], [AX + 6, 1.6, STOA_Z + 4.5], 40, 'smooth', [[AX - 6, 1.9, STOA_Z + 7.0]])],
   bustsQ: [K(A('bustsQ'), [AX + 1.2, 1.85, STOA_Z + 8.6], [AX - 2.6, 1.7, STOA_Z + 4.5], 46), K(B('bustsQ') + 9, [AX + 0.6, 1.8, STOA_Z + 9.2], [AX - 2.8, 1.7, STOA_Z + 4.5], 44)],
   farm: [K(A('farm'), [FARM - 14, 3.2, -28], [FARM + 1, 1.2, -2], 46), K(off('farm', 40), [FARM + 0.4, 1.7, 3.6], [FARM + 1, 1.25, -2], 40, 'easeOut', [[FARM - 6, 2.0, -14]]), K(B('farm') + 9, [FARM + 0.6, 1.65, 3.2], [FARM + 1, 1.25, -2], 38)],
@@ -116,10 +122,10 @@ const CAMS = {
   crowd: [K(A('crowd'), [PY[0] + 0.6, 2.3, PY[1] + 16.5], [PY[0], 5.2, PY[1] + 2], 56), K(B('crowd') + 9, [PY[0] + 0.2, 2.7, PY[1] + 14.5], [PY[0], 5.8, PY[1] + 2], 52, 'easeOut')],
   scribe: [K(A('scribe'), [TX - 1.5, 1.4, -12], [TX + 0.5, 4.6, -27], 50), K(B('scribe') + 9, [TX + 0.6, 3.0, -19.5], [TX + 1.3, 4.2, -27], 44, 'smooth')],
   gold: [K(A('gold'), [TX + 3.4, 4.9, -20.6], [TX + 1.0, 5.0, -27.3], 48), K(off('gold', 26), [TX + 2.8, 5.0, -19.6], [TX + 0.6, 5.0, -27.3], 50), K(B('gold') + 9, [TX, 9, 26], [TX, 4.5, -24], 56, 'easeIn', [[TX + 0.5, 5.2, -12], [TX, 6.5, 6]])],
-  loop: [K(A('loop'), [DESK[0] + 0.2, 1.95, DESK[2] + 3.0], [DESK[0], 1.35, DESK[2] + 0.4], 40), K(B('loop'), [DESK[0] + 0.5, 2.6, DESK[2] + 3.4], [DESK[0], 1.25, DESK[2] + 0.6], 44, 'smooth')],
+  loop: [K(A('loop'), [0.6, 1.8, -15.0], [0, 2.85, -19.9], 38), K(off('loop', 70), [0.3, 2.9, -16.2], [0, 2.95, -19.9], 30, 'smooth'), K(B('loop'), [1.2, 0.9, -13.6], [0, 3.0, -19.9], 42, 'smooth')],
 };
 const CHASE_X = (f) => ROAD + 4 + (f - A('chase')) * 0.32;
-const KICKS = [{ f: A('card') + 30, a: 0.04 }, { f: A('hijack') + 30, a: 0.05 }, { f: A('crown') + 20, a: 0.04 }, { f: A('gold') + 6, a: 0.03 }];
+const KICKS = [{ f: A('flip') + 9, a: 0.05 }, { f: A('loop') + 83, a: 0.04 }, { f: A('hijack') + 30, a: 0.05 }, { f: A('crown') + 20, a: 0.04 }, { f: A('gold') + 6, a: 0.03 }];
 EZ.linear = (t) => clamp(t);
 export const camAt = (f) => {
   const S = shotAt(f); let c;
@@ -130,7 +136,7 @@ export const camAt = (f) => {
   else c = camFromKeys(CAMS[S.id], f, { creep: 0.0005, kicks: KICKS });
   c.flash = 0;
   const flashAt = (a, n, k) => { if (f >= a && f < a + n) c.flash = Math.max(c.flash, (1 - (f - a) / n) * k); };
-  flashAt(A('crown') + 18, 6, 0.6); flashAt(A('dress') + 20, 6, 0.6); flashAt(A('learns') + 12, 5, 0.35); flashAt(A('gold') + 8, 7, 0.55); flashAt(A('isis') + 14, 5, 0.4);
+  flashAt(A('flip') + 8, 6, 0.6); flashAt(A('smug') + 34, 5, 0.45); flashAt(A('loop') + 82, 6, 0.55); flashAt(A('crown') + 18, 6, 0.6); flashAt(A('dress') + 20, 6, 0.6); flashAt(A('learns') + 12, 5, 0.35); flashAt(A('gold') + 8, 7, 0.55); flashAt(A('isis') + 14, 5, 0.4);
   // handheld drift on every shot (references never lock off)
   { const d = Math.hypot(c.look[0] - c.pos[0], c.look[1] - c.pos[1], c.look[2] - c.pos[2]) * 0.005;
     c.look = [c.look[0] + d * Math.sin(f * 0.047 + 1.3), c.look[1] + d * 0.8 * Math.sin(f * 0.061), c.look[2] + d * Math.sin(f * 0.039 + 2.1)]; }
@@ -145,11 +151,11 @@ export const camAt = (f) => {
 // ---------- lens: depth of field on every close shot ----------
 const dist = (a, b) => Math.hypot(a[0] - b[0], a[1] - b[1], a[2] - b[2]);
 const FOCUS = {
-  busts: null, queen: [0, 2.8, -19.9], desk: [DESK[0], 1.45, DESK[2] + 0.1], card: [DESK[0] + 0.3, 1.38, DESK[2] + 0.55], bustsQ: [AX - 2.25, 1.6, STOA_Z + 4.5],
+  busts: null, flip: [0, 2.95, -19.9], smug: [0, 3.05, -19.9], dynasty: [0, 2.7, -19.9], loop: [0, 2.9, -19.9], queen: [0, 2.8, -19.9], desk: [DESK[0], 1.45, DESK[2] + 0.1], card: [DESK[0] + 0.3, 1.38, DESK[2] + 0.55], bustsQ: [AX - 2.25, 1.6, STOA_Z + 4.5],
   farm: [FARM + 1, 1.3, -2], translator: [0.5, 2.6, -19.4], shock: [0, 1.45, -14.2], stolen: [ROAD, 1.8, 0.3], coffin: [ROAD + 1.16, 1.62, 0], hijack: [ROAD + 1.6, 1.6, 0.5],
   trophy: [ROAD + 145, 1.8, 1.2], crown: [0, 2.9, -19.7], kings: null, wedding: [0, 1.4, -12.2], banquet: [0, 1.3, -6.0], name: [APT - 0.1, 1.45, -8.3],
   born: [NURS[0], 0.8, NURS[1] + 0.2], homework: [DESK[0], 1.4, DESK[2]], learns: [DESK[0] + 0.12, 1.45, DESK[2] + 0.4], dress: [0, 1.3, -14.8], isis: [TX, 1.6, -21],
-  talk: [0, 1.45, -15.0], scribe: null, loop: [DESK[0], 1.45, DESK[2] + 0.1], landlord: null,
+  talk: [0, 1.45, -15.0], scribe: null, landlord: null,
 };
 export const dofAt = (f) => {
   const S = shotAt(f), C = camAt(f);
@@ -226,8 +232,17 @@ export const actorsAt = (f, T) => {
   const atDesk = (who, o, extra = {}) => man(who, 21, { expr: 'calm', L: 'belly', R: 'belly', ...o }, DESK, { s: 1.0, ...extra });
   switch (S.id) {
     case 'queen': seated('cleoEgypt', 21, { expr: f > A('queen') + 14 ? 'smug' : 'calm', look: q(lerp(-0.3, 0.15, smooth(ramp(f, 2, 20))), 2) }, { check: false }); court(() => 1); statues(); break;
-    case 'desk': case 'card': case 'loop': {
-      const k = S.id === 'loop' ? f - A('loop') : 0;
+    case 'flip': { const sp = spinAt(f, A('flip') + 3, 10); seated(sp.swapped ? 'cleoGreek' : 'cleoEgypt', 21, { expr: sp.swapped ? 'grin' : 'smug', look: sp.swapped ? 0.15 : 0 }, { sx: sp.sx, check: false }); statues(); break; }
+    case 'smug': { const sp = spinAt(f, A('smug') + 30, 10), k = f - A('smug'); seated(sp.swapped ? 'cleoEgypt' : 'cleoGreek', 21, { expr: sp.swapped ? 'smug' : (k > 8 ? 'smug' : 'grin'), look: k > 10 && !sp.swapped ? -0.45 : 0.1, blink: sp.swapped && k > 40 && k < 46 ? 1 : blinkAt(f, 21), ht: k > 10 && k < 30 ? -5 : 0 }, { sx: sp.sx, check: false }); statues(); break; }
+    case 'dynasty': { const k = f - A('dynasty'), n = Math.min(5, Math.floor(k / 12)), sp = spinAt(f, A('dynasty') + n * 12 - 4, 8), i = sp.swapped ? n : Math.max(0, n - 1);
+      const sashes = ['#6b2f7a', '#3f6fb0', '#b8322f', '#2f8a5a', '#c48a22', '#6b2f7a'];
+      seated({ tunic: '#f1ead8', dress: '#ece2cc', skin: ['#e2b48c', '#e8bf98', '#d9a57a'][i % 3], greekHair: ['#3a2414', '#4a2c1a', '#2a1d14', '#8a8a8a'][i % 4], crown: 'diadem', sash: sashes[i], beard: i % 2 ? '#3a2414' : undefined }, 80 + i, { expr: ['smug', 'grin', 'stern', 'laugh', 'smug', 'grin'][i], look: 0.1 }, { sx: k < 6 ? 1 : sp.sx });
+      court(); statues(); break; }
+    case 'loop': { const k = f - A('loop'), sp = spinAt(f, A('loop') + 80, 10);
+      seated(sp.swapped ? 'cleoGreek' : 'cleoEgypt', 21, { expr: sp.swapped ? 'smug' : (k > 30 ? 'grin' : 'calm'), look: sp.swapped ? -0.3 : 0.1, blink: sp.swapped && k > 100 && k < 106 ? 1 : blinkAt(f, 21) }, { sx: sp.sx });
+      court(() => smooth(ramp(k, 10, 26))); statues(); break; }
+    case 'desk': case 'card': {
+      const k = 0;
       const expr = S.id === 'card' ? (f > A('card') + 28 ? 'pained' : 'squint') : S.id === 'loop' ? (k > 70 ? 'smug' : 'grin') : 'squint';
       atDesk('cleoEgypt', { expr, look: S.id === 'card' ? 0.35 : 0.1, L: 'belly', R: S.id === 'loop' && k > 20 ? 'up' : 'belly', blink: S.id === 'loop' && k > 96 && k < 104 ? 1 : blinkAt(f, 21), ht: S.id === 'card' && f > A('card') + 28 ? -6 : 0 },
         S.id === 'card' && f > A('card') + 28 ? { hop: { dy: -0.06 * smooth(ramp(f, A('card') + 28, A('card') + 36)), sq: 1 } } : {});
@@ -350,11 +365,15 @@ export const fxAt = (f, T) => {
   const card = (state, flip, pos, s = 0.5) => out.push(FXc('fc' + state + q(flip, 2), (p) => flashCard(p, state, flip), pos, s, { order: 6 }));
   switch (S.id) {
     case 'queen': if (f > 10) spark('sp', ramp(f, 10, 30), [0.1, 3.35, -19.4], 0.3); break;
+    case 'flip': { const k = f - A('flip'); if (k > 2 && k < 26) { const t = ramp(k, 2, 22); out.push(FXc('fburst' + q(t, 2), (p) => { p.g.translate(50, 250); T.fxBurst(p, t, '#ffe9a0', 16, 60, 260); }, [0, 3.0, -20.0], 1.7, { order: 1 })); spark('fsp', ramp(k, 4, 22), [0.1, 3.3, -19.4], 0.5); } break; }
+    case 'smug': { const k = f - A('smug'); if (k > 10 && k < 34) spark('ssp', ramp(k, 10, 32), [-0.25, 3.45, -19.4], 0.22); if (k > 28 && k < 50) { const t = ramp(k, 28, 46); out.push(FXc('sburst' + q(t, 2), (p) => { p.g.translate(50, 250); T.fxBurst(p, t, '#ffe9a0', 16, 60, 260); }, [0, 3.0, -20.0], 1.7, { order: 1 })); } break; }
+    case 'dynasty': { const k = f - A('dynasty'); for (let n = 1; n <= 5; n++) { const d = k - (n * 12 - 4); if (d >= 0 && d < 10) spark('dsp' + n, d / 10, [0.1, 3.2, -19.4], 0.4); } break; }
+    case 'loop': { const k = f - A('loop'); if (k > 4) spark('lsp', ramp(k, 4, 24), [0.1, 3.35, -19.4], 0.3); if (k > 78 && k < 104) { const t = ramp(k, 78, 100); out.push(FXc('lburst' + q(t, 2), (p) => { p.g.translate(50, 250); T.fxBurst(p, t, '#ffe9a0', 16, 60, 260); }, [0, 3.0, -20.0], 1.7, { order: 1 })); spark('lsp2', ramp(k, 80, 100), [0.1, 3.3, -19.4], 0.5); } break; }
     case 'desk': card('q', 1, [DESK[0] + 0.32, 1.42, DESK[2] + 0.42], 0.42); out.push(FXc('sw', (p) => T.fxSweat(p), [DESK[0] + 0.32, 1.95, DESK[2] + 0.05], 0.18)); break;
     case 'card': { const k = f - A('card'), fl = k < 14 ? 1 : k < 22 ? Math.abs(Math.cos((k - 14) / 8 * Math.PI)) : 1;
       card(k < 18 ? 'q' : 'x', fl, [DESK[0] + 0.32, 1.42, DESK[2] + 0.55], 0.42); break; }
     case 'bustsQ': for (let i = 0; i < 7; i++) { const f0 = A('bustsQ') + 4 + i * 7, t = q(ramp(f, f0, f0 + 7), 2); if (f >= f0) out.push(FXc('bq' + i + t, (p) => T.bubble(p, i % 2 ? 'q' : 'greek', t, -1), [AX - 13.5 + i * 4.5 + 0.35, 2.6, STOA_Z + 4.6], 0.5)); } break;
-    case 'busts': for (let i = 0; i < 7; i++) { const f0 = A('busts') + 24 + i * 9, t = q(ramp(f, f0, f0 + 7), 2); if (f >= f0) out.push(FXc('bg' + i + t, (p) => T.bubble(p, 'greek', t, -1), [AX - 13.5 + i * 4.5 + 0.35, 2.6, STOA_Z + 4.6], 0.5)); } break;
+    case 'busts': for (let i = 0; i < 7; i++) { const f0 = A('busts') + 4 + i * 5, t = q(ramp(f, f0, f0 + 6), 2); if (f >= f0) out.push(FXc('bg' + i + t, (p) => T.bubble(p, 'greek', t, -1), [AX - 13.5 + i * 4.5 + 0.35, 2.6, STOA_Z + 4.6], 0.5)); } break;
     case 'translator': { const t = q(ramp(f, A('translator') + 18, A('translator') + 26), 2); if (t > 0) out.push(FXc('tq' + t, (p) => T.bubble(p, 'q', t, -1), [-0.6, 4.2, -19.4], 0.45)); break; }
     case 'shock': if (f > A('shock') + 8) out.push(FXc('sw2', (p) => T.fxSweat(p), [0.32, 2.05, -14.0], 0.16)); break;
     case 'how': { const t = q(ramp(f, A('how') + 4, A('how') + 12), 2); out.push(FXc('hq' + t, (p) => T.bubble(p, 'q', t, 0), [AX, 9, STOA_Z + 4], 3.2 * clamp(1 - ramp(f, A('how') + 22, B('how')) * 0.6))); break; }
@@ -394,7 +413,7 @@ export const fxAt = (f, T) => {
       if (S.id === 'gold') { const g = smooth(ramp(f, A('gold') + 6, A('gold') + 40)); for (let i = 0; i < 6; i++) spark('gs' + i, ((f - A('gold')) / 22 + i * 0.17) % 1, [TX - 2.6 + i * 1.05, 2 + (i % 3) * 2.6, -27.0], 0.6 * g);
         if (g > 0.05) out.push(FX('grays' + q(f * 0.01, 2), (p) => rays(p, f * 0.01, '255,214,120'), [TX - 1.5, 6.5, -26.9], 3.2 * g, { order: 1, face: 0, alpha: 0.3 })); }
       break; }
-    case 'loop': { const k = f - A('loop'); card(k < 20 ? 'q' : 'ok', 1, [DESK[0] + (k < 20 ? 0.32 : 0.42), 1.42 + (k < 20 ? 0 : 0.35 * EZ.back(ramp(k, 20, 32))), DESK[2] + 0.55], 0.42); if (k > 26) spark('lp', ramp(k, 26, 50), [DESK[0] + 0.45, 1.85, DESK[2] + 0.6], 0.32); break; }
+    case 'deskLoop': { const k = f - A('loop'); card(k < 20 ? 'q' : 'ok', 1, [DESK[0] + (k < 20 ? 0.32 : 0.42), 1.42 + (k < 20 ? 0 : 0.35 * EZ.back(ramp(k, 20, 32))), DESK[2] + 0.55], 0.42); if (k > 26) spark('lp', ramp(k, 26, 50), [DESK[0] + 0.45, 1.85, DESK[2] + 0.6], 0.32); break; }
   }
   return out;
 };

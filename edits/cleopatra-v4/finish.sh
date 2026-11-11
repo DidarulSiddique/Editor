@@ -4,9 +4,13 @@ set -e
 cd "$(dirname "$0")"
 mkdir -p out
 python3 audio.py
+# v4b assembly: new opening (0-357) and loop (1894-2015) from frames_b/, the v4a middle from frames/ shifted +64
+rm -rf frames_final && mkdir frames_final
+for f in $(seq 0 2015); do if [ $f -le 357 ] || [ $f -ge 1894 ]; then src=frames_b/f$(printf %04d $f).jpg; else src=frames/f$(printf %04d $((f-64))).jpg; fi
+  [ -f $src ] || { echo "missing $src"; exit 1; }; ln -s ../$src frames_final/f$(printf %04d $f).jpg; done
 python3 subs.py > subs.ass
 ffmpeg -v error -y -i mix_raw.wav -af "loudnorm=I=-14:TP=-1.5:LRA=7,aresample=48000" -ar 48000 mix.wav
-ffmpeg -v error -y -framerate 30 -i frames/f%04d.jpg -i mix.wav -map 0:v:0 -map 1:a:0 -vf "subtitles=subs.ass" \
+ffmpeg -v error -y -framerate 30 -i frames_final/f%04d.jpg -i mix.wav -map 0:v:0 -map 1:a:0 -vf "subtitles=subs.ass" \
   -c:v libx264 -preset slow -crf 17 -pix_fmt yuv420p -c:a aac -b:a 192k -shortest -movflags +faststart out/cleopatra-v4.mp4
 ffprobe -v error -show_entries format=duration -of csv=p=0 out/cleopatra-v4.mp4
 ffmpeg -hide_banner -i out/cleopatra-v4.mp4 -vf "blackdetect=d=0.1:pix_th=0.06,freezedetect=n=0.002:d=0.6" -f null - 2>&1 | grep -E "black_start|freeze_start" || echo "QA: no black or frozen stretches"

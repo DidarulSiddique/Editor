@@ -23,6 +23,16 @@ these rules override its defaults. Newest first.
   and loses the chasers. A big relief or statue lit warm at night blows out to flat yellow: keep its point lights ≤ ~2.5 and
   bloom ≤ 1.5, and frame the payoff on a face.
 - Speed: 4 Playwright workers render ~22 frames/min (~5 s per frame each), so a 66 s short takes ~90 min. Start it in the background early.
+- **v4b, "the main focus is that Cleopatra wasn't Egyptian".** The user moved the hook mid-render to "The most famous Egyptian
+  queen in history… was not Egyptian." **Rule:** when the user names the story's main point, it must be the first line and the
+  last line (the loop). Never trade it for a cleverer side angle.
+  - Script a hook change without re-rendering: voice only the new opening and closing lines (one vidIQ call, 28 credits).
+    Splice them around the untouched middle of the old narration, and pad so the middle moves by a whole number of frames (+64).
+  - Middle shots get `start + SHIFT` and keep their old frames: `finish.sh` links `frames/f(n-64)` into `frames_final/`.
+    Only the new opening (0–357, including the transition into the first reused shot) and the new ending need rendering.
+  - Say "was not Egyptian", never "wasn't Egyptian": the American t gets swallowed under music (see v3.1). Run ASR on the mix to check.
+  - Killing a Playwright worker with `pkill -f "render.mjs frames 0-494"` did not stop it, and it rendered the obsolete hook anyway.
+    Check with `ps` after killing a worker.
 
 ## 2026-11-06 — Cleopatra mini-documentary (references: bell-in-the-grave, "Why Perfect Railroads Don't Work", pirate storm oil)
 - Built in `edits/cleopatra/` on the cave engine: 4 sets 1 km apart (throne hall, Macedonian battlefield + generals' tent,

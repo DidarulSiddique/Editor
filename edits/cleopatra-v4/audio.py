@@ -3,7 +3,7 @@
 import subprocess
 import numpy as np
 import json
-SR = 48000; FPS = 30; TOTAL = 1977; N = int(TOTAL / FPS * SR); END = TOTAL / FPS
+SR = 48000; FPS = 30; TOTAL = 2016; N = int(TOTAL / FPS * SR); END = TOTAL / FPS
 rng = np.random.default_rng(7)
 F = lambda f: f / FPS
 t_all = np.arange(N) / SR
@@ -87,10 +87,12 @@ def crickets(d, g=0.012):
     return ch * g * np.minimum(1, t * 2) * np.minimum(1, (d - t) * 2)
 
 # shot starts (frames) mirror web/story.js
-PLAN = [('queen', 0.0, None), ('desk', 0.85, 'W'), ('card', 2.10, 'F'), ('busts', 3.70, 'D'), ('bustsQ', 7.10, 'W'), ('farm', 9.50, 'F'), ('enter', 11.35, 'D'), ('translator', 13.35, 'W'),
+SH = 64 / 30   # v4b: the middle block moved +64 frames (see web/story.js SHIFT)
+PLAN = [('queen', 0.0, None), ('flip', 2.25, 'W'), ('smug', 3.40, 'F'), ('busts', 4.85, 'D'), ('dynasty', 6.40, 'W'), ('bustsQ', 8.70, 'W'), ('farm', 9.50, 'F'), ('enter', 11.35, 'D'), ('translator', 13.35, 'W'),
   ('shock', 15.0, 'W'), ('how', 16.2, 'F'), ('stolen', 17.4, 'D'), ('coffin', 19.25, 'F'), ('hijack', 20.85, 'W'), ('chase', 23.8, 'W'), ('trophy', 26.65, 'D'), ('crown', 29.45, 'F'),
   ('alex', 31.0, 'D'), ('kings', 33.95, 'W'), ('wedding', 34.75, 'W'), ('banquet', 36.15, 'W'), ('landlord', 38.05, 'D'), ('name', 41.6, 'W'), ('born', 43.1, 'D'), ('homework', 45.0, 'F'),
-  ('learns', 46.45, 'W'), ('dress', 47.75, 'F'), ('isis', 49.3, 'F'), ('talk', 51.2, 'D'), ('crowd', 53.6, 'F'), ('scribe', 54.9, 'D'), ('gold', 58.6, 'F'), ('loop', 61.0, 'D')]
+  ('learns', 46.45, 'W'), ('dress', 47.75, 'F'), ('isis', 49.3, 'F'), ('talk', 51.2, 'D'), ('crowd', 53.6, 'F'), ('scribe', 54.9, 'D'), ('gold', 58.6, 'F'), ('loop', 63.1333 - SH, 'D')]
+PLAN = [(k, s + (SH if i >= 6 else 0), t) for i, (k, s, t) in enumerate(PLAN)]
 A = {k: round(s * 30) for k, s, _ in PLAN}; NEXT = {PLAN[i][0]: round(PLAN[i + 1][1] * 30) if i + 1 < len(PLAN) else TOTAL for i in range(len(PLAN))}
 T = lambda k, d=0: (A[k] + d) / FPS
 # ---- transitions: whip = fast whoosh, zoom = rising whoosh, dissolve = soft swell ----
@@ -99,8 +101,9 @@ for k, s, tin in PLAN:
     elif tin == 'F': add(s - 0.18, whoosh(0.42, True, 0.2))
     elif tin == 'D': add(s - 0.3, whoosh(0.8, False, 0.08))
 # ---- story SFX ----
-add(T('queen', 10), sparkle(0.1)); add(T('card', 18), buzz(0.12)); add(T('card', 28), slide(0.08))
-for i in range(7): add(T('busts', 24 + i * 9), pop(0.12, 760 + i * 30))
+add(T('queen', 10), sparkle(0.1)); add(T('flip', 5), boom(0.45, 58)); add(T('flip', 6), sparkle(0.13)); add(T('smug', 12), sparkle(0.08)); add(T('smug', 32), sparkle(0.1)); add(T('smug', 33), pop(0.14, 700))
+for i in range(7): add(T('busts', 4 + i * 5), pop(0.12, 760 + i * 30))
+for n in range(1, 6): add(T('dynasty', n * 12 - 4), pop(0.15, 600 + n * 60)); add(T('dynasty', n * 12 - 3), sparkle(0.05))
 for i in range(7): add(T('bustsQ', 4 + i * 7), pop(0.12, 820))
 add(T('farm'), waves((NEXT['farm'] - A['farm']) / FPS, 0.04)); add(T('farm', 35), pop(0.1, 600))
 add(T('enter'), crowd(2.0, 0.035)); add(T('translator', 18), pop(0.16, 700)); add(T('shock', 6), boom(0.3, 70)); add(T('shock', 7), slide(0.1))
@@ -127,8 +130,8 @@ add(T('crowd'), crowd(1.8, 0.09)); add(T('crowd', 4), pop(0.16, 820))
 add(T('scribe'), crickets((A['loop'] - A['scribe']) / FPS, 0.01), to=amb)
 add(T('gold', 6), boom(0.4, 48)); add(T('gold', 6), chime(523, 0.07, 3.0)); add(T('gold', 10), chime(784, 0.06, 3.0)); add(T('gold', 14), chime(1046, 0.05, 3.0))
 for i in range(4): add(T('gold', 8 + i * 9), sparkle(0.09))
-add(T('loop', 22), chime(1568, 0.09, 1.2)); add(T('loop', 26), sparkle(0.08))
-for a, b in [('queen', 'desk'), ('enter', 'how'), ('crown', 'alex'), ('wedding', 'landlord'), ('dress', 'isis'), ('talk', 'crowd')]: add(T(a), crackle((A[b] - A[a]) / FPS, 0.02), to=amb)
+add(T('loop', 6), sparkle(0.08)); add(T('loop', 80), boom(0.4, 58)); add(T('loop', 82), sparkle(0.13)); add(T('loop', 84), chime(1568, 0.08, 1.4))
+for a, b in [('queen', 'busts'), ('dynasty', 'bustsQ'), ('enter', 'how'), ('crown', 'alex'), ('wedding', 'landlord'), ('dress', 'isis'), ('talk', 'crowd')]: add(T(a), crackle((A[b] - A[a]) / FPS, 0.02), to=amb)
 
 # ---- voice + ducked music (music stretched to the picture so its finale lands on the payoff) ----
 voice = load("voice.wav")[:, 0]; vo = np.zeros(N); vo[: min(N, len(voice))] = voice[:N]
